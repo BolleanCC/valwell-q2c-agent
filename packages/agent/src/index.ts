@@ -8,3 +8,4 @@ export * from "./fix.js";
 export * from "./nodes/align.js";
 export * from "./nodes/route.js";
 export * from "./pipeline.js";
+export * from "./report.js";
