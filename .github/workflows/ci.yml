@@ -36,7 +36,8 @@ jobs:
 
   commitlint:
     name: Commit messages
-    if: github.event_name == 'pull_request'
+    # Dependabot writes its own (often > 72 char) messages; skip it here.
+    if: github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
