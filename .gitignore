@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+out/
+.next/
+coverage/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Environment (commit .env.example only)
+.env
+.env.*
+!.env.example
+
+# Generated data (only small committed fixtures are tracked)
+data/*
+!data/fixtures/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editors / local tool settings
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.claude/settings.local.json
