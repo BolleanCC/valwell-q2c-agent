@@ -6,5 +6,12 @@
     "outDir": "dist"
   },
   "include": ["src"],
-  "references": [{ "path": "../domain" }]
+  "references": [
+    {
+      "path": "../domain"
+    },
+    {
+      "path": "../rules"
+    }
+  ]
 }
