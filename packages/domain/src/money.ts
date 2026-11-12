@@ -8,10 +8,11 @@
  * with BigInt integer math and rounded in exactly one place, `roundDiv`.
  */
 
-declare const moneyBrand: unique symbol;
+import { z } from "zod";
 
-/** An amount in integer cents (CAD). */
-export type Money = number & { readonly [moneyBrand]: true };
+/** An amount in integer cents (CAD). Validates as a safe integer. */
+export const Money = z.int().brand<"Money">();
+export type Money = z.infer<typeof Money>;
 
 const DOLLARS_PATTERN = /^(-)?(\d+)(?:\.(\d{1,2}))?$/;
 const QTY_PATTERN = /^(\d+)(?:\.(\d{1,3}))?$/;

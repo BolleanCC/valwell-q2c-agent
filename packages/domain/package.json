@@ -5,9 +5,9 @@
   "description": "Shared domain types, schemas and Money helpers. No I/O.",
   "type": "module",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
   }
 }
