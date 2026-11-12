@@ -34,6 +34,12 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
 
+      # Regression gate: the agent must keep finding the injected faults in
+      # the committed fixture. Fails the build if any friction code's recall
+      # drops below the threshold.
+      - name: Evaluate agent on fixture (recall gate)
+        run: pnpm eval -- --batch data/fixtures/seed-42 --min-recall 0.9
+
   commitlint:
     name: Commit messages
     # Dependabot writes its own (often > 72 char) messages; skip it here.
