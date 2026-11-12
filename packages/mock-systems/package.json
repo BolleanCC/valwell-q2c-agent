@@ -1,0 +1,14 @@
+{
+  "name": "@valwell/mock-systems",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Mock quoting, operations, billing and MSA stores, plus the customer portal simulator.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@valwell/domain": "workspace:*",
+    "zod": "^4.6.7"
+  }
+}

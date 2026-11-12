@@ -1,5 +1,15 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "files": [],
-  "references": [{ "path": "packages/domain" }, { "path": "packages/generator" }]
+  "references": [
+    {
+      "path": "packages/domain"
+    },
+    {
+      "path": "packages/generator"
+    },
+    {
+      "path": "packages/mock-systems"
+    }
+  ]
 }
