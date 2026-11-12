@@ -191,6 +191,18 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(@types/node@24.19.2)(vite@8.3.8(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))
 
+  packages/agent:
+    dependencies:
+      '@valwell/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@valwell/mock-systems':
+        specifier: workspace:*
+        version: link:../mock-systems
+      '@valwell/rules':
+        specifier: workspace:*
+        version: link:../rules
+
   packages/domain:
     dependencies:
       zod:

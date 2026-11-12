@@ -1,0 +1,15 @@
+{
+  "name": "@valwell/agent",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Deterministic-first quote-to-invoice reconciliation agent.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@valwell/domain": "workspace:*",
+    "@valwell/mock-systems": "workspace:*",
+    "@valwell/rules": "workspace:*"
+  }
+}
