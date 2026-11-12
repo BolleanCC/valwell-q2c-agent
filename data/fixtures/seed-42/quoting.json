@@ -1,0 +1,3232 @@
+{
+  "priceBook": [
+    {
+      "id": "PB-CUST-001-TDI-FEE-v1",
+      "customerId": "CUST-001",
+      "itemCode": "TDI-FEE",
+      "description": "Teardown & inspection",
+      "kind": "SERVICE",
+      "unitPrice": 78400,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-01-01"
+    },
+    {
+      "id": "PB-CUST-001-TDI-FEE-v2",
+      "customerId": "CUST-001",
+      "itemCode": "TDI-FEE",
+      "description": "Teardown & inspection",
+      "kind": "SERVICE",
+      "unitPrice": 84100,
+      "version": 2,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-001-HYDRO-TEST-v1",
+      "customerId": "CUST-001",
+      "itemCode": "HYDRO-TEST",
+      "description": "Hydrostatic shell & seat test",
+      "kind": "SERVICE",
+      "unitPrice": 40100,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-01-01"
+    },
+    {
+      "id": "PB-CUST-001-HYDRO-TEST-v2",
+      "customerId": "CUST-001",
+      "itemCode": "HYDRO-TEST",
+      "description": "Hydrostatic shell & seat test",
+      "kind": "SERVICE",
+      "unitPrice": 41652,
+      "version": 2,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-001-LAB-TECH-v1",
+      "customerId": "CUST-001",
+      "itemCode": "LAB-TECH",
+      "description": "Valve technician labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 9800,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-01-01"
+    },
+    {
+      "id": "PB-CUST-001-LAB-TECH-v2",
+      "customerId": "CUST-001",
+      "itemCode": "LAB-TECH",
+      "description": "Valve technician labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 10227,
+      "version": 2,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-001-LAB-MACH-v1",
+      "customerId": "CUST-001",
+      "itemCode": "LAB-MACH",
+      "description": "Machining labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 13400,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-01-01"
+    },
+    {
+      "id": "PB-CUST-001-LAB-MACH-v2",
+      "customerId": "CUST-001",
+      "itemCode": "LAB-MACH",
+      "description": "Machining labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 14382,
+      "version": 2,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-001-LAB-WELD-v1",
+      "customerId": "CUST-001",
+      "itemCode": "LAB-WELD",
+      "description": "Weld overlay labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 14200,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-01-01"
+    },
+    {
+      "id": "PB-CUST-001-LAB-WELD-v2",
+      "customerId": "CUST-001",
+      "itemCode": "LAB-WELD",
+      "description": "Weld overlay labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 14804,
+      "version": 2,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-002-TDI-FEE-v1",
+      "customerId": "CUST-002",
+      "itemCode": "TDI-FEE",
+      "description": "Teardown & inspection",
+      "kind": "SERVICE",
+      "unitPrice": 74200,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-02-01"
+    },
+    {
+      "id": "PB-CUST-002-TDI-FEE-v2",
+      "customerId": "CUST-002",
+      "itemCode": "TDI-FEE",
+      "description": "Teardown & inspection",
+      "kind": "SERVICE",
+      "unitPrice": 77153,
+      "version": 2,
+      "effectiveFrom": "2026-02-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-002-HYDRO-TEST-v1",
+      "customerId": "CUST-002",
+      "itemCode": "HYDRO-TEST",
+      "description": "Hydrostatic shell & seat test",
+      "kind": "SERVICE",
+      "unitPrice": 37500,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-02-01"
+    },
+    {
+      "id": "PB-CUST-002-HYDRO-TEST-v2",
+      "customerId": "CUST-002",
+      "itemCode": "HYDRO-TEST",
+      "description": "Hydrostatic shell & seat test",
+      "kind": "SERVICE",
+      "unitPrice": 39911,
+      "version": 2,
+      "effectiveFrom": "2026-02-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-002-LAB-TECH-v1",
+      "customerId": "CUST-002",
+      "itemCode": "LAB-TECH",
+      "description": "Valve technician labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 10000,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-02-01"
+    },
+    {
+      "id": "PB-CUST-002-LAB-TECH-v2",
+      "customerId": "CUST-002",
+      "itemCode": "LAB-TECH",
+      "description": "Valve technician labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 10301,
+      "version": 2,
+      "effectiveFrom": "2026-02-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-002-LAB-MACH-v1",
+      "customerId": "CUST-002",
+      "itemCode": "LAB-MACH",
+      "description": "Machining labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 12900,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-02-01"
+    },
+    {
+      "id": "PB-CUST-002-LAB-MACH-v2",
+      "customerId": "CUST-002",
+      "itemCode": "LAB-MACH",
+      "description": "Machining labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 13828,
+      "version": 2,
+      "effectiveFrom": "2026-02-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-002-LAB-WELD-v1",
+      "customerId": "CUST-002",
+      "itemCode": "LAB-WELD",
+      "description": "Weld overlay labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 12600,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-02-01"
+    },
+    {
+      "id": "PB-CUST-002-LAB-WELD-v2",
+      "customerId": "CUST-002",
+      "itemCode": "LAB-WELD",
+      "description": "Weld overlay labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 13351,
+      "version": 2,
+      "effectiveFrom": "2026-02-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-003-TDI-FEE-v1",
+      "customerId": "CUST-003",
+      "itemCode": "TDI-FEE",
+      "description": "Teardown & inspection",
+      "kind": "SERVICE",
+      "unitPrice": 66800,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2025-11-01"
+    },
+    {
+      "id": "PB-CUST-003-TDI-FEE-v2",
+      "customerId": "CUST-003",
+      "itemCode": "TDI-FEE",
+      "description": "Teardown & inspection",
+      "kind": "SERVICE",
+      "unitPrice": 69425,
+      "version": 2,
+      "effectiveFrom": "2025-11-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-003-HYDRO-TEST-v1",
+      "customerId": "CUST-003",
+      "itemCode": "HYDRO-TEST",
+      "description": "Hydrostatic shell & seat test",
+      "kind": "SERVICE",
+      "unitPrice": 41800,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2025-11-01"
+    },
+    {
+      "id": "PB-CUST-003-HYDRO-TEST-v2",
+      "customerId": "CUST-003",
+      "itemCode": "HYDRO-TEST",
+      "description": "Hydrostatic shell & seat test",
+      "kind": "SERVICE",
+      "unitPrice": 44162,
+      "version": 2,
+      "effectiveFrom": "2025-11-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-003-LAB-TECH-v1",
+      "customerId": "CUST-003",
+      "itemCode": "LAB-TECH",
+      "description": "Valve technician labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 8500,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2025-11-01"
+    },
+    {
+      "id": "PB-CUST-003-LAB-TECH-v2",
+      "customerId": "CUST-003",
+      "itemCode": "LAB-TECH",
+      "description": "Valve technician labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 8828,
+      "version": 2,
+      "effectiveFrom": "2025-11-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-003-LAB-MACH-v1",
+      "customerId": "CUST-003",
+      "itemCode": "LAB-MACH",
+      "description": "Machining labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 14100,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2025-11-01"
+    },
+    {
+      "id": "PB-CUST-003-LAB-MACH-v2",
+      "customerId": "CUST-003",
+      "itemCode": "LAB-MACH",
+      "description": "Machining labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 14867,
+      "version": 2,
+      "effectiveFrom": "2025-11-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-003-LAB-WELD-v1",
+      "customerId": "CUST-003",
+      "itemCode": "LAB-WELD",
+      "description": "Weld overlay labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 15400,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2025-11-01"
+    },
+    {
+      "id": "PB-CUST-003-LAB-WELD-v2",
+      "customerId": "CUST-003",
+      "itemCode": "LAB-WELD",
+      "description": "Weld overlay labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 16108,
+      "version": 2,
+      "effectiveFrom": "2025-11-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-004-TDI-FEE-v1",
+      "customerId": "CUST-004",
+      "itemCode": "TDI-FEE",
+      "description": "Teardown & inspection",
+      "kind": "SERVICE",
+      "unitPrice": 66500,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2025-11-01"
+    },
+    {
+      "id": "PB-CUST-004-TDI-FEE-v2",
+      "customerId": "CUST-004",
+      "itemCode": "TDI-FEE",
+      "description": "Teardown & inspection",
+      "kind": "SERVICE",
+      "unitPrice": 70344,
+      "version": 2,
+      "effectiveFrom": "2025-11-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-004-HYDRO-TEST-v1",
+      "customerId": "CUST-004",
+      "itemCode": "HYDRO-TEST",
+      "description": "Hydrostatic shell & seat test",
+      "kind": "SERVICE",
+      "unitPrice": 39000,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2025-11-01"
+    },
+    {
+      "id": "PB-CUST-004-HYDRO-TEST-v2",
+      "customerId": "CUST-004",
+      "itemCode": "HYDRO-TEST",
+      "description": "Hydrostatic shell & seat test",
+      "kind": "SERVICE",
+      "unitPrice": 40646,
+      "version": 2,
+      "effectiveFrom": "2025-11-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-004-LAB-TECH-v1",
+      "customerId": "CUST-004",
+      "itemCode": "LAB-TECH",
+      "description": "Valve technician labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 10100,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2025-11-01"
+    },
+    {
+      "id": "PB-CUST-004-LAB-TECH-v2",
+      "customerId": "CUST-004",
+      "itemCode": "LAB-TECH",
+      "description": "Valve technician labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 10508,
+      "version": 2,
+      "effectiveFrom": "2025-11-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-004-LAB-MACH-v1",
+      "customerId": "CUST-004",
+      "itemCode": "LAB-MACH",
+      "description": "Machining labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 12400,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2025-11-01"
+    },
+    {
+      "id": "PB-CUST-004-LAB-MACH-v2",
+      "customerId": "CUST-004",
+      "itemCode": "LAB-MACH",
+      "description": "Machining labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 13231,
+      "version": 2,
+      "effectiveFrom": "2025-11-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-CUST-004-LAB-WELD-v1",
+      "customerId": "CUST-004",
+      "itemCode": "LAB-WELD",
+      "description": "Weld overlay labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 15500,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2025-11-01"
+    },
+    {
+      "id": "PB-CUST-004-LAB-WELD-v2",
+      "customerId": "CUST-004",
+      "itemCode": "LAB-WELD",
+      "description": "Weld overlay labour (per hour)",
+      "kind": "LABOUR",
+      "unitPrice": 16359,
+      "version": 2,
+      "effectiveFrom": "2025-11-01",
+      "effectiveTo": null
+    }
+  ],
+  "quotes": [
+    {
+      "id": "Q-0001-TDI",
+      "revision": 1,
+      "jobId": "JOB-0001",
+      "customerId": "CUST-002",
+      "stage": "TDI",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-07-29",
+      "lines": [
+        {
+          "id": "Q-0001-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 74200
+        }
+      ]
+    },
+    {
+      "id": "Q-0001-REP",
+      "revision": 1,
+      "jobId": "JOB-0001",
+      "customerId": "CUST-002",
+      "stage": "REPAIR",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-07-31",
+      "lines": [
+        {
+          "id": "Q-0001-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 12,
+          "unitPrice": 10000
+        },
+        {
+          "id": "Q-0001-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 1,
+          "unitPrice": 12900
+        },
+        {
+          "id": "Q-0001-REP-R1-L3",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 8505
+        },
+        {
+          "id": "Q-0001-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 37500
+        }
+      ]
+    },
+    {
+      "id": "Q-0002-TDI",
+      "revision": 1,
+      "jobId": "JOB-0002",
+      "customerId": "CUST-003",
+      "stage": "TDI",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-07-30",
+      "lines": [
+        {
+          "id": "Q-0002-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 66800
+        }
+      ]
+    },
+    {
+      "id": "Q-0002-REP",
+      "revision": 1,
+      "jobId": "JOB-0002",
+      "customerId": "CUST-003",
+      "stage": "REPAIR",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-08-01",
+      "lines": [
+        {
+          "id": "Q-0002-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 5,
+          "unitPrice": 8500
+        },
+        {
+          "id": "Q-0002-REP-R1-L2",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 14190
+        },
+        {
+          "id": "Q-0002-REP-R1-L3",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 41800
+        }
+      ]
+    },
+    {
+      "id": "Q-0003-TDI",
+      "revision": 1,
+      "jobId": "JOB-0003",
+      "customerId": "CUST-003",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-02-04",
+      "lines": [
+        {
+          "id": "Q-0003-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 69425
+        }
+      ]
+    },
+    {
+      "id": "Q-0003-REP",
+      "revision": 1,
+      "jobId": "JOB-0003",
+      "customerId": "CUST-003",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-02-06",
+      "lines": [
+        {
+          "id": "Q-0003-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 4.5,
+          "unitPrice": 8828
+        },
+        {
+          "id": "Q-0003-REP-R1-L2",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 5152
+        },
+        {
+          "id": "Q-0003-REP-R1-L3",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 15120
+        },
+        {
+          "id": "Q-0003-REP-R1-L4",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 117936
+        },
+        {
+          "id": "Q-0003-REP-R1-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 44162
+        }
+      ]
+    },
+    {
+      "id": "Q-0004-TDI",
+      "revision": 1,
+      "jobId": "JOB-0004",
+      "customerId": "CUST-001",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-14",
+      "lines": [
+        {
+          "id": "Q-0004-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 84100
+        }
+      ]
+    },
+    {
+      "id": "Q-0004-REP",
+      "revision": 1,
+      "jobId": "JOB-0004",
+      "customerId": "CUST-001",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-16",
+      "lines": [
+        {
+          "id": "Q-0004-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 10.5,
+          "unitPrice": 10227
+        },
+        {
+          "id": "Q-0004-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 1,
+          "unitPrice": 14382
+        },
+        {
+          "id": "Q-0004-REP-R1-L3",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 116616
+        },
+        {
+          "id": "Q-0004-REP-R1-L4",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 5424
+        },
+        {
+          "id": "Q-0004-REP-R1-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 41652
+        }
+      ]
+    },
+    {
+      "id": "Q-0005-TDI",
+      "revision": 1,
+      "jobId": "JOB-0005",
+      "customerId": "CUST-001",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2025-12-27",
+      "lines": [
+        {
+          "id": "Q-0005-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 84100
+        }
+      ]
+    },
+    {
+      "id": "Q-0005-REP",
+      "revision": 1,
+      "jobId": "JOB-0005",
+      "customerId": "CUST-001",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2025-12-29",
+      "lines": [
+        {
+          "id": "Q-0005-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 4,
+          "unitPrice": 10227
+        },
+        {
+          "id": "Q-0005-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 4,
+          "unitPrice": 14382
+        },
+        {
+          "id": "Q-0005-REP-R1-L3",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 100118
+        },
+        {
+          "id": "Q-0005-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 41652
+        }
+      ]
+    },
+    {
+      "id": "Q-0006-TDI",
+      "revision": 1,
+      "jobId": "JOB-0006",
+      "customerId": "CUST-001",
+      "stage": "TDI",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-10-16",
+      "lines": [
+        {
+          "id": "Q-0006-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 78400
+        }
+      ]
+    },
+    {
+      "id": "Q-0006-REP",
+      "revision": 1,
+      "jobId": "JOB-0006",
+      "customerId": "CUST-001",
+      "stage": "REPAIR",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-10-18",
+      "lines": [
+        {
+          "id": "Q-0006-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 9,
+          "unitPrice": 9800
+        },
+        {
+          "id": "Q-0006-REP-R1-L2",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 49494
+        },
+        {
+          "id": "Q-0006-REP-R1-L3",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 10848
+        },
+        {
+          "id": "Q-0006-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 40100
+        }
+      ]
+    },
+    {
+      "id": "Q-0007-TDI",
+      "revision": 1,
+      "jobId": "JOB-0007",
+      "customerId": "CUST-002",
+      "stage": "TDI",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-09-20",
+      "lines": [
+        {
+          "id": "Q-0007-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 74200
+        }
+      ]
+    },
+    {
+      "id": "Q-0007-REP",
+      "revision": 1,
+      "jobId": "JOB-0007",
+      "customerId": "CUST-002",
+      "stage": "REPAIR",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-09-22",
+      "lines": [
+        {
+          "id": "Q-0007-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 5.5,
+          "unitPrice": 10000
+        },
+        {
+          "id": "Q-0007-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 2,
+          "unitPrice": 12900
+        },
+        {
+          "id": "Q-0007-REP-R1-L3",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitPrice": 24860
+        },
+        {
+          "id": "Q-0007-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 37500
+        }
+      ]
+    },
+    {
+      "id": "Q-0008-TDI",
+      "revision": 1,
+      "jobId": "JOB-0008",
+      "customerId": "CUST-002",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-05-14",
+      "lines": [
+        {
+          "id": "Q-0008-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 77153
+        }
+      ]
+    },
+    {
+      "id": "Q-0008-REP",
+      "revision": 1,
+      "jobId": "JOB-0008",
+      "customerId": "CUST-002",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-05-16",
+      "lines": [
+        {
+          "id": "Q-0008-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 5.5,
+          "unitPrice": 10301
+        },
+        {
+          "id": "Q-0008-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 2.5,
+          "unitPrice": 13828
+        },
+        {
+          "id": "Q-0008-REP-R1-L3",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 7700
+        },
+        {
+          "id": "Q-0008-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 39911
+        }
+      ]
+    },
+    {
+      "id": "Q-0009-TDI",
+      "revision": 1,
+      "jobId": "JOB-0009",
+      "customerId": "CUST-004",
+      "stage": "TDI",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-07-21",
+      "lines": [
+        {
+          "id": "Q-0009-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 66500
+        }
+      ]
+    },
+    {
+      "id": "Q-0009-REP",
+      "revision": 1,
+      "jobId": "JOB-0009",
+      "customerId": "CUST-004",
+      "stage": "REPAIR",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-07-23",
+      "lines": [
+        {
+          "id": "Q-0009-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 6.5,
+          "unitPrice": 10100
+        },
+        {
+          "id": "Q-0009-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 4,
+          "unitPrice": 12400
+        },
+        {
+          "id": "Q-0009-REP-R1-L3",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 13824
+        },
+        {
+          "id": "Q-0009-REP-R1-L4",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 8748
+        },
+        {
+          "id": "Q-0009-REP-R1-L5",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 115452
+        },
+        {
+          "id": "Q-0009-REP-R1-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 39000
+        }
+      ]
+    },
+    {
+      "id": "Q-0010-TDI",
+      "revision": 1,
+      "jobId": "JOB-0010",
+      "customerId": "CUST-004",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2025-11-12",
+      "lines": [
+        {
+          "id": "Q-0010-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 70344
+        }
+      ]
+    },
+    {
+      "id": "Q-0010-REP",
+      "revision": 1,
+      "jobId": "JOB-0010",
+      "customerId": "CUST-004",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2025-11-14",
+      "lines": [
+        {
+          "id": "Q-0010-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 4,
+          "unitPrice": 10508
+        },
+        {
+          "id": "Q-0010-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 2.5,
+          "unitPrice": 13231
+        },
+        {
+          "id": "Q-0010-REP-R1-L3",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 12960
+        },
+        {
+          "id": "Q-0010-REP-R1-L4",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 15120
+        },
+        {
+          "id": "Q-0010-REP-R1-L5",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 11664
+        },
+        {
+          "id": "Q-0010-REP-R1-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 40646
+        }
+      ]
+    },
+    {
+      "id": "Q-0011-TDI",
+      "revision": 1,
+      "jobId": "JOB-0011",
+      "customerId": "CUST-003",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2025-12-10",
+      "lines": [
+        {
+          "id": "Q-0011-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 69425
+        }
+      ]
+    },
+    {
+      "id": "Q-0011-REP",
+      "revision": 1,
+      "jobId": "JOB-0011",
+      "customerId": "CUST-003",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2025-12-12",
+      "lines": [
+        {
+          "id": "Q-0011-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 6,
+          "unitPrice": 8828
+        },
+        {
+          "id": "Q-0011-REP-R1-L2",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 97888
+        },
+        {
+          "id": "Q-0011-REP-R1-L3",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 44162
+        }
+      ]
+    },
+    {
+      "id": "Q-0012-TDI",
+      "revision": 1,
+      "jobId": "JOB-0012",
+      "customerId": "CUST-001",
+      "stage": "TDI",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-08-25",
+      "lines": [
+        {
+          "id": "Q-0012-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 78400
+        }
+      ]
+    },
+    {
+      "id": "Q-0012-REP",
+      "revision": 1,
+      "jobId": "JOB-0012",
+      "customerId": "CUST-001",
+      "stage": "REPAIR",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-08-27",
+      "lines": [
+        {
+          "id": "Q-0012-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 5.5,
+          "unitPrice": 9800
+        },
+        {
+          "id": "Q-0012-REP-R1-L2",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitPrice": 23920
+        },
+        {
+          "id": "Q-0012-REP-R1-L3",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 7475
+        },
+        {
+          "id": "Q-0012-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 40100
+        }
+      ]
+    },
+    {
+      "id": "Q-0013-TDI",
+      "revision": 1,
+      "jobId": "JOB-0013",
+      "customerId": "CUST-003",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-01-18",
+      "lines": [
+        {
+          "id": "Q-0013-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 69425
+        }
+      ]
+    },
+    {
+      "id": "Q-0013-REP",
+      "revision": 1,
+      "jobId": "JOB-0013",
+      "customerId": "CUST-003",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-01-20",
+      "lines": [
+        {
+          "id": "Q-0013-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 9.5,
+          "unitPrice": 8828
+        },
+        {
+          "id": "Q-0013-REP-R1-L2",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitPrice": 23184
+        },
+        {
+          "id": "Q-0013-REP-R1-L3",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 44162
+        }
+      ]
+    },
+    {
+      "id": "Q-0014-TDI",
+      "revision": 1,
+      "jobId": "JOB-0014",
+      "customerId": "CUST-002",
+      "stage": "TDI",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-10-13",
+      "lines": [
+        {
+          "id": "Q-0014-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 74200
+        }
+      ]
+    },
+    {
+      "id": "Q-0014-REP",
+      "revision": 1,
+      "jobId": "JOB-0014",
+      "customerId": "CUST-002",
+      "stage": "REPAIR",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-10-15",
+      "lines": [
+        {
+          "id": "Q-0014-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 10.5,
+          "unitPrice": 10000
+        },
+        {
+          "id": "Q-0014-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 2.5,
+          "unitPrice": 12900
+        },
+        {
+          "id": "Q-0014-REP-R1-L3",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 102375
+        },
+        {
+          "id": "Q-0014-REP-R1-L4",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 5670
+        },
+        {
+          "id": "Q-0014-REP-R1-L5",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 13440
+        },
+        {
+          "id": "Q-0014-REP-R1-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 37500
+        }
+      ]
+    },
+    {
+      "id": "Q-0015-TDI",
+      "revision": 1,
+      "jobId": "JOB-0015",
+      "customerId": "CUST-004",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-04-07",
+      "lines": [
+        {
+          "id": "Q-0015-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 70344
+        }
+      ]
+    },
+    {
+      "id": "Q-0015-REP",
+      "revision": 1,
+      "jobId": "JOB-0015",
+      "customerId": "CUST-004",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-04-09",
+      "lines": [
+        {
+          "id": "Q-0015-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 6.5,
+          "unitPrice": 10508
+        },
+        {
+          "id": "Q-0015-REP-R1-L2",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 14595
+        },
+        {
+          "id": "Q-0015-REP-R1-L3",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 46620
+        },
+        {
+          "id": "Q-0015-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 40646
+        }
+      ]
+    },
+    {
+      "id": "Q-0016-TDI",
+      "revision": 1,
+      "jobId": "JOB-0016",
+      "customerId": "CUST-001",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-06-17",
+      "lines": [
+        {
+          "id": "Q-0016-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 84100
+        }
+      ]
+    },
+    {
+      "id": "Q-0016-REP",
+      "revision": 1,
+      "jobId": "JOB-0016",
+      "customerId": "CUST-001",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-06-19",
+      "lines": [
+        {
+          "id": "Q-0016-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 4.5,
+          "unitPrice": 10227
+        },
+        {
+          "id": "Q-0016-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 4,
+          "unitPrice": 14382
+        },
+        {
+          "id": "Q-0016-REP-R1-L3",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 11110
+        },
+        {
+          "id": "Q-0016-REP-R1-L4",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 44440
+        },
+        {
+          "id": "Q-0016-REP-R1-L5",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 12210
+        },
+        {
+          "id": "Q-0016-REP-R1-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 41652
+        }
+      ]
+    },
+    {
+      "id": "Q-0017-TDI",
+      "revision": 1,
+      "jobId": "JOB-0017",
+      "customerId": "CUST-003",
+      "stage": "TDI",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-09-01",
+      "lines": [
+        {
+          "id": "Q-0017-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 66800
+        }
+      ]
+    },
+    {
+      "id": "Q-0017-REP",
+      "revision": 1,
+      "jobId": "JOB-0017",
+      "customerId": "CUST-003",
+      "stage": "REPAIR",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-09-03",
+      "lines": [
+        {
+          "id": "Q-0017-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 11,
+          "unitPrice": 8500
+        },
+        {
+          "id": "Q-0017-REP-R1-L2",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 7169
+        },
+        {
+          "id": "Q-0017-REP-R1-L3",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 111708
+        },
+        {
+          "id": "Q-0017-REP-R1-L4",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 41623
+        },
+        {
+          "id": "Q-0017-REP-R1-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 41800
+        }
+      ]
+    },
+    {
+      "id": "Q-0018-TDI",
+      "revision": 1,
+      "jobId": "JOB-0018",
+      "customerId": "CUST-002",
+      "stage": "TDI",
+      "priceBookVersion": 1,
+      "issuedDate": "2026-01-07",
+      "lines": [
+        {
+          "id": "Q-0018-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 74200
+        }
+      ]
+    },
+    {
+      "id": "Q-0018-REP",
+      "revision": 1,
+      "jobId": "JOB-0018",
+      "customerId": "CUST-002",
+      "stage": "REPAIR",
+      "priceBookVersion": 1,
+      "issuedDate": "2026-01-09",
+      "lines": [
+        {
+          "id": "Q-0018-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 5.5,
+          "unitPrice": 10000
+        },
+        {
+          "id": "Q-0018-REP-R1-L2",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 12705
+        },
+        {
+          "id": "Q-0018-REP-R1-L3",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 107100
+        },
+        {
+          "id": "Q-0018-REP-R1-L4",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 40740
+        },
+        {
+          "id": "Q-0018-REP-R1-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 37500
+        }
+      ]
+    },
+    {
+      "id": "Q-0019-TDI",
+      "revision": 1,
+      "jobId": "JOB-0019",
+      "customerId": "CUST-003",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2025-11-16",
+      "lines": [
+        {
+          "id": "Q-0019-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 69425
+        }
+      ]
+    },
+    {
+      "id": "Q-0019-REP",
+      "revision": 1,
+      "jobId": "JOB-0019",
+      "customerId": "CUST-003",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2025-11-18",
+      "lines": [
+        {
+          "id": "Q-0019-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 11,
+          "unitPrice": 8828
+        },
+        {
+          "id": "Q-0019-REP-R1-L2",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 10080
+        },
+        {
+          "id": "Q-0019-REP-R1-L3",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 44162
+        }
+      ]
+    },
+    {
+      "id": "Q-0020-TDI",
+      "revision": 1,
+      "jobId": "JOB-0020",
+      "customerId": "CUST-001",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-05",
+      "lines": [
+        {
+          "id": "Q-0020-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 84100
+        }
+      ]
+    },
+    {
+      "id": "Q-0020-REP",
+      "revision": 1,
+      "jobId": "JOB-0020",
+      "customerId": "CUST-001",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-07",
+      "lines": [
+        {
+          "id": "Q-0020-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 8,
+          "unitPrice": 10227
+        },
+        {
+          "id": "Q-0020-REP-R1-L2",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 4140
+        },
+        {
+          "id": "Q-0020-REP-R1-L3",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitPrice": 29325
+        },
+        {
+          "id": "Q-0020-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 41652
+        }
+      ]
+    },
+    {
+      "id": "Q-0021-TDI",
+      "revision": 1,
+      "jobId": "JOB-0021",
+      "customerId": "CUST-001",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-18",
+      "lines": [
+        {
+          "id": "Q-0021-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 84100
+        }
+      ]
+    },
+    {
+      "id": "Q-0021-REP",
+      "revision": 1,
+      "jobId": "JOB-0021",
+      "customerId": "CUST-001",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-20",
+      "lines": [
+        {
+          "id": "Q-0021-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 5.5,
+          "unitPrice": 10227
+        },
+        {
+          "id": "Q-0021-REP-R1-L2",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 4370
+        },
+        {
+          "id": "Q-0021-REP-R1-L3",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 41652
+        }
+      ]
+    },
+    {
+      "id": "Q-0022-TDI",
+      "revision": 1,
+      "jobId": "JOB-0022",
+      "customerId": "CUST-003",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-05",
+      "lines": [
+        {
+          "id": "Q-0022-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 69425
+        }
+      ]
+    },
+    {
+      "id": "Q-0022-REP",
+      "revision": 1,
+      "jobId": "JOB-0022",
+      "customerId": "CUST-003",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-07",
+      "lines": [
+        {
+          "id": "Q-0022-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 7.5,
+          "unitPrice": 8828
+        },
+        {
+          "id": "Q-0022-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 1.5,
+          "unitPrice": 14867
+        },
+        {
+          "id": "Q-0022-REP-R1-L3",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 14000
+        },
+        {
+          "id": "Q-0022-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 44162
+        }
+      ]
+    },
+    {
+      "id": "Q-0023-TDI",
+      "revision": 1,
+      "jobId": "JOB-0023",
+      "customerId": "CUST-003",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-02",
+      "lines": [
+        {
+          "id": "Q-0023-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 69425
+        }
+      ]
+    },
+    {
+      "id": "Q-0023-REP",
+      "revision": 1,
+      "jobId": "JOB-0023",
+      "customerId": "CUST-003",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-04",
+      "lines": [
+        {
+          "id": "Q-0023-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 7.5,
+          "unitPrice": 8828
+        },
+        {
+          "id": "Q-0023-REP-R1-L2",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitPrice": 15510
+        },
+        {
+          "id": "Q-0023-REP-R1-L3",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 6600
+        },
+        {
+          "id": "Q-0023-REP-R1-L4",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 66110
+        },
+        {
+          "id": "Q-0023-REP-R1-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 44162
+        }
+      ]
+    },
+    {
+      "id": "Q-0024-TDI",
+      "revision": 1,
+      "jobId": "JOB-0024",
+      "customerId": "CUST-002",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-06-06",
+      "lines": [
+        {
+          "id": "Q-0024-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 77153
+        }
+      ]
+    },
+    {
+      "id": "Q-0024-REP",
+      "revision": 1,
+      "jobId": "JOB-0024",
+      "customerId": "CUST-002",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-06-08",
+      "lines": [
+        {
+          "id": "Q-0024-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 7.5,
+          "unitPrice": 10301
+        },
+        {
+          "id": "Q-0024-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 3.5,
+          "unitPrice": 13828
+        },
+        {
+          "id": "Q-0024-REP-R1-L3",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 10780
+        },
+        {
+          "id": "Q-0024-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 39911
+        }
+      ]
+    },
+    {
+      "id": "Q-0025-TDI",
+      "revision": 1,
+      "jobId": "JOB-0025",
+      "customerId": "CUST-004",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2025-12-23",
+      "lines": [
+        {
+          "id": "Q-0025-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 70344
+        }
+      ]
+    },
+    {
+      "id": "Q-0025-REP",
+      "revision": 1,
+      "jobId": "JOB-0025",
+      "customerId": "CUST-004",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2025-12-25",
+      "lines": [
+        {
+          "id": "Q-0025-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 9.5,
+          "unitPrice": 10508
+        },
+        {
+          "id": "Q-0025-REP-R1-L2",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 7560
+        },
+        {
+          "id": "Q-0025-REP-R1-L3",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitPrice": 27756
+        },
+        {
+          "id": "Q-0025-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 40646
+        }
+      ]
+    },
+    {
+      "id": "Q-0026-TDI",
+      "revision": 1,
+      "jobId": "JOB-0026",
+      "customerId": "CUST-004",
+      "stage": "TDI",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-08-03",
+      "lines": [
+        {
+          "id": "Q-0026-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 66500
+        }
+      ]
+    },
+    {
+      "id": "Q-0026-REP",
+      "revision": 1,
+      "jobId": "JOB-0026",
+      "customerId": "CUST-004",
+      "stage": "REPAIR",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-08-05",
+      "lines": [
+        {
+          "id": "Q-0026-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 6,
+          "unitPrice": 10100
+        },
+        {
+          "id": "Q-0026-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 2,
+          "unitPrice": 12400
+        },
+        {
+          "id": "Q-0026-REP-R1-L3",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 10920
+        },
+        {
+          "id": "Q-0026-REP-R1-L4",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 34650
+        },
+        {
+          "id": "Q-0026-REP-R1-L5",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 9345
+        },
+        {
+          "id": "Q-0026-REP-R1-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 39000
+        }
+      ]
+    },
+    {
+      "id": "Q-0027-TDI",
+      "revision": 1,
+      "jobId": "JOB-0027",
+      "customerId": "CUST-002",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-28",
+      "lines": [
+        {
+          "id": "Q-0027-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 77153
+        }
+      ]
+    },
+    {
+      "id": "Q-0027-REP",
+      "revision": 1,
+      "jobId": "JOB-0027",
+      "customerId": "CUST-002",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-30",
+      "lines": [
+        {
+          "id": "Q-0027-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 9,
+          "unitPrice": 10301
+        },
+        {
+          "id": "Q-0027-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 2.5,
+          "unitPrice": 13828
+        },
+        {
+          "id": "Q-0027-REP-R1-L3",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 12870
+        },
+        {
+          "id": "Q-0027-REP-R1-L4",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 17600
+        },
+        {
+          "id": "Q-0027-REP-R1-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 39911
+        }
+      ]
+    },
+    {
+      "id": "Q-0028-TDI",
+      "revision": 1,
+      "jobId": "JOB-0028",
+      "customerId": "CUST-002",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-05-02",
+      "lines": [
+        {
+          "id": "Q-0028-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 77153
+        }
+      ]
+    },
+    {
+      "id": "Q-0028-REP",
+      "revision": 1,
+      "jobId": "JOB-0028",
+      "customerId": "CUST-002",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-05-04",
+      "lines": [
+        {
+          "id": "Q-0028-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 8.5,
+          "unitPrice": 10301
+        },
+        {
+          "id": "Q-0028-REP-R1-L2",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 5985
+        },
+        {
+          "id": "Q-0028-REP-R1-L3",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 39911
+        }
+      ]
+    },
+    {
+      "id": "Q-0029-TDI",
+      "revision": 1,
+      "jobId": "JOB-0029",
+      "customerId": "CUST-001",
+      "stage": "TDI",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-08-05",
+      "lines": [
+        {
+          "id": "Q-0029-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 78400
+        }
+      ]
+    },
+    {
+      "id": "Q-0029-REP",
+      "revision": 1,
+      "jobId": "JOB-0029",
+      "customerId": "CUST-001",
+      "stage": "REPAIR",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-08-07",
+      "lines": [
+        {
+          "id": "Q-0029-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 4,
+          "unitPrice": 9800
+        },
+        {
+          "id": "Q-0029-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 3.5,
+          "unitPrice": 13400
+        },
+        {
+          "id": "Q-0029-REP-R1-L3",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 9153
+        },
+        {
+          "id": "Q-0029-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 40100
+        }
+      ]
+    },
+    {
+      "id": "Q-0030-TDI",
+      "revision": 1,
+      "jobId": "JOB-0030",
+      "customerId": "CUST-003",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-01-29",
+      "lines": [
+        {
+          "id": "Q-0030-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 69425
+        }
+      ]
+    },
+    {
+      "id": "Q-0030-REP",
+      "revision": 1,
+      "jobId": "JOB-0030",
+      "customerId": "CUST-003",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-01-31",
+      "lines": [
+        {
+          "id": "Q-0030-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 10,
+          "unitPrice": 8828
+        },
+        {
+          "id": "Q-0030-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 4,
+          "unitPrice": 14867
+        },
+        {
+          "id": "Q-0030-REP-R1-L3",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitPrice": 27940
+        },
+        {
+          "id": "Q-0030-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 44162
+        }
+      ]
+    },
+    {
+      "id": "Q-0031-TDI",
+      "revision": 1,
+      "jobId": "JOB-0031",
+      "customerId": "CUST-002",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-06-24",
+      "lines": [
+        {
+          "id": "Q-0031-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 77153
+        }
+      ]
+    },
+    {
+      "id": "Q-0031-REP",
+      "revision": 1,
+      "jobId": "JOB-0031",
+      "customerId": "CUST-002",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-06-26",
+      "lines": [
+        {
+          "id": "Q-0031-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 12,
+          "unitPrice": 10301
+        },
+        {
+          "id": "Q-0031-REP-R1-L2",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 15645
+        },
+        {
+          "id": "Q-0031-REP-R1-L3",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 34020
+        },
+        {
+          "id": "Q-0031-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 39911
+        }
+      ]
+    },
+    {
+      "id": "Q-0032-TDI",
+      "revision": 1,
+      "jobId": "JOB-0032",
+      "customerId": "CUST-004",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-06-18",
+      "lines": [
+        {
+          "id": "Q-0032-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 70344
+        }
+      ]
+    },
+    {
+      "id": "Q-0032-REP",
+      "revision": 1,
+      "jobId": "JOB-0032",
+      "customerId": "CUST-004",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-06-20",
+      "lines": [
+        {
+          "id": "Q-0032-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 6.5,
+          "unitPrice": 10508
+        },
+        {
+          "id": "Q-0032-REP-R1-L2",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 84456
+        },
+        {
+          "id": "Q-0032-REP-R1-L3",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 44172
+        },
+        {
+          "id": "Q-0032-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 40646
+        }
+      ]
+    },
+    {
+      "id": "Q-0033-TDI",
+      "revision": 1,
+      "jobId": "JOB-0033",
+      "customerId": "CUST-004",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-05-09",
+      "lines": [
+        {
+          "id": "Q-0033-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 70344
+        }
+      ]
+    },
+    {
+      "id": "Q-0033-REP",
+      "revision": 1,
+      "jobId": "JOB-0033",
+      "customerId": "CUST-004",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-05-11",
+      "lines": [
+        {
+          "id": "Q-0033-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 10,
+          "unitPrice": 10508
+        },
+        {
+          "id": "Q-0033-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 2,
+          "unitPrice": 13231
+        },
+        {
+          "id": "Q-0033-REP-R1-L3",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 3780
+        },
+        {
+          "id": "Q-0033-REP-R1-L4",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 10584
+        },
+        {
+          "id": "Q-0033-REP-R1-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 40646
+        }
+      ]
+    },
+    {
+      "id": "Q-0034-TDI",
+      "revision": 1,
+      "jobId": "JOB-0034",
+      "customerId": "CUST-001",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-14",
+      "lines": [
+        {
+          "id": "Q-0034-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 84100
+        }
+      ]
+    },
+    {
+      "id": "Q-0034-REP",
+      "revision": 1,
+      "jobId": "JOB-0034",
+      "customerId": "CUST-001",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-16",
+      "lines": [
+        {
+          "id": "Q-0034-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 10.5,
+          "unitPrice": 10227
+        },
+        {
+          "id": "Q-0034-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 1.5,
+          "unitPrice": 14382
+        },
+        {
+          "id": "Q-0034-REP-R1-L3",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 44735
+        },
+        {
+          "id": "Q-0034-REP-R1-L4",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 17480
+        },
+        {
+          "id": "Q-0034-REP-R1-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 41652
+        }
+      ]
+    },
+    {
+      "id": "Q-0035-TDI",
+      "revision": 1,
+      "jobId": "JOB-0035",
+      "customerId": "CUST-002",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-02-28",
+      "lines": [
+        {
+          "id": "Q-0035-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 77153
+        }
+      ]
+    },
+    {
+      "id": "Q-0035-REP",
+      "revision": 1,
+      "jobId": "JOB-0035",
+      "customerId": "CUST-002",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-02",
+      "lines": [
+        {
+          "id": "Q-0035-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 4,
+          "unitPrice": 10301
+        },
+        {
+          "id": "Q-0035-REP-R1-L2",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 71170
+        },
+        {
+          "id": "Q-0035-REP-R1-L3",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 12870
+        },
+        {
+          "id": "Q-0035-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 39911
+        }
+      ]
+    },
+    {
+      "id": "Q-0036-TDI",
+      "revision": 1,
+      "jobId": "JOB-0036",
+      "customerId": "CUST-004",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-05",
+      "lines": [
+        {
+          "id": "Q-0036-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 70344
+        }
+      ]
+    },
+    {
+      "id": "Q-0036-REP",
+      "revision": 1,
+      "jobId": "JOB-0036",
+      "customerId": "CUST-004",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-07",
+      "lines": [
+        {
+          "id": "Q-0036-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 9.5,
+          "unitPrice": 10508
+        },
+        {
+          "id": "Q-0036-REP-R1-L2",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 12210
+        },
+        {
+          "id": "Q-0036-REP-R1-L3",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 40646
+        }
+      ]
+    },
+    {
+      "id": "Q-0037-TDI",
+      "revision": 1,
+      "jobId": "JOB-0037",
+      "customerId": "CUST-002",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-05-16",
+      "lines": [
+        {
+          "id": "Q-0037-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 77153
+        }
+      ]
+    },
+    {
+      "id": "Q-0037-REP",
+      "revision": 1,
+      "jobId": "JOB-0037",
+      "customerId": "CUST-002",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-05-18",
+      "lines": [
+        {
+          "id": "Q-0037-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 5.5,
+          "unitPrice": 10301
+        },
+        {
+          "id": "Q-0037-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 1,
+          "unitPrice": 13828
+        },
+        {
+          "id": "Q-0037-REP-R1-L3",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 7590
+        },
+        {
+          "id": "Q-0037-REP-R1-L4",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 3960
+        },
+        {
+          "id": "Q-0037-REP-R1-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 39911
+        }
+      ]
+    },
+    {
+      "id": "Q-0038-TDI",
+      "revision": 1,
+      "jobId": "JOB-0038",
+      "customerId": "CUST-002",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-23",
+      "lines": [
+        {
+          "id": "Q-0038-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 77153
+        }
+      ]
+    },
+    {
+      "id": "Q-0038-REP",
+      "revision": 1,
+      "jobId": "JOB-0038",
+      "customerId": "CUST-002",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-25",
+      "lines": [
+        {
+          "id": "Q-0038-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 5,
+          "unitPrice": 10301
+        },
+        {
+          "id": "Q-0038-REP-R1-L2",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 68310
+        },
+        {
+          "id": "Q-0038-REP-R1-L3",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitPrice": 25410
+        },
+        {
+          "id": "Q-0038-REP-R1-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 39911
+        }
+      ]
+    },
+    {
+      "id": "Q-0039-TDI",
+      "revision": 1,
+      "jobId": "JOB-0039",
+      "customerId": "CUST-003",
+      "stage": "TDI",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-09-09",
+      "lines": [
+        {
+          "id": "Q-0039-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 66800
+        }
+      ]
+    },
+    {
+      "id": "Q-0039-REP",
+      "revision": 1,
+      "jobId": "JOB-0039",
+      "customerId": "CUST-003",
+      "stage": "REPAIR",
+      "priceBookVersion": 1,
+      "issuedDate": "2025-09-11",
+      "lines": [
+        {
+          "id": "Q-0039-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 8,
+          "unitPrice": 8500
+        },
+        {
+          "id": "Q-0039-REP-R1-L2",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 1,
+          "unitPrice": 14100
+        },
+        {
+          "id": "Q-0039-REP-R1-L3",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitPrice": 28672
+        },
+        {
+          "id": "Q-0039-REP-R1-L4",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitPrice": 16128
+        },
+        {
+          "id": "Q-0039-REP-R1-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 41800
+        }
+      ]
+    },
+    {
+      "id": "Q-0040-TDI",
+      "revision": 1,
+      "jobId": "JOB-0040",
+      "customerId": "CUST-004",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-05-21",
+      "lines": [
+        {
+          "id": "Q-0040-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 70344
+        }
+      ]
+    },
+    {
+      "id": "Q-0040-REP",
+      "revision": 1,
+      "jobId": "JOB-0040",
+      "customerId": "CUST-004",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-05-23",
+      "lines": [
+        {
+          "id": "Q-0040-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "qty": 11.5,
+          "unitPrice": 10508
+        },
+        {
+          "id": "Q-0040-REP-R1-L2",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitPrice": 17535
+        },
+        {
+          "id": "Q-0040-REP-R1-L3",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 40646
+        }
+      ]
+    }
+  ],
+  "changeOrders": [
+    {
+      "id": "CO-0003-1",
+      "jobId": "JOB-0003",
+      "status": "APPROVED",
+      "approver": "J. Okafor",
+      "approvedDate": "2026-02-09",
+      "reason": "Stem found damaged during repair",
+      "lines": [
+        {
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "CO-0004-1",
+      "jobId": "JOB-0004",
+      "status": "APPROVED",
+      "approver": "R. Desjardins",
+      "approvedDate": "2026-03-18",
+      "reason": "Stem packing set found damaged during repair",
+      "lines": [
+        {
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "CO-0017-1",
+      "jobId": "JOB-0017",
+      "status": "APPROVED",
+      "approver": "M. Tremblay",
+      "approvedDate": "2025-09-04",
+      "reason": "Stem packing set found damaged during repair",
+      "lines": [
+        {
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "CO-0021-1",
+      "jobId": "JOB-0021",
+      "status": "APPROVED",
+      "approver": "M. Tremblay",
+      "approvedDate": "2026-03-27",
+      "reason": "Stem bearing found damaged during repair",
+      "lines": [
+        {
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "CO-0022-1",
+      "jobId": "JOB-0022",
+      "status": "APPROVED",
+      "approver": "M. Tremblay",
+      "approvedDate": "2026-03-09",
+      "reason": "Stem bearing found damaged during repair",
+      "lines": [
+        {
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "CO-0026-1",
+      "jobId": "JOB-0026",
+      "status": "APPROVED",
+      "approver": "S. Nguyen",
+      "approvedDate": "2025-08-13",
+      "reason": "Seal kit found damaged during repair",
+      "lines": [
+        {
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "CO-0027-1",
+      "jobId": "JOB-0027",
+      "status": "APPROVED",
+      "approver": "S. Nguyen",
+      "approvedDate": "2026-03-31",
+      "reason": "Stem found damaged during repair",
+      "lines": [
+        {
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "CO-0029-1",
+      "jobId": "JOB-0029",
+      "status": "APPROVED",
+      "approver": "J. Okafor",
+      "approvedDate": "2025-08-15",
+      "reason": "Bonnet gasket found damaged during repair",
+      "lines": [
+        {
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "CO-0030-1",
+      "jobId": "JOB-0030",
+      "status": "REJECTED",
+      "approver": null,
+      "approvedDate": null,
+      "reason": "Stem packing set requested after teardown (2026-02-04)",
+      "lines": [
+        {
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "CO-0032-1",
+      "jobId": "JOB-0032",
+      "status": "APPROVED",
+      "approver": "S. Nguyen",
+      "approvedDate": "2026-06-22",
+      "reason": "Bonnet gasket found damaged during repair",
+      "lines": [
+        {
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "CO-0037-1",
+      "jobId": "JOB-0037",
+      "status": "APPROVED",
+      "approver": "S. Nguyen",
+      "approvedDate": "2026-05-26",
+      "reason": "Gate found damaged during repair",
+      "lines": [
+        {
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "CO-0039-1",
+      "jobId": "JOB-0039",
+      "status": "APPROVED",
+      "approver": "S. Nguyen",
+      "approvedDate": "2025-09-18",
+      "reason": "Gate found damaged during repair",
+      "lines": [
+        {
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "CO-0040-1",
+      "jobId": "JOB-0040",
+      "status": "APPROVED",
+      "approver": "S. Nguyen",
+      "approvedDate": "2026-05-25",
+      "reason": "Gate found damaged during repair",
+      "lines": [
+        {
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1
+        }
+      ]
+    }
+  ]
+}

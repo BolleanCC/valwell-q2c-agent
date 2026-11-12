@@ -1,0 +1,46 @@
+{
+  "customers": [
+    {
+      "id": "CUST-001",
+      "name": "Prairie Basin Energy",
+      "msaRef": "MSA-2024-001"
+    },
+    {
+      "id": "CUST-002",
+      "name": "Northfork Resources",
+      "msaRef": "MSA-2024-002"
+    },
+    {
+      "id": "CUST-003",
+      "name": "Kestrel Petroleum",
+      "msaRef": "MSA-2024-003"
+    },
+    {
+      "id": "CUST-004",
+      "name": "Red Deer Midstream",
+      "msaRef": "MSA-2024-004"
+    }
+  ],
+  "rules": [
+    {
+      "id": "RULE-CUST-001-MARKUP",
+      "customerId": "CUST-001",
+      "markupCapBps": 1500
+    },
+    {
+      "id": "RULE-CUST-002-MARKUP",
+      "customerId": "CUST-002",
+      "markupCapBps": 1000
+    },
+    {
+      "id": "RULE-CUST-003-MARKUP",
+      "customerId": "CUST-003",
+      "markupCapBps": 1200
+    },
+    {
+      "id": "RULE-CUST-004-MARKUP",
+      "customerId": "CUST-004",
+      "markupCapBps": 1000
+    }
+  ]
+}

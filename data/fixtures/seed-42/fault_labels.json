@@ -1,0 +1,222 @@
+[
+  {
+    "id": "FL-0001",
+    "jobId": "JOB-0001",
+    "invoiceId": "INV-0001",
+    "frictionCode": "A1",
+    "invoiceLineId": "INV-0001-L3",
+    "workOrderLineId": "WO-0001-L3",
+    "description": "LAB-MACH re-keyed as $219.00 instead of $129.00",
+    "amountImpact": 9000
+  },
+  {
+    "id": "FL-0002",
+    "jobId": "JOB-0001",
+    "invoiceId": "INV-0001",
+    "frictionCode": "B1",
+    "invoiceLineId": "INV-0001-L6",
+    "workOrderLineId": "WO-0001-L6",
+    "description": "PART-PACKING ($80.30) performed and billed outside quoted scope; no change order",
+    "amountImpact": 8030
+  },
+  {
+    "id": "FL-0003",
+    "jobId": "JOB-0002",
+    "invoiceId": "INV-0002",
+    "frictionCode": "A3",
+    "invoiceLineId": "INV-0002-L3",
+    "workOrderLineId": "WO-0002-L3",
+    "description": "PART-SEALKIT billed at $173.90 on cost $129.00 (34.81% markup, cap 12%)",
+    "amountImpact": 3200
+  },
+  {
+    "id": "FL-0004",
+    "jobId": "JOB-0003",
+    "invoiceId": "INV-0003",
+    "frictionCode": "B1",
+    "invoiceLineId": "INV-0003-L8",
+    "workOrderLineId": "WO-0003-L8",
+    "description": "LAB-WELD ($161.08) performed and billed outside quoted scope; no change order",
+    "amountImpact": 16108
+  },
+  {
+    "id": "FL-0005",
+    "jobId": "JOB-0005",
+    "invoiceId": "INV-0005",
+    "frictionCode": "A3",
+    "invoiceLineId": "INV-0005-L4",
+    "workOrderLineId": "WO-0005-L4",
+    "description": "PART-GATE billed at $1,100.50 on cost $886.00 (24.21% markup, cap 15%)",
+    "amountImpact": 9932
+  },
+  {
+    "id": "FL-0006",
+    "jobId": "JOB-0005",
+    "invoiceId": "INV-0005",
+    "frictionCode": "B1",
+    "invoiceLineId": "INV-0005-L6",
+    "workOrderLineId": "WO-0005-L6",
+    "description": "PART-PACKING ($106.95) performed and billed outside quoted scope; no change order",
+    "amountImpact": 10695
+  },
+  {
+    "id": "FL-0007",
+    "jobId": "JOB-0006",
+    "invoiceId": "INV-0006",
+    "frictionCode": "B1",
+    "invoiceLineId": "INV-0006-L6",
+    "workOrderLineId": "WO-0006-L6",
+    "description": "LAB-WELD ($426.00) performed and billed outside quoted scope; no change order",
+    "amountImpact": 42600
+  },
+  {
+    "id": "FL-0008",
+    "jobId": "JOB-0008",
+    "invoiceId": "INV-0008",
+    "frictionCode": "A3",
+    "invoiceLineId": "INV-0008-L4",
+    "workOrderLineId": "WO-0008-L4",
+    "description": "PART-GASKET billed at $82.17 on cost $70.00 (17.38% markup, cap 10%)",
+    "amountImpact": 517
+  },
+  {
+    "id": "FL-0009",
+    "jobId": "JOB-0011",
+    "invoiceId": "INV-0011",
+    "frictionCode": "B1",
+    "invoiceLineId": "INV-0011-L5",
+    "workOrderLineId": "WO-0011-L5",
+    "description": "PART-PACKING ($110.88) performed and billed outside quoted scope; no change order",
+    "amountImpact": 11088
+  },
+  {
+    "id": "FL-0010",
+    "jobId": "JOB-0013",
+    "invoiceId": "INV-0013",
+    "frictionCode": "A3",
+    "invoiceLineId": "INV-0013-L3",
+    "workOrderLineId": "WO-0013-L3",
+    "description": "PART-SEAT billed at $267.80 on cost $207.00 (29.37% markup, cap 12%)",
+    "amountImpact": 7192
+  },
+  {
+    "id": "FL-0011",
+    "jobId": "JOB-0014",
+    "invoiceId": "INV-0014",
+    "frictionCode": "A1",
+    "invoiceLineId": "INV-0014-L7",
+    "workOrderLineId": "WO-0014-L7",
+    "description": "HYDRO-TEST re-keyed as $735.00 instead of $375.00",
+    "amountImpact": 36000
+  },
+  {
+    "id": "FL-0012",
+    "jobId": "JOB-0015",
+    "invoiceId": "INV-0015",
+    "frictionCode": "A3",
+    "invoiceLineId": "INV-0015-L3",
+    "workOrderLineId": "WO-0015-L3",
+    "description": "PART-BEARING billed at $183.55 on cost $139.00 (32.05% markup, cap 10%)",
+    "amountImpact": 3760
+  },
+  {
+    "id": "FL-0013",
+    "jobId": "JOB-0018",
+    "invoiceId": "INV-0018",
+    "frictionCode": "A1",
+    "invoiceLineId": "INV-0018-L6",
+    "workOrderLineId": "WO-0018-L6",
+    "description": "HYDRO-TEST re-keyed as $735.00 instead of $375.00",
+    "amountImpact": 36000
+  },
+  {
+    "id": "FL-0014",
+    "jobId": "JOB-0020",
+    "invoiceId": "INV-0020",
+    "frictionCode": "A1",
+    "invoiceLineId": "INV-0020-L1",
+    "workOrderLineId": "WO-0020-L1",
+    "description": "TDI-FEE re-keyed as $481.00 instead of $841.00",
+    "amountImpact": -36000
+  },
+  {
+    "id": "FL-0015",
+    "jobId": "JOB-0020",
+    "invoiceId": "INV-0020",
+    "frictionCode": "A3",
+    "invoiceLineId": "INV-0020-L3",
+    "workOrderLineId": "WO-0020-L3",
+    "description": "PART-GASKET billed at $42.78 on cost $36.00 (18.84% markup, cap 15%)",
+    "amountImpact": 138
+  },
+  {
+    "id": "FL-0016",
+    "jobId": "JOB-0021",
+    "invoiceId": "INV-0021",
+    "frictionCode": "A1",
+    "invoiceLineId": "INV-0021-L4",
+    "workOrderLineId": "WO-0021-L4",
+    "description": "HYDRO-TEST billed at price-book v1 ($401.00) instead of the rate effective 2026-03-28 ($416.52)",
+    "amountImpact": -1552
+  },
+  {
+    "id": "FL-0017",
+    "jobId": "JOB-0027",
+    "invoiceId": "INV-0027",
+    "frictionCode": "B1",
+    "invoiceLineId": "INV-0027-L8",
+    "workOrderLineId": "WO-0027-L8",
+    "description": "PART-PACKING ($118.80) performed and billed outside quoted scope; no change order",
+    "amountImpact": 11880
+  },
+  {
+    "id": "FL-0018",
+    "jobId": "JOB-0030",
+    "invoiceId": "INV-0030",
+    "frictionCode": "B1",
+    "invoiceLineId": "INV-0030-L6",
+    "workOrderLineId": "WO-0030-L6",
+    "description": "PART-PACKING ($68.32) performed and billed outside quoted scope; change order rejected",
+    "amountImpact": 6832
+  },
+  {
+    "id": "FL-0019",
+    "jobId": "JOB-0031",
+    "invoiceId": "INV-0031",
+    "frictionCode": "A1",
+    "invoiceLineId": "INV-0031-L1",
+    "workOrderLineId": "WO-0031-L1",
+    "description": "TDI-FEE billed at price-book v1 ($742.00) instead of the rate effective 2026-07-05 ($771.53)",
+    "amountImpact": -2953
+  },
+  {
+    "id": "FL-0020",
+    "jobId": "JOB-0034",
+    "invoiceId": "INV-0034",
+    "frictionCode": "B1",
+    "invoiceLineId": "INV-0034-L7",
+    "workOrderLineId": "WO-0034-L7",
+    "description": "PART-BEARING ($152.95) performed and billed outside quoted scope; no change order",
+    "amountImpact": 15295
+  },
+  {
+    "id": "FL-0021",
+    "jobId": "JOB-0039",
+    "invoiceId": "INV-0039",
+    "frictionCode": "B1",
+    "invoiceLineId": "INV-0039-L8",
+    "workOrderLineId": "WO-0039-L8",
+    "description": "LAB-WELD ($539.00) performed and billed outside quoted scope; no change order",
+    "amountImpact": 53900
+  },
+  {
+    "id": "FL-0022",
+    "jobId": "JOB-0040",
+    "invoiceId": "INV-0040",
+    "frictionCode": "A1",
+    "invoiceLineId": "INV-0040-L1",
+    "workOrderLineId": "WO-0040-L1",
+    "description": "TDI-FEE re-keyed as $730.44 instead of $703.44",
+    "amountImpact": 2700
+  }
+]

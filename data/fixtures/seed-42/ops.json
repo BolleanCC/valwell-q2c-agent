@@ -1,0 +1,3079 @@
+{
+  "jobs": [
+    {
+      "id": "JOB-0001",
+      "customerId": "CUST-002",
+      "valveModel": "3-1/16\" 5K gate valve",
+      "valveSerial": "GV-712692",
+      "poNumber": "PO-60792",
+      "receivedDate": "2025-07-28",
+      "serviceDate": "2025-08-07"
+    },
+    {
+      "id": "JOB-0002",
+      "customerId": "CUST-003",
+      "valveModel": "3-1/16\" 10K gate valve",
+      "valveSerial": "GV-941380",
+      "poNumber": "PO-48347",
+      "receivedDate": "2025-07-29",
+      "serviceDate": "2025-08-08"
+    },
+    {
+      "id": "JOB-0003",
+      "customerId": "CUST-003",
+      "valveModel": "3-1/16\" 5K gate valve",
+      "valveSerial": "GV-756472",
+      "poNumber": "PO-48856",
+      "receivedDate": "2026-02-03",
+      "serviceDate": "2026-02-10"
+    },
+    {
+      "id": "JOB-0004",
+      "customerId": "CUST-001",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-471575",
+      "poNumber": "PO-44903",
+      "receivedDate": "2026-03-13",
+      "serviceDate": "2026-03-19"
+    },
+    {
+      "id": "JOB-0005",
+      "customerId": "CUST-001",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-142726",
+      "poNumber": "PO-61166",
+      "receivedDate": "2025-12-26",
+      "serviceDate": "2026-01-01"
+    },
+    {
+      "id": "JOB-0006",
+      "customerId": "CUST-001",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-490969",
+      "poNumber": "PO-52550",
+      "receivedDate": "2025-10-15",
+      "serviceDate": "2025-10-23"
+    },
+    {
+      "id": "JOB-0007",
+      "customerId": "CUST-002",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-725487",
+      "poNumber": "PO-49426",
+      "receivedDate": "2025-09-19",
+      "serviceDate": "2025-09-25"
+    },
+    {
+      "id": "JOB-0008",
+      "customerId": "CUST-002",
+      "valveModel": "2-1/16\" 5K gate valve",
+      "valveSerial": "GV-856337",
+      "poNumber": "PO-66835",
+      "receivedDate": "2026-05-13",
+      "serviceDate": "2026-05-22"
+    },
+    {
+      "id": "JOB-0009",
+      "customerId": "CUST-004",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-252371",
+      "poNumber": "PO-55196",
+      "receivedDate": "2025-07-20",
+      "serviceDate": "2025-07-25"
+    },
+    {
+      "id": "JOB-0010",
+      "customerId": "CUST-004",
+      "valveModel": "2-1/16\" 5K gate valve",
+      "valveSerial": "GV-176952",
+      "poNumber": "PO-59429",
+      "receivedDate": "2025-11-11",
+      "serviceDate": "2025-11-16"
+    },
+    {
+      "id": "JOB-0011",
+      "customerId": "CUST-003",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-513154",
+      "poNumber": "PO-52751",
+      "receivedDate": "2025-12-09",
+      "serviceDate": "2025-12-17"
+    },
+    {
+      "id": "JOB-0012",
+      "customerId": "CUST-001",
+      "valveModel": "2-1/16\" 5K gate valve",
+      "valveSerial": "GV-162368",
+      "poNumber": "PO-66119",
+      "receivedDate": "2025-08-24",
+      "serviceDate": "2025-09-05"
+    },
+    {
+      "id": "JOB-0013",
+      "customerId": "CUST-003",
+      "valveModel": "3-1/16\" 10K gate valve",
+      "valveSerial": "GV-574348",
+      "poNumber": "PO-45304",
+      "receivedDate": "2026-01-17",
+      "serviceDate": "2026-01-28"
+    },
+    {
+      "id": "JOB-0014",
+      "customerId": "CUST-002",
+      "valveModel": "3-1/16\" 5K gate valve",
+      "valveSerial": "GV-583005",
+      "poNumber": "PO-46148",
+      "receivedDate": "2025-10-12",
+      "serviceDate": "2025-10-23"
+    },
+    {
+      "id": "JOB-0015",
+      "customerId": "CUST-004",
+      "valveModel": "3-1/16\" 10K gate valve",
+      "valveSerial": "GV-668398",
+      "poNumber": "PO-60037",
+      "receivedDate": "2026-04-06",
+      "serviceDate": "2026-04-13"
+    },
+    {
+      "id": "JOB-0016",
+      "customerId": "CUST-001",
+      "valveModel": "3-1/16\" 5K gate valve",
+      "valveSerial": "GV-347345",
+      "poNumber": "PO-58922",
+      "receivedDate": "2026-06-16",
+      "serviceDate": "2026-06-24"
+    },
+    {
+      "id": "JOB-0017",
+      "customerId": "CUST-003",
+      "valveModel": "2-1/16\" 5K gate valve",
+      "valveSerial": "GV-209036",
+      "poNumber": "PO-51260",
+      "receivedDate": "2025-08-31",
+      "serviceDate": "2025-09-05"
+    },
+    {
+      "id": "JOB-0018",
+      "customerId": "CUST-002",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-632732",
+      "poNumber": "PO-43272",
+      "receivedDate": "2026-01-06",
+      "serviceDate": "2026-01-14"
+    },
+    {
+      "id": "JOB-0019",
+      "customerId": "CUST-003",
+      "valveModel": "3-1/16\" 10K gate valve",
+      "valveSerial": "GV-806935",
+      "poNumber": "PO-55152",
+      "receivedDate": "2025-11-15",
+      "serviceDate": "2025-11-21"
+    },
+    {
+      "id": "JOB-0020",
+      "customerId": "CUST-001",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-793148",
+      "poNumber": "PO-47238",
+      "receivedDate": "2026-03-04",
+      "serviceDate": "2026-03-10"
+    },
+    {
+      "id": "JOB-0021",
+      "customerId": "CUST-001",
+      "valveModel": "3-1/16\" 5K gate valve",
+      "valveSerial": "GV-325931",
+      "poNumber": "PO-65883",
+      "receivedDate": "2026-03-17",
+      "serviceDate": "2026-03-28"
+    },
+    {
+      "id": "JOB-0022",
+      "customerId": "CUST-003",
+      "valveModel": "3-1/16\" 5K gate valve",
+      "valveSerial": "GV-981136",
+      "poNumber": "PO-64877",
+      "receivedDate": "2026-03-04",
+      "serviceDate": "2026-03-10"
+    },
+    {
+      "id": "JOB-0023",
+      "customerId": "CUST-003",
+      "valveModel": "2-1/16\" 5K gate valve",
+      "valveSerial": "GV-911030",
+      "poNumber": "PO-62895",
+      "receivedDate": "2026-03-01",
+      "serviceDate": "2026-03-06"
+    },
+    {
+      "id": "JOB-0024",
+      "customerId": "CUST-002",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-656293",
+      "poNumber": "PO-67078",
+      "receivedDate": "2026-06-05",
+      "serviceDate": "2026-06-12"
+    },
+    {
+      "id": "JOB-0025",
+      "customerId": "CUST-004",
+      "valveModel": "3-1/16\" 10K gate valve",
+      "valveSerial": "GV-919446",
+      "poNumber": "PO-41867",
+      "receivedDate": "2025-12-22",
+      "serviceDate": "2025-12-27"
+    },
+    {
+      "id": "JOB-0026",
+      "customerId": "CUST-004",
+      "valveModel": "2-1/16\" 5K gate valve",
+      "valveSerial": "GV-131300",
+      "poNumber": "PO-54734",
+      "receivedDate": "2025-08-02",
+      "serviceDate": "2025-08-14"
+    },
+    {
+      "id": "JOB-0027",
+      "customerId": "CUST-002",
+      "valveModel": "3-1/16\" 10K gate valve",
+      "valveSerial": "GV-715720",
+      "poNumber": "PO-66258",
+      "receivedDate": "2026-03-27",
+      "serviceDate": "2026-04-01"
+    },
+    {
+      "id": "JOB-0028",
+      "customerId": "CUST-002",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-629956",
+      "poNumber": "PO-45070",
+      "receivedDate": "2026-05-01",
+      "serviceDate": "2026-05-09"
+    },
+    {
+      "id": "JOB-0029",
+      "customerId": "CUST-001",
+      "valveModel": "2-1/16\" 5K gate valve",
+      "valveSerial": "GV-100059",
+      "poNumber": "PO-41039",
+      "receivedDate": "2025-08-04",
+      "serviceDate": "2025-08-16"
+    },
+    {
+      "id": "JOB-0030",
+      "customerId": "CUST-003",
+      "valveModel": "3-1/16\" 10K gate valve",
+      "valveSerial": "GV-629342",
+      "poNumber": "PO-52336",
+      "receivedDate": "2026-01-28",
+      "serviceDate": "2026-02-05"
+    },
+    {
+      "id": "JOB-0031",
+      "customerId": "CUST-002",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-723856",
+      "poNumber": "PO-50300",
+      "receivedDate": "2026-06-23",
+      "serviceDate": "2026-07-05"
+    },
+    {
+      "id": "JOB-0032",
+      "customerId": "CUST-004",
+      "valveModel": "3-1/16\" 5K gate valve",
+      "valveSerial": "GV-951150",
+      "poNumber": "PO-49187",
+      "receivedDate": "2026-06-17",
+      "serviceDate": "2026-06-23"
+    },
+    {
+      "id": "JOB-0033",
+      "customerId": "CUST-004",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-667813",
+      "poNumber": "PO-53645",
+      "receivedDate": "2026-05-08",
+      "serviceDate": "2026-05-16"
+    },
+    {
+      "id": "JOB-0034",
+      "customerId": "CUST-001",
+      "valveModel": "3-1/16\" 5K gate valve",
+      "valveSerial": "GV-737539",
+      "poNumber": "PO-46455",
+      "receivedDate": "2026-03-13",
+      "serviceDate": "2026-03-19"
+    },
+    {
+      "id": "JOB-0035",
+      "customerId": "CUST-002",
+      "valveModel": "2-1/16\" 5K gate valve",
+      "valveSerial": "GV-776846",
+      "poNumber": "PO-68209",
+      "receivedDate": "2026-02-27",
+      "serviceDate": "2026-03-08"
+    },
+    {
+      "id": "JOB-0036",
+      "customerId": "CUST-004",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-910713",
+      "poNumber": "PO-66528",
+      "receivedDate": "2026-03-04",
+      "serviceDate": "2026-03-13"
+    },
+    {
+      "id": "JOB-0037",
+      "customerId": "CUST-002",
+      "valveModel": "4-1/16\" 10K gate valve",
+      "valveSerial": "GV-314492",
+      "poNumber": "PO-57692",
+      "receivedDate": "2026-05-15",
+      "serviceDate": "2026-05-27"
+    },
+    {
+      "id": "JOB-0038",
+      "customerId": "CUST-002",
+      "valveModel": "3-1/16\" 10K gate valve",
+      "valveSerial": "GV-413677",
+      "poNumber": "PO-62481",
+      "receivedDate": "2026-03-22",
+      "serviceDate": "2026-03-30"
+    },
+    {
+      "id": "JOB-0039",
+      "customerId": "CUST-003",
+      "valveModel": "3-1/16\" 10K gate valve",
+      "valveSerial": "GV-297600",
+      "poNumber": "PO-69161",
+      "receivedDate": "2025-09-08",
+      "serviceDate": "2025-09-19"
+    },
+    {
+      "id": "JOB-0040",
+      "customerId": "CUST-004",
+      "valveModel": "3-1/16\" 10K gate valve",
+      "valveSerial": "GV-735787",
+      "poNumber": "PO-55271",
+      "receivedDate": "2026-05-20",
+      "serviceDate": "2026-05-26"
+    }
+  ],
+  "workOrders": [
+    {
+      "id": "WO-0001",
+      "jobId": "JOB-0001",
+      "lines": [
+        {
+          "id": "WO-0001-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0001-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 12
+        },
+        {
+          "id": "WO-0001-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 1
+        },
+        {
+          "id": "WO-0001-L4",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 8100
+        },
+        {
+          "id": "WO-0001-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0001-L6",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 7300
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem bearing",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0002",
+      "jobId": "JOB-0002",
+      "lines": [
+        {
+          "id": "WO-0002-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0002-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 5
+        },
+        {
+          "id": "WO-0002-L3",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 12900
+        },
+        {
+          "id": "WO-0002-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Seal kit",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-SEALKIT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0003",
+      "jobId": "JOB-0003",
+      "lines": [
+        {
+          "id": "WO-0003-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0003-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 4.5
+        },
+        {
+          "id": "WO-0003-L3",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 4600
+        },
+        {
+          "id": "WO-0003-L4",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 13500
+        },
+        {
+          "id": "WO-0003-L5",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 105300
+        },
+        {
+          "id": "WO-0003-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0003-L7",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 48500
+        },
+        {
+          "id": "WO-0003-L8",
+          "itemCode": "LAB-WELD",
+          "description": "Weld overlay labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Bonnet gasket",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-GASKET"
+          ]
+        },
+        {
+          "component": "Stem bearing",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        },
+        {
+          "component": "Gate",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-GATE"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0004",
+      "jobId": "JOB-0004",
+      "lines": [
+        {
+          "id": "WO-0004-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0004-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 10.5
+        },
+        {
+          "id": "WO-0004-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 1
+        },
+        {
+          "id": "WO-0004-L4",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 103200
+        },
+        {
+          "id": "WO-0004-L5",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 4800
+        },
+        {
+          "id": "WO-0004-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0004-L7",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 9800
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Gate",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-GATE"
+          ]
+        },
+        {
+          "component": "Bonnet gasket",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-GASKET"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0005",
+      "jobId": "JOB-0005",
+      "lines": [
+        {
+          "id": "WO-0005-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0005-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 4
+        },
+        {
+          "id": "WO-0005-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 4
+        },
+        {
+          "id": "WO-0005-L4",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 88600
+        },
+        {
+          "id": "WO-0005-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0005-L6",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 9300
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Gate",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-GATE"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0006",
+      "jobId": "JOB-0006",
+      "lines": [
+        {
+          "id": "WO-0006-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0006-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 9
+        },
+        {
+          "id": "WO-0006-L3",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 43800
+        },
+        {
+          "id": "WO-0006-L4",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 9600
+        },
+        {
+          "id": "WO-0006-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0006-L6",
+          "itemCode": "LAB-WELD",
+          "description": "Weld overlay labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 3
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-STEM"
+          ]
+        },
+        {
+          "component": "Stem bearing",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0007",
+      "jobId": "JOB-0007",
+      "lines": [
+        {
+          "id": "WO-0007-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0007-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 5.5
+        },
+        {
+          "id": "WO-0007-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 2
+        },
+        {
+          "id": "WO-0007-L4",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitCost": 22600
+        },
+        {
+          "id": "WO-0007-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Seat ring",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-SEAT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0008",
+      "jobId": "JOB-0008",
+      "lines": [
+        {
+          "id": "WO-0008-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0008-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 5.5
+        },
+        {
+          "id": "WO-0008-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 2.5
+        },
+        {
+          "id": "WO-0008-L4",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 7000
+        },
+        {
+          "id": "WO-0008-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Bonnet gasket",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-GASKET"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0009",
+      "jobId": "JOB-0009",
+      "lines": [
+        {
+          "id": "WO-0009-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0009-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 6.5
+        },
+        {
+          "id": "WO-0009-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 4
+        },
+        {
+          "id": "WO-0009-L4",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 12800
+        },
+        {
+          "id": "WO-0009-L5",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 8100
+        },
+        {
+          "id": "WO-0009-L6",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 106900
+        },
+        {
+          "id": "WO-0009-L7",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem bearing",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        },
+        {
+          "component": "Stem packing set",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-PACKING"
+          ]
+        },
+        {
+          "component": "Gate",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-GATE"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0010",
+      "jobId": "JOB-0010",
+      "lines": [
+        {
+          "id": "WO-0010-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0010-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 4
+        },
+        {
+          "id": "WO-0010-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 2.5
+        },
+        {
+          "id": "WO-0010-L4",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 12000
+        },
+        {
+          "id": "WO-0010-L5",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 14000
+        },
+        {
+          "id": "WO-0010-L6",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 10800
+        },
+        {
+          "id": "WO-0010-L7",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem bearing",
+          "condition": "Pitted",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        },
+        {
+          "component": "Seal kit",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-SEALKIT"
+          ]
+        },
+        {
+          "component": "Stem packing set",
+          "condition": "Pitted",
+          "recommendedItemCodes": [
+            "PART-PACKING"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0011",
+      "jobId": "JOB-0011",
+      "lines": [
+        {
+          "id": "WO-0011-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0011-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 6
+        },
+        {
+          "id": "WO-0011-L3",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 87400
+        },
+        {
+          "id": "WO-0011-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0011-L5",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 9900
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Gate",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-GATE"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0012",
+      "jobId": "JOB-0012",
+      "lines": [
+        {
+          "id": "WO-0012-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0012-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 5.5
+        },
+        {
+          "id": "WO-0012-L3",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitCost": 20800
+        },
+        {
+          "id": "WO-0012-L4",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 6500
+        },
+        {
+          "id": "WO-0012-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Seat ring",
+          "condition": "Pitted",
+          "recommendedItemCodes": [
+            "PART-SEAT"
+          ]
+        },
+        {
+          "component": "Stem packing set",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-PACKING"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0013",
+      "jobId": "JOB-0013",
+      "lines": [
+        {
+          "id": "WO-0013-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0013-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 9.5
+        },
+        {
+          "id": "WO-0013-L3",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitCost": 20700
+        },
+        {
+          "id": "WO-0013-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Seat ring",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-SEAT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0014",
+      "jobId": "JOB-0014",
+      "lines": [
+        {
+          "id": "WO-0014-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0014-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 10.5
+        },
+        {
+          "id": "WO-0014-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 2.5
+        },
+        {
+          "id": "WO-0014-L4",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 97500
+        },
+        {
+          "id": "WO-0014-L5",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 5400
+        },
+        {
+          "id": "WO-0014-L6",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 12800
+        },
+        {
+          "id": "WO-0014-L7",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Gate",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-GATE"
+          ]
+        },
+        {
+          "component": "Bonnet gasket",
+          "condition": "Worn beyond tolerance",
+          "recommendedItemCodes": [
+            "PART-GASKET"
+          ]
+        },
+        {
+          "component": "Stem bearing",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0015",
+      "jobId": "JOB-0015",
+      "lines": [
+        {
+          "id": "WO-0015-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0015-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 6.5
+        },
+        {
+          "id": "WO-0015-L3",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 13900
+        },
+        {
+          "id": "WO-0015-L4",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 44400
+        },
+        {
+          "id": "WO-0015-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem bearing",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        },
+        {
+          "component": "Stem",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-STEM"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0016",
+      "jobId": "JOB-0016",
+      "lines": [
+        {
+          "id": "WO-0016-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0016-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 4.5
+        },
+        {
+          "id": "WO-0016-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 4
+        },
+        {
+          "id": "WO-0016-L4",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 10100
+        },
+        {
+          "id": "WO-0016-L5",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 40400
+        },
+        {
+          "id": "WO-0016-L6",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 11100
+        },
+        {
+          "id": "WO-0016-L7",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem packing set",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-PACKING"
+          ]
+        },
+        {
+          "component": "Stem",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-STEM"
+          ]
+        },
+        {
+          "component": "Stem bearing",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0017",
+      "jobId": "JOB-0017",
+      "lines": [
+        {
+          "id": "WO-0017-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0017-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 11
+        },
+        {
+          "id": "WO-0017-L3",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 6700
+        },
+        {
+          "id": "WO-0017-L4",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 104400
+        },
+        {
+          "id": "WO-0017-L5",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 38900
+        },
+        {
+          "id": "WO-0017-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0017-L7",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 7400
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Bonnet gasket",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-GASKET"
+          ]
+        },
+        {
+          "component": "Gate",
+          "condition": "Worn beyond tolerance",
+          "recommendedItemCodes": [
+            "PART-GATE"
+          ]
+        },
+        {
+          "component": "Stem",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-STEM"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0018",
+      "jobId": "JOB-0018",
+      "lines": [
+        {
+          "id": "WO-0018-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0018-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 5.5
+        },
+        {
+          "id": "WO-0018-L3",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 12100
+        },
+        {
+          "id": "WO-0018-L4",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 102000
+        },
+        {
+          "id": "WO-0018-L5",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 38800
+        },
+        {
+          "id": "WO-0018-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem bearing",
+          "condition": "Pitted",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        },
+        {
+          "component": "Gate",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-GATE"
+          ]
+        },
+        {
+          "component": "Stem",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-STEM"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0019",
+      "jobId": "JOB-0019",
+      "lines": [
+        {
+          "id": "WO-0019-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0019-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 11
+        },
+        {
+          "id": "WO-0019-L3",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 9000
+        },
+        {
+          "id": "WO-0019-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem packing set",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-PACKING"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0020",
+      "jobId": "JOB-0020",
+      "lines": [
+        {
+          "id": "WO-0020-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0020-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 8
+        },
+        {
+          "id": "WO-0020-L3",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 3600
+        },
+        {
+          "id": "WO-0020-L4",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitCost": 25500
+        },
+        {
+          "id": "WO-0020-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Bonnet gasket",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-GASKET"
+          ]
+        },
+        {
+          "component": "Seat ring",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-SEAT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0021",
+      "jobId": "JOB-0021",
+      "lines": [
+        {
+          "id": "WO-0021-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0021-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 5.5
+        },
+        {
+          "id": "WO-0021-L3",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 3800
+        },
+        {
+          "id": "WO-0021-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0021-L5",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 9500
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Bonnet gasket",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-GASKET"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0022",
+      "jobId": "JOB-0022",
+      "lines": [
+        {
+          "id": "WO-0022-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0022-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 7.5
+        },
+        {
+          "id": "WO-0022-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 1.5
+        },
+        {
+          "id": "WO-0022-L4",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 12500
+        },
+        {
+          "id": "WO-0022-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0022-L6",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 10500
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Seal kit",
+          "condition": "Worn beyond tolerance",
+          "recommendedItemCodes": [
+            "PART-SEALKIT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0023",
+      "jobId": "JOB-0023",
+      "lines": [
+        {
+          "id": "WO-0023-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0023-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 7.5
+        },
+        {
+          "id": "WO-0023-L3",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitCost": 14100
+        },
+        {
+          "id": "WO-0023-L4",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 6000
+        },
+        {
+          "id": "WO-0023-L5",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 60100
+        },
+        {
+          "id": "WO-0023-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Seat ring",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-SEAT"
+          ]
+        },
+        {
+          "component": "Bonnet gasket",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-GASKET"
+          ]
+        },
+        {
+          "component": "Gate",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-GATE"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0024",
+      "jobId": "JOB-0024",
+      "lines": [
+        {
+          "id": "WO-0024-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0024-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 7.5
+        },
+        {
+          "id": "WO-0024-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 3.5
+        },
+        {
+          "id": "WO-0024-L4",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 9800
+        },
+        {
+          "id": "WO-0024-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Seal kit",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-SEALKIT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0025",
+      "jobId": "JOB-0025",
+      "lines": [
+        {
+          "id": "WO-0025-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0025-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 9.5
+        },
+        {
+          "id": "WO-0025-L3",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 7000
+        },
+        {
+          "id": "WO-0025-L4",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitCost": 25700
+        },
+        {
+          "id": "WO-0025-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Bonnet gasket",
+          "condition": "Worn beyond tolerance",
+          "recommendedItemCodes": [
+            "PART-GASKET"
+          ]
+        },
+        {
+          "component": "Seat ring",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-SEAT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0026",
+      "jobId": "JOB-0026",
+      "lines": [
+        {
+          "id": "WO-0026-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0026-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 6
+        },
+        {
+          "id": "WO-0026-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 2
+        },
+        {
+          "id": "WO-0026-L4",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 10400
+        },
+        {
+          "id": "WO-0026-L5",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 33000
+        },
+        {
+          "id": "WO-0026-L6",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 8900
+        },
+        {
+          "id": "WO-0026-L7",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0026-L8",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 11600
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem packing set",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-PACKING"
+          ]
+        },
+        {
+          "component": "Stem",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-STEM"
+          ]
+        },
+        {
+          "component": "Stem bearing",
+          "condition": "Worn beyond tolerance",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0027",
+      "jobId": "JOB-0027",
+      "lines": [
+        {
+          "id": "WO-0027-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0027-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 9
+        },
+        {
+          "id": "WO-0027-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 2.5
+        },
+        {
+          "id": "WO-0027-L4",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 11700
+        },
+        {
+          "id": "WO-0027-L5",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 16000
+        },
+        {
+          "id": "WO-0027-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0027-L7",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 33400
+        },
+        {
+          "id": "WO-0027-L8",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 10800
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem bearing",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        },
+        {
+          "component": "Seal kit",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-SEALKIT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0028",
+      "jobId": "JOB-0028",
+      "lines": [
+        {
+          "id": "WO-0028-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0028-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 8.5
+        },
+        {
+          "id": "WO-0028-L3",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 5700
+        },
+        {
+          "id": "WO-0028-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Bonnet gasket",
+          "condition": "Worn beyond tolerance",
+          "recommendedItemCodes": [
+            "PART-GASKET"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0029",
+      "jobId": "JOB-0029",
+      "lines": [
+        {
+          "id": "WO-0029-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0029-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 4
+        },
+        {
+          "id": "WO-0029-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 3.5
+        },
+        {
+          "id": "WO-0029-L4",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 8100
+        },
+        {
+          "id": "WO-0029-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0029-L6",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 5800
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem packing set",
+          "condition": "Worn beyond tolerance",
+          "recommendedItemCodes": [
+            "PART-PACKING"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0030",
+      "jobId": "JOB-0030",
+      "lines": [
+        {
+          "id": "WO-0030-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0030-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 10
+        },
+        {
+          "id": "WO-0030-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 4
+        },
+        {
+          "id": "WO-0030-L4",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitCost": 25400
+        },
+        {
+          "id": "WO-0030-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0030-L6",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 6100
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Seat ring",
+          "condition": "Worn beyond tolerance",
+          "recommendedItemCodes": [
+            "PART-SEAT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0031",
+      "jobId": "JOB-0031",
+      "lines": [
+        {
+          "id": "WO-0031-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0031-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 12
+        },
+        {
+          "id": "WO-0031-L3",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 14900
+        },
+        {
+          "id": "WO-0031-L4",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 32400
+        },
+        {
+          "id": "WO-0031-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem bearing",
+          "condition": "Pitted",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        },
+        {
+          "component": "Stem",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-STEM"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0032",
+      "jobId": "JOB-0032",
+      "lines": [
+        {
+          "id": "WO-0032-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0032-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 6.5
+        },
+        {
+          "id": "WO-0032-L3",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 78200
+        },
+        {
+          "id": "WO-0032-L4",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 40900
+        },
+        {
+          "id": "WO-0032-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0032-L6",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 6700
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Gate",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-GATE"
+          ]
+        },
+        {
+          "component": "Stem",
+          "condition": "Worn beyond tolerance",
+          "recommendedItemCodes": [
+            "PART-STEM"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0033",
+      "jobId": "JOB-0033",
+      "lines": [
+        {
+          "id": "WO-0033-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0033-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 10
+        },
+        {
+          "id": "WO-0033-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 2
+        },
+        {
+          "id": "WO-0033-L4",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 3500
+        },
+        {
+          "id": "WO-0033-L5",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 9800
+        },
+        {
+          "id": "WO-0033-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Bonnet gasket",
+          "condition": "Pitted",
+          "recommendedItemCodes": [
+            "PART-GASKET"
+          ]
+        },
+        {
+          "component": "Seal kit",
+          "condition": "Pitted",
+          "recommendedItemCodes": [
+            "PART-SEALKIT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0034",
+      "jobId": "JOB-0034",
+      "lines": [
+        {
+          "id": "WO-0034-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0034-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 10.5
+        },
+        {
+          "id": "WO-0034-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 1.5
+        },
+        {
+          "id": "WO-0034-L4",
+          "itemCode": "PART-STEM",
+          "description": "Stem",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 38900
+        },
+        {
+          "id": "WO-0034-L5",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 15200
+        },
+        {
+          "id": "WO-0034-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0034-L7",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 13300
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem",
+          "condition": "Worn beyond tolerance",
+          "recommendedItemCodes": [
+            "PART-STEM"
+          ]
+        },
+        {
+          "component": "Seal kit",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-SEALKIT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0035",
+      "jobId": "JOB-0035",
+      "lines": [
+        {
+          "id": "WO-0035-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0035-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 4
+        },
+        {
+          "id": "WO-0035-L3",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 64700
+        },
+        {
+          "id": "WO-0035-L4",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 11700
+        },
+        {
+          "id": "WO-0035-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Gate",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-GATE"
+          ]
+        },
+        {
+          "component": "Stem bearing",
+          "condition": "Pitted",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    },
+    {
+      "id": "WO-0036",
+      "jobId": "JOB-0036",
+      "lines": [
+        {
+          "id": "WO-0036-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0036-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 9.5
+        },
+        {
+          "id": "WO-0036-L3",
+          "itemCode": "PART-BEARING",
+          "description": "Stem bearing",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 11100
+        },
+        {
+          "id": "WO-0036-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem bearing",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-BEARING"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0037",
+      "jobId": "JOB-0037",
+      "lines": [
+        {
+          "id": "WO-0037-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0037-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 5.5
+        },
+        {
+          "id": "WO-0037-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 1
+        },
+        {
+          "id": "WO-0037-L4",
+          "itemCode": "PART-PACKING",
+          "description": "Stem packing set",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 6900
+        },
+        {
+          "id": "WO-0037-L5",
+          "itemCode": "PART-GASKET",
+          "description": "Bonnet gasket",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 3600
+        },
+        {
+          "id": "WO-0037-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0037-L7",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 98300
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Stem packing set",
+          "condition": "Scored",
+          "recommendedItemCodes": [
+            "PART-PACKING"
+          ]
+        },
+        {
+          "component": "Bonnet gasket",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-GASKET"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0038",
+      "jobId": "JOB-0038",
+      "lines": [
+        {
+          "id": "WO-0038-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0038-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 5
+        },
+        {
+          "id": "WO-0038-L3",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 62100
+        },
+        {
+          "id": "WO-0038-L4",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitCost": 23100
+        },
+        {
+          "id": "WO-0038-L5",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Gate",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-GATE"
+          ]
+        },
+        {
+          "component": "Seat ring",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-SEAT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0039",
+      "jobId": "JOB-0039",
+      "lines": [
+        {
+          "id": "WO-0039-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0039-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 8
+        },
+        {
+          "id": "WO-0039-L3",
+          "itemCode": "LAB-MACH",
+          "description": "Machining labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 1
+        },
+        {
+          "id": "WO-0039-L4",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitCost": 25600
+        },
+        {
+          "id": "WO-0039-L5",
+          "itemCode": "PART-SEALKIT",
+          "description": "Seal kit",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 14400
+        },
+        {
+          "id": "WO-0039-L6",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0039-L7",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 69500
+        },
+        {
+          "id": "WO-0039-L8",
+          "itemCode": "LAB-WELD",
+          "description": "Weld overlay labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 3.5
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Seat ring",
+          "condition": "Pitted",
+          "recommendedItemCodes": [
+            "PART-SEAT"
+          ]
+        },
+        {
+          "component": "Seal kit",
+          "condition": "Eroded",
+          "recommendedItemCodes": [
+            "PART-SEALKIT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    },
+    {
+      "id": "WO-0040",
+      "jobId": "JOB-0040",
+      "lines": [
+        {
+          "id": "WO-0040-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0040-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician labour (per hour)",
+          "kind": "LABOUR",
+          "hours": 11.5
+        },
+        {
+          "id": "WO-0040-L3",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitCost": 16700
+        },
+        {
+          "id": "WO-0040-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic shell & seat test",
+          "kind": "SERVICE",
+          "qty": 1
+        },
+        {
+          "id": "WO-0040-L5",
+          "itemCode": "PART-GATE",
+          "description": "Gate",
+          "kind": "PART",
+          "qty": 1,
+          "unitCost": 107700
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Seat ring",
+          "condition": "Cracked",
+          "recommendedItemCodes": [
+            "PART-SEAT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 15000
+      }
+    }
+  ]
+}

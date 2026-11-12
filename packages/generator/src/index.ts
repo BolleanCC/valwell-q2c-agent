@@ -8,3 +8,4 @@ export * from "./injectors/b1-scope-change.js";
 export * from "./job.js";
 export * from "./reference.js";
 export * from "./rng.js";
+export * from "./write.js";
