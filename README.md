@@ -9,7 +9,8 @@ up past the contract cap. The result is rejected invoices, slow payment and reve
 between the systems. Before an invoice is sent, it lines up **quote ↔ work order ↔ invoice ↔ price book** line by
 line, checks customer rules, and raises evidence-backed findings with suggested fixes for a human to approve.
 
-> **Status:** early development. M0 (repository foundation) is in progress. See [the roadmap](#roadmap).
+> **Status:** M0–M5 done: generator, mock systems, deterministic agent and evaluation run end to end.
+> LLM drafting (M6), review UI (M7) and CD (M8) are next. See [the roadmap](#roadmap).
 
 ## Architecture
 
@@ -62,7 +63,15 @@ Requires Node 24 (see `.node-version`) and pnpm (version pinned in `package.json
 ```sh
 pnpm install
 pnpm check
+
+# End to end on a fresh batch
+pnpm generate -- --seed 42 --jobs 50
+pnpm agent -- --batch data/batch-seed42-jobs50
+pnpm eval -- --batch data/batch-seed42-jobs50
 ```
+
+A 40-job sample batch is committed at `data/fixtures/seed-42`. CI runs `pnpm eval` on it with
+`--min-recall 0.9`, so a detector regression fails the build.
 
 | Command | Purpose |
 | --- | --- |
@@ -71,9 +80,9 @@ pnpm check
 | `pnpm lint` / `pnpm format` | Biome check / Biome fix |
 | `pnpm typecheck` | `tsc -b` across workspaces |
 | `pnpm test` | Vitest, all packages |
-| `pnpm generate -- --seed 42 --jobs 50` | Generate a synthetic batch *(from M2)* |
-| `pnpm agent -- --batch data/<batch>` | Run the agent and write a findings report *(from M4)* |
-| `pnpm eval -- --batch data/<batch>` | Score findings against fault labels *(from M5)* |
+| `pnpm generate -- --seed 42 --jobs 50` | Generate a batch into `data/batch-seed42-jobs50/` |
+| `pnpm agent -- --batch <dir>` | Run the agent; writes `findings.json` and `report.md` to `data/runs/<batch>/` |
+| `pnpm eval -- --batch <dir> [--min-recall 0.9]` | Score against fault labels, run the portal experiment, write `eval.md` |
 
 ## Roadmap
 
