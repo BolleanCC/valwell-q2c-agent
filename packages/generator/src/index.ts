@@ -1,3 +1,4 @@
+export * from "./batch.js";
 export * from "./catalogue.js";
 export * from "./dates.js";
 export * from "./inject.js";
