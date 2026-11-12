@@ -2,6 +2,7 @@ export * from "./catalogue.js";
 export * from "./dates.js";
 export * from "./inject.js";
 export * from "./injectors/a1-stale-price.js";
+export * from "./injectors/a3-markup-cap.js";
 export * from "./job.js";
 export * from "./reference.js";
 export * from "./rng.js";
