@@ -117,10 +117,12 @@ Do not change these without an ADR in `docs/adr/` and my explicit approval.
 
 ## 7. Git workflow
 
-### Branches
-- `main` is always green and deployable. Never commit directly to `main` once the first PR exists.
-- One branch per milestone: `<type>/<short-kebab-description>`, for example `chore/repo-foundation`,
-  `feat/domain-model`, `feat/generator-faults`.
+### Trunk-based workflow (since M1)
+- Commit directly to `main`. No feature branches, no PRs, no branch protection. (M0 used a branch and PR #1;
+  everything after it is trunk-based.)
+- `main` must stay green: `pnpm check` passes before every commit, and every commit is pushed immediately.
+- At the end of each milestone, if `gh auth status` succeeds, watch the CI run for the latest push
+  (`gh run watch`) and fix any failure right away with a new small commit. Never disable or skip a check.
 
 ### Small commits (the most important rule)
 - **One logical change per commit.** Each commit builds, passes all checks, and can be reviewed in about 5 minutes.
@@ -150,12 +152,10 @@ Run `pnpm check` (Biome check, `tsc -b` typecheck, Vitest). Commit only when it 
 - Commit secrets, `.env`, `node_modules`, generated `data/` (outside `data/fixtures/`), or build output.
 - Add a dependency without saying why in the commit body.
 
-### Pull requests
-- At the end of a milestone, open a PR with `gh pr create`, using the PR template.
-- Wait for CI with `gh pr checks --watch`. If CI fails, fix it with new small commits.
-- **Then stop and ask me to review.** Do not merge until I reply "merge".
-- Merge with `gh pr merge --merge --delete-branch`. A merge commit preserves the small commits on `main` for
-  review. Then run `git switch main && git pull`.
+### Milestones
+- Milestones run back to back without stopping for confirmation. Stop and ask only when a decision is not
+  covered by this file or the kickoff plan, or when `pnpm check` still fails after 3 fix attempts.
+- Do not add ADRs beyond 0001 unless I ask.
 
 ## 8. Commands (keep these working)
 
@@ -175,8 +175,7 @@ Run `pnpm check` (Biome check, `tsc -b` typecheck, Vitest). Commit only when it 
 **Chunk (one commit):** a single logical change; tests included; `pnpm check` passes; Conventional Commit message;
 pushed.
 
-**Milestone (one PR):** all chunks pushed; README and docs updated if behaviour changed; CI green; PR opened with a
-filled template; I have reviewed it and said "merge".
+**Milestone:** all chunks pushed to `main`; README and docs updated if behaviour changed; CI green.
 
 ## 10. How to report progress to me
 
@@ -188,4 +187,4 @@ After each commit and push, print exactly:
    next:  <one line describing the next chunk>
 ```
 
-After each milestone, print the PR URL, the CI status, and a 3–5 bullet summary of what to look at when reviewing.
+After each milestone, print the CI status and a 3–5 bullet summary of what to look at when reviewing.

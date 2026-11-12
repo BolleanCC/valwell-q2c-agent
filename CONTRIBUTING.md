@@ -12,10 +12,10 @@ pnpm install           # also installs the git hooks via lefthook
 pnpm check             # lint + typecheck + test; must pass before every commit
 ```
 
-## Branches
+## Trunk-based workflow
 
-- `main` is always green and deployable. Nobody commits directly to it; every change arrives through a PR.
-- Use one branch per milestone, named `<type>/<short-kebab-description>`, for example `feat/domain-model`.
+- Commit directly to `main`. There are no feature branches or PRs.
+- `main` must stay green: run `pnpm check` before every commit and push immediately after.
 
 ## Commits
 
@@ -50,12 +50,9 @@ lefthook installs the hooks when you run `pnpm install`:
 
 Never bypass them with `--no-verify`, and never skip or delete a failing test.
 
-## Pull requests
+## CI
 
-1. Open one PR per milestone with `gh pr create`. The template asks for What, Why, How to test and a checklist.
-2. Wait for CI to go green (`gh pr checks --watch`). Fix failures with new small commits, not by amending.
-3. A reviewer approves, then the PR is merged with a merge commit (`gh pr merge --merge --delete-branch`) so the
-   small commits stay visible on `main`.
+CI runs on every push to `main`. If it fails, fix it with a new small commit; don't amend or revert history.
 
 ## Never
 
