@@ -209,6 +209,21 @@ importers:
         specifier: ^4.6.7
         version: 4.6.7
 
+  packages/eval:
+    dependencies:
+      '@valwell/agent':
+        specifier: workspace:*
+        version: link:../agent
+      '@valwell/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@valwell/mock-systems':
+        specifier: workspace:*
+        version: link:../mock-systems
+      zod:
+        specifier: ^4.6.7
+        version: 4.6.7
+
   packages/generator:
     dependencies:
       '@valwell/domain':

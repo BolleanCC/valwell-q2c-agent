@@ -1,0 +1,16 @@
+{
+  "name": "@valwell/eval",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Scores agent findings against fault labels and runs the portal experiment.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@valwell/agent": "workspace:*",
+    "@valwell/domain": "workspace:*",
+    "@valwell/mock-systems": "workspace:*",
+    "zod": "^4.6.7"
+  }
+}
