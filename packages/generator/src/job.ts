@@ -36,7 +36,7 @@ const [TDI_FEE, HYDRO_TEST] = SERVICES;
 const [LAB_TECH, LAB_MACH] = LABOUR;
 
 /** Price-book entry in force on `date`. The generator's own lookup, independent of the agent. */
-function priceOn(
+export function priceOn(
   book: readonly PriceBookItem[],
   customerId: string,
   itemCode: string,
