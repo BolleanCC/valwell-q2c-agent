@@ -8,6 +8,7 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@valwell/domain": "workspace:*"
+    "@valwell/domain": "workspace:*",
+    "zod": "^4.6.7"
   }
 }
