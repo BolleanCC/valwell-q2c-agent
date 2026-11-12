@@ -1,0 +1,13 @@
+{
+  "name": "@valwell/rules",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Pure customer-rule functions: price effectiveness and markup caps.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@valwell/domain": "workspace:*"
+  }
+}
