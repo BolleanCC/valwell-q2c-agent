@@ -1,0 +1,14 @@
+# Git hooks, installed by the root `prepare` script (`lefthook install`).
+# https://lefthook.dev/configuration/
+
+pre-commit:
+  jobs:
+    - name: biome
+      # Check only (no auto-fix) so partially staged files are never rewritten.
+      # Run `pnpm format` to fix reported issues.
+      run: pnpm exec biome check --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+
+commit-msg:
+  jobs:
+    - name: commitlint
+      run: pnpm exec commitlint --edit {1}
