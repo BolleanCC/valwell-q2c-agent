@@ -16,7 +16,8 @@
     "check": "pnpm lint && pnpm typecheck && pnpm test",
     "prepare": "lefthook install",
     "generate": "tsx packages/generator/src/cli.ts",
-    "agent": "tsx packages/agent/src/cli.ts"
+    "agent": "tsx packages/agent/src/cli.ts",
+    "eval": "tsx packages/eval/src/cli.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.7",
