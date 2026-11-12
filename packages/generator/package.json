@@ -1,0 +1,13 @@
+{
+  "name": "@valwell/generator",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Seeded ground-truth job generator and labelled fault injectors.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@valwell/domain": "workspace:*"
+  }
+}
