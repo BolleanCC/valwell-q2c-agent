@@ -5,3 +5,5 @@ export * from "./detectors/a3-markup-cap.js";
 export * from "./detectors/b1-scope-change.js";
 export * from "./detectors/types.js";
 export * from "./nodes/align.js";
+export * from "./nodes/route.js";
+export * from "./pipeline.js";
