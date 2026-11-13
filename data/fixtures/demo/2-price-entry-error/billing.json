@@ -1,0 +1,77 @@
+{
+  "customers": [
+    {
+      "id": "CUST-D",
+      "name": "Northline Energy Ltd.",
+      "msaRef": "MSA-NORTHLINE-2025"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "INV-D2",
+      "jobId": "JOB-D2",
+      "customerId": "CUST-D",
+      "poNumber": "PO-50002",
+      "invoiceDate": "2026-03-13",
+      "serviceDate": "2026-03-10",
+      "lines": [
+        {
+          "id": "INV-D2-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 84000,
+          "amount": 84000,
+          "sourceRef": {
+            "workOrderLineId": "WO-D2-L1",
+            "quoteLineId": "Q-D2-TDI-R1-L1",
+            "priceBookItemId": "PB-D-TDI-FEE-v2"
+          }
+        },
+        {
+          "id": "INV-D2-L2",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician",
+          "kind": "LABOUR",
+          "qty": 6,
+          "unitPrice": 5900,
+          "amount": 35400,
+          "sourceRef": {
+            "workOrderLineId": "WO-D2-L2",
+            "quoteLineId": "Q-D2-REP-R1-L1",
+            "priceBookItemId": "PB-D-LAB-TECH-v2"
+          }
+        },
+        {
+          "id": "INV-D2-L3",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitPrice": 22000,
+          "amount": 44000,
+          "unitCost": 20000,
+          "sourceRef": {
+            "workOrderLineId": "WO-D2-L3",
+            "quoteLineId": "Q-D2-REP-R1-L2"
+          }
+        },
+        {
+          "id": "INV-D2-L4",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 35000,
+          "amount": 35000,
+          "sourceRef": {
+            "workOrderLineId": "WO-D2-L4",
+            "quoteLineId": "Q-D2-REP-R1-L3",
+            "priceBookItemId": "PB-D-HYDRO-TEST-v2"
+          }
+        }
+      ]
+    }
+  ]
+}

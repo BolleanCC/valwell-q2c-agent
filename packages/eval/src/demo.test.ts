@@ -30,3 +30,49 @@ describe("demo case 1: normal repair", async () => {
     expect(r.unattended.invoice).toEqual(r.original.invoice);
   });
 });
+
+describe("demo case 2: price entry error", async () => {
+  const r = await runDemoCase(CASE("2-price-entry-error"));
+  const [finding] = r.run.findings;
+
+  it("finds the mistyped unit price and cites the applicable price-book version", () => {
+    expect(r.review.status).toBe("COMPLETE");
+    expect(r.run.findings).toHaveLength(1);
+    expect(finding).toMatchObject({
+      frictionCode: "A1",
+      invoiceLineId: "INV-D2-L2",
+      workOrderLineId: "WO-D2-L2",
+      route: "REVIEW",
+      status: "OPEN",
+      // 6 h × $95.00 = $570.00 instead of 6 h × $59.00 = $354.00
+      suggestion: { action: "REPRICE_LINE", expectedUnitPrice: 9_500, amountDelta: 21_600 },
+    });
+    expect(finding?.evidence).toContainEqual({ kind: "PRICE_BOOK_ITEM", id: "PB-D-LAB-TECH-v2" });
+    expect(r.original.portal).toMatchObject({ status: "REJECTED", reasonCode: "PRICE_MISMATCH" });
+  });
+
+  it("does not apply the correction while the finding is OPEN", () => {
+    expect(r.unattended).toMatchObject({
+      status: "AWAITING_REVIEW",
+      changes: [],
+      totals: { original: 198_400, held: 0, draft: 198_400, corrections: 0 },
+      portal: null,
+    });
+  });
+
+  it("applies it after a simulated human accepts it, and the draft passes the portal", () => {
+    expect(r.afterAcceptance).toMatchObject({
+      status: "READY",
+      changes: [
+        {
+          invoiceLineId: "INV-D2-L2",
+          before: { unitPrice: 5_900, amount: 35_400 },
+          after: { unitPrice: 9_500, amount: 57_000 },
+        },
+      ],
+      held: [],
+      totals: { original: 198_400, held: 0, draft: 220_000, corrections: 21_600 },
+      portal: { status: "APPROVED" },
+    });
+  });
+});
