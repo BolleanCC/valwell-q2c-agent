@@ -10,12 +10,12 @@ what was agreed. Prices don't match the contract price book, parts are marked up
 found after teardown is billed without the customer's approval. The customer's invoice portal rejects these
 invoices, and payment is delayed.
 
-Before an invoice is sent, this prototype checks it against the other records and proposes corrections. Every
-correction cites its source evidence and needs explicit approval rules before it is applied. All reconciliation
-and every amount is deterministic code. An LLM is used for one narrow job: when extra work has been held off an
-invoice, it investigates the records through read-only tools and drafts a change-order request for a human.
+Before an invoice is sent, an LLM works the case. It calls business tools to check the records, reconcile the
+invoice, prepare a permitted draft, validate it with the simulated portal, and finish with an evidence-backed
+disposition. The tools are deterministic code. They own every check, every amount and every permission, and the
+application verifies the model's final disposition against what the tools actually recorded.
 
-## The workflow (deterministic, no LLM)
+## The deterministic core (what the tools run)
 
 ```
 read a case → validate records → align lines → detect issues → propose actions
@@ -69,60 +69,92 @@ Approved scope is the **effective quote revision** (the highest revision of each
 orders. Earlier revisions authorise nothing. The agent and the portal share this rule (`latestRevisions` in
 `packages/domain`).
 
-## LLM drafting for held extra work (case 4 only)
+## LLM orchestration of every case
 
-Cases 1–3 need no LLM. The rules fully decide them, and code computes the corrected amounts. Case 4 is different.
-The rules can hold the extra line, but someone still has to explain the extra work to the customer and ask for a
-change order. That part is reading and writing, so the LLM drafts it, and a human decides.
+```
+case task (ids only) → model calls tools → tools return checks, findings, evidence
+  → model picks a permitted action → application checks it → code prepares the draft / records the hold
+  → simulated portal (READY drafts only) → model submits a disposition → application verifies it
+```
 
-How it works (`packages/agent/src/llm/`):
+Code: `packages/agent/src/workflow/` and `packages/agent/src/llm/`.
 
-1. The deterministic pipeline finishes first. The B1 finding holds `INV-D4-L5` (stem, $440.00).
-2. `loop.ts`: `draftChangeOrderRequest` gives the model the finding and a narrow task. The model receives tool
-   definitions, not the records.
-3. The model chooses tools and the loop runs them (`tools.ts`):
-   - `get_finding_details`
-   - `get_work_order`, which returns lines, teardown findings and technician notes
-   - `get_effective_quote`
-   - `get_change_orders`
+**Tools** (`workflow/tools.ts`). Every call is checked with zod, every id must belong to the case's job, and
+unknown tools are refused.
 
-   The tools are read-only and scoped to the current job. Their arguments are checked with zod, and unknown
-   tools and other jobs' ids are refused. They return no prices, and every record carries a stable evidence
-   id. Text from records is marked as data, never instructions.
-4. The model returns its result through `submit_change_order_draft`. That result contains:
-   - a work summary;
-   - the documented reason, or `null`;
-   - evidence ids;
-   - missing information;
-   - customer text.
+| Tool | Kind | What application code enforces |
+| --- | --- | --- |
+| `validate_records` | read | Record and reference checks (`checkRecordLinks`) |
+| `reconcile_invoice` | read | Refused until records are consistent; runs matching, line checks, detectors and routing (`runPipeline`) |
+| `get_job_records` | read | Invoice, work order (with notes), effective quote or change orders |
+| `prepare_draft(apply_finding_ids)` | in-memory state | Ids only, no prices. Reconciliation must be COMPLETE. OPEN REVIEW and REJECTED findings can't be applied. Every BLOCK finding must be held. Rebuilt from the original invoice each time, so repeats never double-apply |
+| `submit_to_portal` | simulated | Only a READY draft |
+| `draft_change_order_request` | in-memory state | Only for a held line; `validateDraft` checks the text and evidence; amounts inserted by code |
+| `submit_disposition` | finish | `verifyDisposition`: required checks ran, all findings listed, evidence came from tools, no amounts or customer-approval claims, outcome matches state |
 
-   It contains **no financial fields**.
-5. `draft.ts`: `validateDraft` applies these checks:
-   - the output matches the schema exactly;
-   - every evidence id came from a successful tool call in this run (so it belongs to this job), and the held
-     work-order line is cited;
-   - the text claims no approval, submission, payment or release, and contains no money;
-   - a stated reason cites a technician note or a teardown finding;
-   - if no reason is documented, the draft must list what is missing. That makes it `INSUFFICIENT_EVIDENCE`.
+**What the model decides:** which records and checks to request, which permitted findings to apply, whether to
+submit, what to write in a change-order request, and which outcome to claim. **What code decides:** whether
+each of those is allowed, every number, every state change, and whether the claimed outcome is true. There is no
+tool for accepting a finding. Human acceptance is an application event (`acceptFinding`), which the demo
+simulates between the two runs of case 2.
 
-   These are modest reference and keyword checks. They do not prove the draft is factually correct, which is
-   why a human reviews it.
-6. The amount (1 × $440.00) is taken from the held invoice line and inserted into the rendered request by code.
+Example traces (offline script; arguments and summaries shortened):
 
-Limits (`LIMITS` in `loop.ts`):
-- 6 model turns;
-- 10 tool calls;
+- **Case 1, normal repair.** The model finds nothing to correct and requests the unchanged draft.
+
+  ```
+  validate_records → RECORDS_CONSISTENT
+  reconcile_invoice → review COMPLETE; findings: none
+  prepare_draft [] → draft READY; changes 0; held 0; total $2,200.00
+  submit_to_portal → simulated portal APPROVED
+  submit_disposition NO_CORRECTION_REQUIRED → verified
+  ```
+- **Case 2, price entry error.** The model can't apply its own REVIEW proposal. The case pauses for a human, then
+  resumes with the same case state.
+
+  ```
+  run 1: validate_records → reconcile_invoice → findings: F-0001 A1 REVIEW OPEN
+         get_job_records invoice → prepare_draft [] → draft AWAITING_REVIEW (not submittable)
+         submit_disposition AWAITING_HUMAN_ACCEPTANCE → verified
+  human event (application): Simulated human reviewer accepted F-0001
+  run 2: reconcile_invoice → F-0001 ACCEPTED → prepare_draft [F-0001] → READY, $354.00 → $570.00
+         submit_to_portal → APPROVED → submit_disposition CORRECTED_AND_VALIDATED → verified
+  ```
+  If the model tries `prepare_draft [F-0001]` before acceptance, or calls `submit_to_portal`, the call is refused
+  (tested).
+- **Case 3, markup over cap.** The model applies the AUTO_FIX by id. Code computes the $220.00 cap price from the
+  verified cost.
+
+  ```
+  reconcile_invoice → findings: F-0001 A3 AUTO_FIX OPEN
+  prepare_draft [F-0001] → READY, $500.00 → $440.00 → submit_to_portal → APPROVED
+  submit_disposition CORRECTED_AND_VALIDATED → verified
+  ```
+- **Case 4, unapproved extra work.** The hold is mandatory. The model investigates the documented reason and
+  drafts the request.
+
+  ```
+  reconcile_invoice → findings: F-0001 B1 BLOCK OPEN
+  prepare_draft [F-0001] → READY; held INV-D4-L5 $440.00 → submit_to_portal → APPROVED (remaining lines)
+  get_job_records work_order → evidence incl. WO-D4-TDI-2, WO-D4-N1; get_job_records change_orders → none
+  draft_change_order_request INV-D4-L5 → DRAFTED (amount 1 × $440.00 inserted by code; line stays held)
+  submit_disposition PARTIAL_SUBMISSION_WITH_HOLD → verified
+  ```
+
+**Bounds and failures** (`llm/loop.ts`, `runToolLoop`):
+- at most 10 model turns and 16 tool calls;
 - a 60 s timeout per request;
 - 4,000 output tokens;
-- no automatic retries.
+- no retries.
 
-Every run ends in one of these states: `DRAFTED`, `INSUFFICIENT_EVIDENCE`, `INVALID_OUTPUT`, `LIMIT_REACHED` or
-`PROVIDER_FAILURE`. The demo prints the tool trace (tool, arguments, result summary or error) whichever way it
-ends. If drafting fails, the deterministic result stands, the line stays held, and the demo says drafting did not
-complete. Offline output is never substituted for a failed live run.
+A refused tool call goes back to the model as an error, and it may correct itself within the bounds. A run ends
+either with a verified disposition or incomplete: `INVALID_OUTPUT`, `LIMIT_REACHED` or `PROVIDER_FAILURE`. An
+incomplete run produces no disposition, isn't resumed, and is never replaced by offline output. Whatever the tools
+already recorded, such as a held line, stays as it is.
 
-The LLM never calculates or chooses amounts. It never approves anything, changes a finding's status, modifies
-records or invoices, releases the held line, submits an invoice or sends a message.
+**Limits of the checks.** Validation checks references, state and simple keywords. It can't prove that a
+model's prose is true, which is why a human reviews change-order requests and the next human action is always
+stated.
 
 ## Run the demo
 
