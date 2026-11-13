@@ -17,3 +17,8 @@ export * from "./nodes/route.js";
 export * from "./pipeline.js";
 export * from "./report.js";
 export * from "./review.js";
+export * from "./workflow/change-order.js";
+export * from "./workflow/disposition.js";
+export * from "./workflow/run.js";
+export * from "./workflow/state.js";
+export * from "./workflow/tools.js";

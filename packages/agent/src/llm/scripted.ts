@@ -1,19 +1,21 @@
-import type { LlmProvider, ModelTurn, ToolResult } from "./loop.js";
+import type { LlmProvider, LlmTask, ModelTurn, ToolResult } from "./loop.js";
 
 /** A scripted step: a model turn, a provider error, or a request that never answers. */
 export type ScriptStep = ModelTurn | Error | "hang";
 
 /**
  * Offline provider that replays fixed model turns through the real loop and
- * the real tools. It is simulated behaviour, not a model run. `received`
- * records the tool results the "model" was sent, for inspection.
+ * the real tools. It is simulated behaviour, not a model run. `tasks` and
+ * `received` record what the "model" was sent, for inspection.
  */
 export function scriptedProvider(steps: readonly ScriptStep[], model = "offline-script") {
   const received: ToolResult[][] = [];
+  const tasks: LlmTask[] = [];
   const provider: LlmProvider = {
     mode: "offline",
     model,
-    open() {
+    open(task) {
+      tasks.push(task);
       let next = 0;
       const step = (): Promise<ModelTurn> => {
         const s = steps[next++];
@@ -31,7 +33,7 @@ export function scriptedProvider(steps: readonly ScriptStep[], model = "offline-
       };
     },
   };
-  return { provider, received };
+  return { provider, received, tasks };
 }
 
 /** Shorthand for a turn that only calls tools. */
