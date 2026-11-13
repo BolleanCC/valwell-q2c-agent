@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { applyFindings } from "../fix.js";
 import { case4Scope } from "../testing/case4.js";
 import { draftChangeOrderRequest, LIMITS, type ModelTurn } from "./loop.js";
+import { offlineDraftingProvider } from "./offline-script.js";
 import { callTools, scriptedProvider } from "./scripted.js";
 import type { DraftingScope } from "./tools.js";
 
@@ -127,5 +128,111 @@ describe("draftChangeOrderRequest (offline, scripted provider)", () => {
       status: "PROVIDER_FAILURE",
       problems: ["provider timed out after 20 ms"],
     });
+  });
+});
+
+describe("draftChangeOrderRequest failure paths", () => {
+  it("returns tool errors to the model for bad arguments, unknown tools and other jobs", async () => {
+    const { scope, held } = await setup();
+    const { provider, received } = scriptedProvider([
+      callTools(
+        ["get_work_order", { job: "JOB-D4" }],
+        ["delete_invoice", { job_id: "JOB-D4" }],
+        ["get_change_orders", { job_id: "JOB-D1" }],
+      ),
+      ...INVESTIGATE,
+      submit(GOOD_DRAFT),
+    ]);
+    const r = await draftChangeOrderRequest(scope, held, provider);
+    expect(r.trace.slice(0, 3).map((t) => [t.tool, t.ok, t.summary])).toEqual([
+      ["get_work_order", false, expect.stringContaining("invalid arguments for get_work_order")],
+      ["delete_invoice", false, "unknown tool delete_invoice"],
+      ["get_change_orders", false, "job JOB-D1 is outside this task's scope (JOB-D4)"],
+    ]);
+    expect(received[0]?.every((res) => res.isError)).toBe(true);
+    expect(r.status).toBe("DRAFTED"); // the model recovered by calling the tools correctly
+  });
+
+  it("does not accept evidence from a rejected cross-job call", async () => {
+    const { scope, held } = await setup();
+    const r = await draftChangeOrderRequest(
+      scope,
+      held,
+      scriptedProvider([
+        ...INVESTIGATE,
+        callTools(["get_work_order", { job_id: "JOB-D1" }]),
+        submit({ ...GOOD_DRAFT, evidenceIds: [...GOOD_DRAFT.evidenceIds, "WO-D1-L1"] }),
+      ]).provider,
+    );
+    expect(r).toMatchObject({
+      status: "INVALID_OUTPUT",
+      problems: ["evidence not returned by any tool in this run: WO-D1-L1"],
+    });
+  });
+
+  it("rejects invalid structured output and output that names amounts or approval", async () => {
+    const { scope, held } = await setup();
+    const run = (draft: unknown) =>
+      draftChangeOrderRequest(
+        scope,
+        held,
+        scriptedProvider([...INVESTIGATE, submit(draft)]).provider,
+      );
+    expect((await run({ workSummary: "stem" })).status).toBe("INVALID_OUTPUT");
+    const priced = await run({
+      ...GOOD_DRAFT,
+      customerRequestText: "Please pay $440.00 for the stem.",
+    });
+    expect(priced).toMatchObject({ status: "INVALID_OUTPUT", request: null });
+    const approved = await run({ ...GOOD_DRAFT, workSummary: "The customer approved the stem." });
+    expect(approved.problems).toContain("text claims approval, submission, payment or release");
+  });
+
+  it("ends without a draft when the model stops, refuses or runs out of tokens", async () => {
+    const { scope, held } = await setup();
+    const stop = (stopReason: string) =>
+      draftChangeOrderRequest(
+        scope,
+        held,
+        scriptedProvider([{ stopReason, text: "Here is my summary.", toolCalls: [] }]).provider,
+      );
+    expect(await stop("end_turn")).toMatchObject({
+      status: "INVALID_OUTPUT",
+      problems: ["the model stopped without submitting a draft"],
+    });
+    expect((await stop("refusal")).status).toBe("PROVIDER_FAILURE");
+    expect((await stop("max_tokens")).problems).toEqual(["output token limit reached"]);
+  });
+
+  it("reports missing business justification instead of inventing one", async () => {
+    const { scope, held } = await setup();
+    // Same job, but with no technician note and no teardown finding on record.
+    const bare = {
+      ...scope,
+      ctx: {
+        ...scope.ctx,
+        workOrder: { ...scope.ctx.workOrder, tdiFindings: [], technicianNotes: [] },
+      },
+    };
+    const r = await draftChangeOrderRequest(bare, held, offlineDraftingProvider(bare));
+    expect(r).toMatchObject({
+      status: "INSUFFICIENT_EVIDENCE",
+      problems: ["the records do not document a business reason"],
+      content: { businessReason: null },
+    });
+    expect(r.request).toContain("Documented reason: not documented in the records");
+
+    // A model that asserts a reason anyway, without citing a note or TDI finding, is rejected.
+    const invented = await draftChangeOrderRequest(
+      bare,
+      held,
+      scriptedProvider([
+        ...INVESTIGATE,
+        submit({ ...GOOD_DRAFT, evidenceIds: ["F-0001", "WO-D4-L5"] }),
+      ]).provider,
+    );
+    expect(invented.problems).toEqual([
+      "business reason does not cite a technician note or TDI finding",
+    ]);
   });
 });
