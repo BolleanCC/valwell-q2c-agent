@@ -104,7 +104,8 @@ Do not change these without an ADR in `docs/adr/` and my explicit approval.
    byte-identical output, and a test must assert this.
 3. **The LLM never produces money.** Amounts, quantities and prices come from deterministic code and are inserted
    after generation. LLM output that contains money or claims approval, submission or payment is rejected
-   (`validateDraft` in `packages/agent/src/llm/draft.ts`). The LLM only reads through job-scoped tools.
+   (`validateDraft`, `verifyDisposition`). The LLM acts only through job-scoped tools in
+   `packages/agent/src/workflow/tools.ts`, which take ids, never amounts. Human acceptance is never a tool.
 4. **Every finding cites evidence.** Each finding references at least one source id: a quote line, work-order line,
    price-book item, change order or rule.
 5. **Lineage.** Every invoice line the agent drafts carries `sourceRef` (quote line, work-order line, price-book
@@ -176,8 +177,8 @@ Run `pnpm check` (Biome check, `tsc -b` typecheck, Vitest). Commit only when it 
 | `pnpm generate -- --seed 42 --jobs 50` | Generate a synthetic batch into `data/` (from milestone M2) |
 | `pnpm agent -- --batch data/<batch>` | Run the agent on a batch and write a findings report (from M4) |
 | `pnpm eval -- --batch data/<batch>` | Score findings against fault labels (from M5) |
-| `pnpm demo` | Run the four fixed demo cases in `data/fixtures/demo/` (case 4 LLM drafting offline, simulated) |
-| `pnpm demo -- --llm live` | Same, with real Anthropic API calls for case 4 (needs `ANTHROPIC_API_KEY`) |
+| `pnpm demo` | LLM orchestration of the four demo cases in `data/fixtures/demo/`, offline (scripted, simulated) |
+| `pnpm demo -- --llm live` | Same, with a real model for every case (needs `ANTHROPIC_API_KEY`) |
 
 ## 9. Definitions of done
 

@@ -162,36 +162,41 @@ Requires Node 24 and pnpm (version pinned in `package.json`).
 
 ```sh
 pnpm install
-pnpm demo                 # four fixed cases; case 4 drafting is OFFLINE (simulated); writes data/runs/demo/demo.md
-pnpm demo -- --llm live   # same, but case 4 makes real Anthropic API calls (paid)
+pnpm demo                 # all four cases orchestrated OFFLINE (scripted, simulated); writes data/runs/demo/demo.md
+pnpm demo -- --llm live   # all four cases orchestrated by a real model via the Anthropic API (paid)
 ```
 
-- **Offline mode** (the default, used by tests and CI): a fixed script plays the model. It calls the same tools
-  through the same loop and submits a templated draft that must pass the same validation. The demo labels it
-  *simulated LLM behaviour, not a model run*.
-- **Live mode**: real Messages API tool calls through the official `@anthropic-ai/sdk`. Copy `.env.example` to
-  `.env` (git-ignored) and set:
+- **Offline mode** (the default, used by tests and CI): fixed scripted turns per case
+  (`packages/eval/src/offline-scripts.ts`) play the model. They go through the same loop, tools, permission checks
+  and disposition verification, so a script that broke a rule would fail. The demo labels every offline run as
+  *simulated LLM behaviour from a fixed script, not a model run*. It shows the mechanics, not model reasoning.
+- **Live mode**: real Messages API tool calls through the official `@anthropic-ai/sdk`, for all four cases. The
+  model gets the same task prompt (ids only), the same tools and the same checks. No case-specific solution is
+  chosen for it. Copy `.env.example` to `.env` (git-ignored) and set:
 
   | Variable | Required | Meaning |
   | --- | --- | --- |
   | `ANTHROPIC_API_KEY` | yes, for live mode | Read by the SDK; never printed |
   | `LLM_MODEL` | no | Model id, default `claude-opus-5-5` |
 
-  Live mode has **not been run against the real API** during development. Its request and response handling is
-  tested with a fake client only.
+  Live mode has **not been run against the real API**. No paid calls were made during development. Request and
+  response handling is tested with a fake client only, so a real model may take different paths. Its runs are
+  still bound by the same permissions and verification.
 
 | Case | Input | Outcome |
 | --- | --- | --- |
-| 1 Normal repair | Scope, work, quantities, prices and costs agree | Review complete, no findings, $2,200.00 approved by the portal |
-| 2 Price entry error | Labour billed at $59.00 instead of $95.00 (6 h) | `REVIEW`. While the finding is `OPEN`, nothing is applied and nothing is submitted. After a simulated acceptance the line goes from $354.00 to $570.00 and the $2,200.00 draft passes |
-| 3 Markup over cap | Seat billed at $250.00 on a verified $200.00 cost, 10 % cap | `AUTO_FIX` to $220.00 (−$60.00). The $2,200.00 draft passes |
-| 4 Unapproved extra work | A replaced stem ($440.00) with no approved change order | `BLOCK`. The line is held at $440.00 and the remaining $2,200.00 passes |
+| 1 Normal repair | Scope, work, quantities, prices and costs agree | `NO_CORRECTION_REQUIRED`: the unchanged $2,200.00 draft passes the portal |
+| 2 Price entry error | Labour billed at $59.00 instead of $95.00 (6 h) | Run 1 `AWAITING_HUMAN_ACCEPTANCE` (nothing applied or submitted). Simulated human acceptance. Run 2 `CORRECTED_AND_VALIDATED`: $354.00 → $570.00, and the $2,200.00 draft passes |
+| 3 Markup over cap | Seat billed at $250.00 on a verified $200.00 cost, 10 % cap | `CORRECTED_AND_VALIDATED`: AUTO_FIX to the cap price $220.00 (−$60.00), and the $2,200.00 draft passes |
+| 4 Unapproved extra work | A replaced stem ($440.00) with no approved change order | `PARTIAL_SUBMISSION_WITH_HOLD`: $440.00 held, the remaining $2,200.00 passes, and a change-order request is drafted |
 
 The cases are hand-written in `data/fixtures/demo/` in the same store layout the agent reads. They don't use the
 random generator or any answer labels.
 
 ## Business assumptions and boundaries
 
+- **The LLM orchestrates; it never authorises.** It can't accept a finding, choose a price, release a held line or
+  send anything. Its claims count only when the case state confirms them.
 - **Drafting, human acceptance, customer approval and the portal are four different things.** The LLM drafts a
   change-order request. A person accepts, edits and sends it. The customer approves the change order. Only an
   approved change order recorded in the quoting system makes the stem billable. The portal result is a
@@ -212,15 +217,16 @@ random generator or any answer labels.
 
 ## What exists and what does not
 
-Implemented: the deterministic workflow above, mock source systems, the portal simulator, the demo, and a
-reconciliation report (`pnpm agent`).
+Implemented:
+- LLM orchestration of the four demo cases (offline by default, live on request);
+- the deterministic core and tools above;
+- mock source systems and the portal simulator;
+- a reconciliation report (`pnpm agent`).
 
 The synthetic generator and label-based scoring (`pnpm generate`, `pnpm eval`) remain as a regression harness.
 CI fails if recall on the committed `data/fixtures/seed-42` batch drops below 0.9. Synthetic precision and recall
 show that the detectors still catch the faults the generator injects. They don't measure real-world invoice
 accuracy.
-
-Implemented with an LLM: change-order request drafting for held extra work (offline by default, live on request).
 
 Not implemented:
 - real ERP, portal or payment integration;
@@ -233,25 +239,27 @@ Not implemented:
 
 | Command | Purpose |
 | --- | --- |
-| `pnpm demo` | Run the four fixed demo cases; case 4 drafting offline (simulated) |
-| `pnpm demo -- --llm live` | Same, with real Anthropic API calls for case 4 |
+| `pnpm demo` | Orchestrate the four fixed demo cases offline (scripted, simulated) |
+| `pnpm demo -- --llm live` | Same, with a real model via the Anthropic API for every case |
 | `pnpm check` | Lint, typecheck and test. Must pass before every commit |
 | `pnpm agent -- --batch <dir>` | Run the agent on a store directory; writes `findings.json` and `report.md` to `data/runs/<name>/` |
 | `pnpm generate -- --seed 42 --jobs 50` | Generate a synthetic batch with labelled faults |
 | `pnpm eval -- --batch <dir> [--min-recall 0.9]` | Score findings against the labels and run the portal experiment |
 
 Core files, in reading order:
-1. `packages/agent/src/pipeline.ts`
-2. `review.ts`
-3. `nodes/align.ts`
-4. `nodes/check-lines.ts`
-5. `detectors/*.ts`
-6. `nodes/route.ts`
-7. `fix.ts`
-8. `llm/tools.ts`
-9. `llm/draft.ts`
-10. `llm/loop.ts`
-11. `llm/anthropic.ts` and `llm/offline-script.ts`
-12. `packages/eval/src/demo.ts`
+1. `packages/eval/src/case-demo.ts`: one case, two runs when a human must accept.
+2. `packages/agent/src/workflow/run.ts`: the case task and prompt.
+3. `llm/loop.ts`: `runToolLoop`, bounds and failures.
+4. `workflow/tools.ts`: the seven tools and their permission checks.
+5. `workflow/state.ts`: case state and the `acceptFinding` human event.
+6. `workflow/disposition.ts` and `workflow/change-order.ts`: verification of what the model submits.
+7. The deterministic core, `pipeline.ts`, which the reconciliation tool runs:
+   - `review.ts`
+   - `nodes/align.ts`
+   - `nodes/check-lines.ts`
+   - `detectors/`
+   - `nodes/route.ts`
+   - `fix.ts`
+8. `llm/anthropic.ts` and `packages/eval/src/offline-scripts.ts`: live and offline providers.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [CLAUDE.md](CLAUDE.md) for how to work in this repo.
