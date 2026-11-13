@@ -47,7 +47,12 @@ export const Quote = z
   });
 export type Quote = z.infer<typeof Quote>;
 
-/** The binding (highest) revision for each quote id among `quotes`. */
+/**
+ * The effective revision of each quote id: the highest revision number.
+ * This is the one approval rule shared by the agent and the portal. Earlier
+ * revisions are history and authorise nothing, so an item or quantity
+ * removed in a later revision is no longer approved scope.
+ */
 export function latestRevisions(quotes: readonly Quote[]): Quote[] {
   const latest = new Map<string, Quote>();
   for (const q of quotes) {

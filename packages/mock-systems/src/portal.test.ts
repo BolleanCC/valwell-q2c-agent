@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { FaultLabel, fromCents, type Invoice } from "@valwell/domain";
 import { beforeAll, describe, expect, it } from "vitest";
-import { type CustomerPortal, openPortal } from "./portal.js";
+import { type CustomerPortal, openPortal, PortalStoreData, portalFrom } from "./portal.js";
 import { openBillingStore } from "./stores.js";
 
 const FIXTURE = join(import.meta.dirname, "../../../data/fixtures/seed-42");
@@ -63,6 +63,23 @@ describe("customer portal simulator", () => {
     expect(d.status === "REJECTED" && d.reasons.map((r) => r.code)).toEqual(
       expect.arrayContaining(["MISSING_COST_BACKUP", "EXTENSION_ERROR"]),
     );
+  });
+
+  it("uses only the effective quote revision as approved scope and quantity", async () => {
+    const raw = JSON.parse(await readFile(join(FIXTURE, "portal.json"), "utf8"));
+    const data = PortalStoreData.parse(raw);
+    const inv = invoices.find((i) => !labels.some((l) => l.invoiceId === i.id)) as Invoice;
+    const rep = data.quotes.find((q) => q.jobId === inv.jobId && q.stage === "REPAIR");
+    if (!rep) throw new Error("no repair quote");
+    const [kept, ...dropped] = rep.lines;
+    if (!kept) throw new Error("empty quote");
+    // Revision 2 keeps the first line at half the quantity and drops the rest.
+    data.quotes.push({ ...rep, revision: 2, lines: [{ ...kept, qty: kept.qty / 2 }] });
+    const d = portalFrom(data).submit(inv);
+    if (d.status !== "REJECTED") throw new Error("expected a rejection");
+    const codeOf = (code: string) => d.reasons.find((r) => r.message.startsWith(code))?.code;
+    expect(codeOf(kept.itemCode)).toBe("QUANTITY_EXCEEDS_APPROVED");
+    for (const l of dropped) expect(codeOf(l.itemCode)).toBe("UNAPPROVED_SCOPE");
   });
 
   it("rejects a customer with no contract", () => {

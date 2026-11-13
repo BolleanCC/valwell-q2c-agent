@@ -3,6 +3,7 @@ import {
   CustomerRules,
   format,
   type Invoice,
+  latestRevisions,
   multiplyQty,
   PriceBookItem,
   Quote,
@@ -26,6 +27,7 @@ export const RejectionCode = z.enum([
   "MARKUP_CAP_EXCEEDED",
   "MISSING_COST_BACKUP",
   "UNAPPROVED_SCOPE",
+  "QUANTITY_EXCEEDS_APPROVED",
   "EXTENSION_ERROR",
 ]);
 export type RejectionCode = z.infer<typeof RejectionCode>;
@@ -64,21 +66,35 @@ export function portalFrom(data: PortalStoreData): CustomerPortal {
 
       const rules = data.rules.find((r) => r.customerId === invoice.customerId);
       if (!rules) reject("NO_CONTRACT", null, `No MSA on file for ${invoice.customerId}`);
-      const approvedScope = new Set<string>([
-        ...data.quotes
-          .filter((q) => q.jobId === invoice.jobId)
-          .flatMap((q) => q.lines.map((l) => l.itemCode)),
-        ...data.changeOrders
-          .filter((c) => c.jobId === invoice.jobId && c.status === "APPROVED")
-          .flatMap((c) => c.lines.map((l) => l.itemCode)),
-      ]);
+      // Approved scope: the effective (highest) revision of each quote plus
+      // approved change orders — the same rule the agent uses. Quantities are
+      // in integer thousandths (at most 3 decimals).
+      const approvedMilli = new Map<string, number>();
+      const billedMilli = new Map<string, number>();
+      const addTo = (m: Map<string, number>, code: string, qty: number) =>
+        m.set(code, (m.get(code) ?? 0) + Math.round(qty * 1000));
+      for (const q of latestRevisions(data.quotes.filter((q) => q.jobId === invoice.jobId))) {
+        for (const l of q.lines) addTo(approvedMilli, l.itemCode, l.qty);
+      }
+      for (const c of data.changeOrders) {
+        if (c.jobId !== invoice.jobId || c.status !== "APPROVED") continue;
+        for (const l of c.lines) addTo(approvedMilli, l.itemCode, l.qty);
+      }
+      for (const l of invoice.lines) addTo(billedMilli, l.itemCode, l.qty);
 
       for (const line of invoice.lines) {
         if (line.amount !== multiplyQty(line.unitPrice, line.qty)) {
           reject("EXTENSION_ERROR", line.id, `${line.itemCode}: amount ≠ qty × unit price`);
         }
-        if (!approvedScope.has(line.itemCode)) {
+        const approved = approvedMilli.get(line.itemCode);
+        if (approved === undefined) {
           reject("UNAPPROVED_SCOPE", line.id, `${line.itemCode} is not in approved scope`);
+        } else if ((billedMilli.get(line.itemCode) ?? 0) > approved) {
+          reject(
+            "QUANTITY_EXCEEDS_APPROVED",
+            line.id,
+            `${line.itemCode}: billed quantity exceeds the approved ${approved / 1000}`,
+          );
         }
         if (line.kind === "PART") {
           if (line.unitCost === undefined) {
