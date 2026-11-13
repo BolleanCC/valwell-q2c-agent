@@ -11,7 +11,9 @@ found after teardown is billed without the customer's approval. The customer's i
 invoices, and payment is delayed.
 
 Before an invoice is sent, this prototype checks it against the other records and proposes corrections. Every
-correction cites its source evidence and needs explicit approval rules before it is applied.
+correction cites its source evidence and needs explicit approval rules before it is applied. All reconciliation
+and every amount is deterministic code. An LLM is used for one narrow job: when extra work has been held off an
+invoice, it investigates the records through read-only tools and drafts a change-order request for a human.
 
 ## The workflow (deterministic, no LLM)
 
@@ -67,14 +69,84 @@ Approved scope is the **effective quote revision** (the highest revision of each
 orders. Earlier revisions authorise nothing. The agent and the portal share this rule (`latestRevisions` in
 `packages/domain`).
 
+## LLM drafting for held extra work (case 4 only)
+
+Cases 1–3 need no LLM. The rules fully decide them, and code computes the corrected amounts. Case 4 is different.
+The rules can hold the extra line, but someone still has to explain the extra work to the customer and ask for a
+change order. That part is reading and writing, so the LLM drafts it, and a human decides.
+
+How it works (`packages/agent/src/llm/`):
+
+1. The deterministic pipeline finishes first. The B1 finding holds `INV-D4-L5` (stem, $440.00).
+2. `loop.ts`: `draftChangeOrderRequest` gives the model the finding and a narrow task. The model receives tool
+   definitions, not the records.
+3. The model chooses tools and the loop runs them (`tools.ts`):
+   - `get_finding_details`
+   - `get_work_order`, which returns lines, teardown findings and technician notes
+   - `get_effective_quote`
+   - `get_change_orders`
+
+   The tools are read-only and scoped to the current job. Their arguments are checked with zod, and unknown
+   tools and other jobs' ids are refused. They return no prices, and every record carries a stable evidence
+   id. Text from records is marked as data, never instructions.
+4. The model returns its result through `submit_change_order_draft`. That result contains:
+   - a work summary;
+   - the documented reason, or `null`;
+   - evidence ids;
+   - missing information;
+   - customer text.
+
+   It contains **no financial fields**.
+5. `draft.ts`: `validateDraft` applies these checks:
+   - the output matches the schema exactly;
+   - every evidence id came from a successful tool call in this run (so it belongs to this job), and the held
+     work-order line is cited;
+   - the text claims no approval, submission, payment or release, and contains no money;
+   - a stated reason cites a technician note or a teardown finding;
+   - if no reason is documented, the draft must list what is missing. That makes it `INSUFFICIENT_EVIDENCE`.
+
+   These are modest reference and keyword checks. They do not prove the draft is factually correct, which is
+   why a human reviews it.
+6. The amount (1 × $440.00) is taken from the held invoice line and inserted into the rendered request by code.
+
+Limits (`LIMITS` in `loop.ts`):
+- 6 model turns;
+- 10 tool calls;
+- a 60 s timeout per request;
+- 4,000 output tokens;
+- no automatic retries.
+
+Every run ends in one of these states: `DRAFTED`, `INSUFFICIENT_EVIDENCE`, `INVALID_OUTPUT`, `LIMIT_REACHED` or
+`PROVIDER_FAILURE`. The demo prints the tool trace (tool, arguments, result summary or error) whichever way it
+ends. If drafting fails, the deterministic result stands, the line stays held, and the demo says drafting did not
+complete. Offline output is never substituted for a failed live run.
+
+The LLM never calculates or chooses amounts. It never approves anything, changes a finding's status, modifies
+records or invoices, releases the held line, submits an invoice or sends a message.
+
 ## Run the demo
 
 Requires Node 24 and pnpm (version pinned in `package.json`).
 
 ```sh
 pnpm install
-pnpm demo        # four fixed cases, offline; also writes data/runs/demo/demo.md
+pnpm demo                 # four fixed cases; case 4 drafting is OFFLINE (simulated); writes data/runs/demo/demo.md
+pnpm demo -- --llm live   # same, but case 4 makes real Anthropic API calls (paid)
 ```
+
+- **Offline mode** (the default, used by tests and CI): a fixed script plays the model. It calls the same tools
+  through the same loop and submits a templated draft that must pass the same validation. The demo labels it
+  *simulated LLM behaviour, not a model run*.
+- **Live mode**: real Messages API tool calls through the official `@anthropic-ai/sdk`. Copy `.env.example` to
+  `.env` (git-ignored) and set:
+
+  | Variable | Required | Meaning |
+  | --- | --- | --- |
+  | `ANTHROPIC_API_KEY` | yes, for live mode | Read by the SDK; never printed |
+  | `LLM_MODEL` | no | Model id, default `claude-opus-5-5` |
+
+  Live mode has **not been run against the real API** during development. Its request and response handling is
+  tested with a fake client only.
 
 | Case | Input | Outcome |
 | --- | --- | --- |
@@ -88,6 +160,10 @@ random generator or any answer labels.
 
 ## Business assumptions and boundaries
 
+- **Drafting, human acceptance, customer approval and the portal are four different things.** The LLM drafts a
+  change-order request. A person accepts, edits and sends it. The customer approves the change order. Only an
+  approved change order recorded in the quoting system makes the stem billable. The portal result is a
+  simulation.
 - **A finding is a proposal.** It is not proof that a correction has been approved.
 - **Accepting a correction is not approving scope.** When a reviewer accepts a finding, the agent may change the
   draft. Approval of additional work can only come from the customer, through a change order. Accepting a B1
@@ -112,20 +188,21 @@ CI fails if recall on the committed `data/fixtures/seed-42` batch drops below 0.
 show that the detectors still catch the faults the generator injects. They don't measure real-world invoice
 accuracy.
 
+Implemented with an LLM: change-order request drafting for held extra work (offline by default, live on request).
+
 Not implemented:
 - real ERP, portal or payment integration;
 - real customer approval;
-- any LLM capability;
+- sending anything to a customer;
 - a review UI;
 - Docker/CD.
-
-The UI, Docker/CD and LLM drafting are deferred.
 
 ## Commands
 
 | Command | Purpose |
 | --- | --- |
-| `pnpm demo` | Run the four fixed demo cases offline |
+| `pnpm demo` | Run the four fixed demo cases; case 4 drafting offline (simulated) |
+| `pnpm demo -- --llm live` | Same, with real Anthropic API calls for case 4 |
 | `pnpm check` | Lint, typecheck and test. Must pass before every commit |
 | `pnpm agent -- --batch <dir>` | Run the agent on a store directory; writes `findings.json` and `report.md` to `data/runs/<name>/` |
 | `pnpm generate -- --seed 42 --jobs 50` | Generate a synthetic batch with labelled faults |
@@ -139,6 +216,10 @@ Core files, in reading order:
 5. `detectors/*.ts`
 6. `nodes/route.ts`
 7. `fix.ts`
-8. `packages/eval/src/demo.ts`
+8. `llm/tools.ts`
+9. `llm/draft.ts`
+10. `llm/loop.ts`
+11. `llm/anthropic.ts` and `llm/offline-script.ts`
+12. `packages/eval/src/demo.ts`
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [CLAUDE.md](CLAUDE.md) for how to work in this repo.
