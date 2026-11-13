@@ -1,6 +1,6 @@
 import { Finding, fromCents, InvoiceLine, WorkOrderLine } from "@valwell/domain";
 import { describe, expect, it } from "vitest";
-import { applyFindings } from "./fix.js";
+import { acceptAll, applyFindings } from "./fix.js";
 import { runPipeline } from "./pipeline.js";
 import { buildContext } from "./testing/build-context.js";
 
@@ -35,10 +35,22 @@ function faulted() {
   return { ctx, findings: runPipeline([ctx]).findings };
 }
 
+const COMPLETE = { status: "COMPLETE" } as const;
+
+/** Clean context with a re-keyed TDI fee ($880 vs $840): an A1 finding routed to REVIEW. */
+function typo() {
+  const ctx = buildContext();
+  const fee = ctx.invoice.lines[0];
+  if (!fee) throw new Error("IL-1");
+  fee.unitPrice = fromCents(88_000);
+  fee.amount = fromCents(88_000);
+  return { ctx, findings: runPipeline([ctx]).findings };
+}
+
 describe("applyFindings", () => {
   it("reprices with lineage and holds unapproved scope", () => {
     const { ctx, findings } = faulted();
-    const result = applyFindings(ctx.invoice, findings);
+    const result = applyFindings(ctx.invoice, findings, COMPLETE);
     const labour = result.invoice?.lines.find((l) => l.id === "IL-2");
     expect(labour).toMatchObject({ unitPrice: 9_500, amount: 57_000 });
     expect(labour?.sourceRef).toEqual({
@@ -51,19 +63,62 @@ describe("applyFindings", () => {
     expect(result.held[0]?.amount).toBe(13_600);
   });
 
-  it("applies only the requested routes and skips rejected findings", () => {
-    const { ctx, findings } = faulted();
-    const autoOnly = applyFindings(ctx.invoice, findings, ["AUTO_FIX"]);
-    expect(autoOnly.held).toEqual([]);
-    expect(autoOnly.applied.map((f) => f.frictionCode)).toEqual(["A1"]);
+  it("does not apply an OPEN review finding and keeps the draft from being READY", () => {
+    const { ctx, findings } = typo();
+    expect(findings.map((f) => [f.route, f.status])).toEqual([["REVIEW", "OPEN"]]);
+    const open = applyFindings(ctx.invoice, findings, COMPLETE);
+    expect(open.status).toBe("AWAITING_REVIEW");
+    expect(open.changes).toEqual([]);
+    expect(open.invoice?.lines[0]?.unitPrice).toBe(88_000);
+  });
 
+  it("applies a review finding once a human accepts it", () => {
+    const { ctx, findings } = typo();
+    const accepted = applyFindings(ctx.invoice, acceptAll(findings), COMPLETE);
+    expect(accepted.status).toBe("READY");
+    expect(accepted.invoice?.lines[0]).toMatchObject({ unitPrice: 84_000, amount: 84_000 });
+    expect(accepted.totals.corrections).toBe(-4_000);
+  });
+
+  it("never applies a REJECTED finding", () => {
+    const { ctx, findings } = typo();
     const rejected = findings.map((f) => ({ ...f, status: "REJECTED" as const }));
-    expect(applyFindings(ctx.invoice, rejected).applied).toEqual([]);
+    const result = applyFindings(ctx.invoice, rejected, COMPLETE);
+    expect(result).toMatchObject({ status: "READY", applied: [], changes: [] });
+
+    const all = faulted();
+    const none = all.findings.map((f) => ({ ...f, status: "REJECTED" as const }));
+    expect(applyFindings(all.ctx.invoice, none, COMPLETE).held).toEqual([]);
+  });
+
+  it("keeps an accepted scope finding held: accepting the hold is not customer approval", () => {
+    const { ctx, findings } = faulted();
+    const result = applyFindings(ctx.invoice, acceptAll(findings), COMPLETE);
+    expect(result.held.map((l) => l.id)).toEqual(["IL-9"]);
+  });
+
+  it("produces no draft when the job review is not complete", () => {
+    const { ctx, findings } = faulted();
+    for (const status of ["NEEDS_REVIEW", "INCOMPLETE"] as const) {
+      const result = applyFindings(ctx.invoice, acceptAll(findings), { status });
+      expect(result).toMatchObject({ status: "INPUT_NEEDS_REVIEW", invoice: null, held: [] });
+      expect(result.totals).toEqual({ original: 239_600, held: 0, draft: 239_600, corrections: 0 });
+    }
+  });
+
+  it("changes nothing when applied again to its own draft", () => {
+    const { ctx, findings } = faulted();
+    const first = applyFindings(ctx.invoice, findings, COMPLETE);
+    if (!first.invoice) throw new Error("no draft");
+    const again = applyFindings(first.invoice, findings, COMPLETE);
+    expect(again).toMatchObject({ status: "READY", changes: [], held: [], applied: [] });
+    expect(again.invoice).toEqual(first.invoice);
+    expect(again.totals).toEqual({ original: 229_000, held: 0, draft: 229_000, corrections: 0 });
   });
 
   it("reports totals that reconcile: original = draft + held − corrections", () => {
     const { ctx, findings } = faulted();
-    const { totals, changes } = applyFindings(ctx.invoice, findings);
+    const { totals, changes } = applyFindings(ctx.invoice, findings, COMPLETE);
     // Original: 840 + 540 + 440 + 440 + 136 = $2,396.00; IL-2 +$30.00; IL-9 $136.00 held.
     expect(totals).toEqual({ original: 239_600, held: 13_600, draft: 229_000, corrections: 3_000 });
     expect(changes).toEqual([
@@ -111,7 +166,7 @@ describe("applyFindings", () => {
       suggestion: { action: "REQUEST_CHANGE_ORDER", summary: "hold", amountDelta: -44_000 },
       route: "BLOCK",
     });
-    const result = applyFindings(ctx.invoice, [markup, scope]);
+    const result = applyFindings(ctx.invoice, [markup, scope], COMPLETE);
     expect(result.held).toEqual([seat]); // original price, not the cap price
     expect(result.changes).toEqual([]);
     expect(result.applied.map((f) => f.id)).toEqual(["F-B1"]);
@@ -122,7 +177,7 @@ describe("applyFindings", () => {
   it("does not mutate the source invoice", () => {
     const { ctx, findings } = faulted();
     const before = structuredClone(ctx.invoice);
-    applyFindings(ctx.invoice, findings);
+    applyFindings(ctx.invoice, findings, COMPLETE);
     expect(ctx.invoice).toEqual(before);
   });
 });

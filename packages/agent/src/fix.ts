@@ -10,6 +10,7 @@ import {
   type Route,
   SourceRef,
 } from "@valwell/domain";
+import type { JobReview } from "./review.js";
 
 /** An actual change to one submitted line (not a proposal). */
 export interface LineChange {
@@ -34,8 +35,18 @@ export interface DraftTotals {
   corrections: Money;
 }
 
+/**
+ * READY: the draft may go to the simulated portal.
+ * AWAITING_REVIEW: a REVIEW finding is still OPEN; a human must accept or reject it.
+ * ALL_LINES_HELD: every line is held, so there is nothing to submit.
+ * INPUT_NEEDS_REVIEW: the job's review is not COMPLETE (missing, ambiguous or
+ *   contradictory input), so no draft is produced at all.
+ */
+export type DraftStatus = "READY" | "AWAITING_REVIEW" | "ALL_LINES_HELD" | "INPUT_NEEDS_REVIEW";
+
 export interface FixResult {
-  /** The corrected draft, or null when every line is held. */
+  status: DraftStatus;
+  /** The corrected draft; null when every line is held or no draft may be produced. */
   invoice: Invoice | null;
   /** Held lines exactly as originally billed, until a change order is approved. */
   held: InvoiceLine[];
@@ -46,7 +57,24 @@ export interface FixResult {
   totals: DraftTotals;
 }
 
-const ALL_ROUTES: readonly Route[] = ["AUTO_FIX", "REVIEW", "BLOCK"];
+/** Routes the agent acts on without a human: price fixes it can prove, and holds. */
+const UNATTENDED_ROUTES: readonly Route[] = ["AUTO_FIX", "BLOCK"];
+
+/**
+ * Whether a finding's action may change the draft. REJECTED: never. ACCEPTED
+ * by a human: yes. OPEN: only on an unattended route; an OPEN REVIEW finding
+ * is not treated as accepted. Accepting a B1 finding accepts holding the
+ * line; it is not the customer's approval of the extra scope.
+ */
+export function isActionable(f: Finding): boolean {
+  if (f.status === "REJECTED") return false;
+  if (f.status === "ACCEPTED") return true;
+  return f.route !== null && UNATTENDED_ROUTES.includes(f.route);
+}
+
+/** Simulated reviewer who accepts every OPEN finding (used by the evaluation and demo). */
+export const acceptAll = (findings: readonly Finding[]): Finding[] =>
+  findings.map((f) => (f.status === "OPEN" ? { ...f, status: "ACCEPTED" } : f));
 
 const isHold = (f: Finding) =>
   f.suggestion.action === "REQUEST_CHANGE_ORDER" || f.suggestion.action === "REMOVE_LINE";
@@ -62,21 +90,32 @@ const isHold = (f: Finding) =>
  *   reprice finding for the line agrees on it, with sourceRef lineage to the
  *   evidence. A line already at that price is not a change.
  *
- * Rejected findings are ignored; `routes` limits which routes are applied.
+ * Only actionable findings are applied (see isActionable). Applying the same
+ * findings to the resulting draft changes nothing: corrected lines are
+ * already at their price and held lines are no longer on the draft.
  */
 export function applyFindings(
   invoice: Invoice,
   findings: readonly Finding[],
-  routes: readonly Route[] = ALL_ROUTES,
+  review: Pick<JobReview, "status">,
 ): FixResult {
-  const relevant = findings.filter(
-    (f) =>
-      f.invoiceId === invoice.id &&
-      f.invoiceLineId !== null &&
-      f.status !== "REJECTED" &&
-      f.route !== null &&
-      routes.includes(f.route),
+  const original = invoiceTotal(invoice);
+  if (review.status !== "COMPLETE") {
+    const unchanged = { original, held: fromCents(0), draft: original, corrections: fromCents(0) };
+    return {
+      status: "INPUT_NEEDS_REVIEW",
+      invoice: null,
+      held: [],
+      changes: [],
+      applied: [],
+      totals: unchanged,
+    };
+  }
+  const lineIds = new Set<string>(invoice.lines.map((l) => l.id));
+  const onInvoice = findings.filter(
+    (f) => f.invoiceId === invoice.id && f.invoiceLineId !== null && lineIds.has(f.invoiceLineId),
   );
+  const relevant = onInvoice.filter(isActionable);
   const forLine = (line: InvoiceLine) => relevant.filter((f) => f.invoiceLineId === line.id);
 
   const held: InvoiceLine[] = [];
@@ -118,10 +157,13 @@ export function applyFindings(
     draftLines.push(line);
   }
 
-  const original = invoiceTotal(invoice);
+  const awaitingReview = onInvoice.some((f) => f.status === "OPEN" && !isActionable(f));
+  const status: DraftStatus =
+    draftLines.length === 0 ? "ALL_LINES_HELD" : awaitingReview ? "AWAITING_REVIEW" : "READY";
   const heldTotal = add(...held.map((l) => l.amount));
   const draftTotal = add(...draftLines.map((l) => l.amount));
   return {
+    status,
     invoice: draftLines.length > 0 ? Invoice.parse({ ...invoice, lines: draftLines }) : null,
     held,
     changes,

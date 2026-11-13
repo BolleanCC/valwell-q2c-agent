@@ -6,6 +6,8 @@ export * from "./detectors/b1-scope-change.js";
 export * from "./detectors/types.js";
 export * from "./fix.js";
 export * from "./nodes/align.js";
+export * from "./nodes/check-lines.js";
 export * from "./nodes/route.js";
 export * from "./pipeline.js";
 export * from "./report.js";
+export * from "./review.js";

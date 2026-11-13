@@ -25,13 +25,13 @@ export function renderEvaluation(name: string, { score, experiment }: BatchEvalu
     "",
     `## Portal experiment (${experiment.invoices} invoices)`,
     "",
-    "| Run | Submitted | Approved | First-pass acceptance | Fully held | Rejections |",
-    "| --- | ---: | ---: | ---: | ---: | --- |",
+    "| Run | Submitted | Approved | First-pass acceptance | Fully held | Not ready | Rejections |",
+    "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
     ...experiment.runs.map((r) => {
       const reasons = Object.entries(r.rejectionReasons)
         .map(([code, n]) => `${code} ×${n}`)
         .join(", ");
-      return `| ${r.name} | ${r.submitted} | ${r.approved} | ${pct(r.firstPassAcceptance)} | ${r.fullyHeld} | ${reasons || "none"} |`;
+      return `| ${r.name} | ${r.submitted} | ${r.approved} | ${pct(r.firstPassAcceptance)} | ${r.fullyHeld} | ${r.notReady} | ${reasons || "none"} |`;
     }),
     "",
     "## Amounts (all suggestions applied)",

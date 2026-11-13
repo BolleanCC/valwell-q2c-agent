@@ -29,7 +29,7 @@ describe("renderEvaluation", () => {
     const md = renderEvaluation("seed-42", await evaluateBatch(dir));
     expect(md).toContain("# Evaluation: seed-42");
     expect(md).toMatch(/\| A1 \| 7 \| 7 \| 7 \| 0 \| 0 \| 100\.0% \| 100\.0% \|/);
-    expect(md).toContain("| Run 0: baseline (no agent) | 40 | 21 | 52.5% |");
+    expect(md).toContain("| Run 0: baseline (no agent) | 40 | 21 | 52.5% | 0 | 0 |");
     expect(md).toContain("Over-billing removed: **$");
     expect(md).not.toContain("## Mismatches");
   });
