@@ -4,6 +4,7 @@ import type { JobContext, PortalSource } from "../adapters/sources.js";
 import type { FixResult } from "../fix.js";
 import type { EvidenceSource } from "../llm/draft.js";
 import type { JobReview, ReviewIssue } from "../review.js";
+import type { ChangeOrderRequestRecord } from "./change-order.js";
 
 /**
  * Everything the application knows about one case while the model works on
@@ -24,6 +25,8 @@ export interface CaseState {
   draft: FixResult | null;
   /** The simulated portal's decision on the latest READY draft. */
   portalDecision: PortalDecision | null;
+  /** Validated change-order request drafts for held lines (never sent). */
+  changeOrderRequests: ChangeOrderRequestRecord[];
   /** Ids returned by successful tool calls; the only ids the model may cite. */
   evidence: Map<string, EvidenceSource>;
   /** Application events outside the model, e.g. a human accepting a finding. */
@@ -39,6 +42,7 @@ export function createCaseState(ctx: JobContext, portal: PortalSource): CaseStat
     findings: [],
     draft: null,
     portalDecision: null,
+    changeOrderRequests: [],
     evidence: new Map(),
     humanEvents: [],
   };

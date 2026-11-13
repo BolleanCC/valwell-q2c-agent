@@ -2,10 +2,11 @@ import { format, type Money } from "@valwell/domain";
 import { z } from "zod";
 import { applyFindings, isActionable } from "../fix.js";
 import type { EvidenceSource } from "../llm/draft.js";
-import type { ToolCall, ToolExecution } from "../llm/loop.js";
+import { SUBMIT_TOOL, type ToolCall, type ToolExecution } from "../llm/loop.js";
 import { getChangeOrders, getEffectiveQuote, getWorkOrder, type ToolSpec } from "../llm/tools.js";
 import { runPipeline } from "../pipeline.js";
 import { checkRecordLinks } from "../review.js";
+import { recordChangeOrderRequest } from "./change-order.js";
 import type { CaseState } from "./state.js";
 
 const signed = (m: Money) => (m > 0 ? `+${format(m)}` : format(m));
@@ -265,9 +266,27 @@ export const CASE_TOOL_SPECS: ToolSpec[] = [
       additionalProperties: false,
     },
   },
+  {
+    name: "draft_change_order_request",
+    description:
+      "Record a change-order request draft for a held line, for human review. Write text only (no prices, amounts or approval claims) and cite evidence ids returned by tools; set businessReason to null and list missingInformation if no reason is documented.",
+    input_schema: {
+      type: "object",
+      properties: {
+        ...jobProps,
+        invoice_line_id: { type: "string" },
+        draft: SUBMIT_TOOL.input_schema,
+      },
+      required: ["job_id", "invoice_line_id", "draft"],
+      additionalProperties: false,
+    },
+  },
 ];
 
 const jobArg = z.object({ job_id: z.string() }).strict();
+const changeOrderArg = z
+  .object({ job_id: z.string(), invoice_line_id: z.string(), draft: z.unknown() })
+  .strict();
 const draftArg = z
   .object({ job_id: z.string(), apply_finding_ids: z.array(z.string()).max(20) })
   .strict();
@@ -315,6 +334,10 @@ export function executeCaseTool(state: CaseState, call: ToolCall): ToolExecution
     case "submit_to_portal": {
       const a = parseArgs(state, call, jobArg);
       return a.ok ? submitToPortal(state) : a;
+    }
+    case "draft_change_order_request": {
+      const a = parseArgs(state, call, changeOrderArg);
+      return a.ok ? recordChangeOrderRequest(state, a.args.invoice_line_id, a.args.draft) : a;
     }
     default:
       return fail(`unknown tool ${call.name}`);
