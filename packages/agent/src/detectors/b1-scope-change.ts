@@ -10,14 +10,13 @@ import type { Detector, FindingDraft } from "./types.js";
  */
 export const b1ScopeChange: Detector = {
   code: "B1",
-  detect(ctx, table) {
+  detect(ctx, alignment) {
     const findings: FindingDraft[] = [];
-    for (const row of table) {
+    for (const row of alignment.rows) {
       if (isApprovedScope(row)) continue;
       for (const wo of row.workOrderLines) {
-        const invoiced =
-          row.invoiceLines.find((l) => l.sourceRef?.workOrderLineId === wo.id) ??
-          row.invoiceLines[0];
+        // Only the invoice line the alignment matched to this work; never "the first one".
+        const invoiced = alignment.matches.find((m) => m.workOrderLine?.id === wo.id)?.invoiceLine;
         const evidence: EvidenceRef[] = [
           { kind: "WORK_ORDER_LINE", id: wo.id },
           ...(invoiced ? [{ kind: "INVOICE_LINE" as const, id: invoiced.id }] : []),

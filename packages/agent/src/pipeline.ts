@@ -45,9 +45,9 @@ export function runPipeline(
       reviews.push({ ...base, status: "INCOMPLETE", issues: recordIssues });
       continue;
     }
-    const table = align(ctx);
+    const alignment = align(ctx);
     for (const detector of detectors) {
-      for (const draft of detector.detect(ctx, table)) {
+      for (const draft of detector.detect(ctx, alignment)) {
         findings.push(
           Finding.parse({
             ...draft,
@@ -58,7 +58,9 @@ export function runPipeline(
         );
       }
     }
-    reviews.push({ ...base, status: "COMPLETE", issues: [] });
+    // Findings on resolved lines are kept, but unresolved lines need a human.
+    const issues = alignment.issues;
+    reviews.push({ ...base, status: issues.length > 0 ? "NEEDS_REVIEW" : "COMPLETE", issues });
   }
   return { reviews, findings };
 }

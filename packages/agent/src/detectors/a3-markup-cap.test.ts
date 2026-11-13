@@ -49,13 +49,12 @@ describe("A3 markup cap detector", () => {
     expect(run(ctx)[0]?.suggestion.expectedUnitPrice).toBe(44_000);
   });
 
-  it("falls back to the invoice cost with lower confidence when the work order has none", () => {
+  it("does not reprice a part with no matched work-order cost (left to review)", () => {
     const ctx = buildContext();
     ctx.workOrder.lines = ctx.workOrder.lines.filter((l) => l.id !== "WL-4");
     reprice(ctx, "IL-4", 60_000);
-    const [f] = run(ctx);
-    expect(f?.confidence).toBe(0.8);
-    expect(f?.workOrderLineId).toBeNull();
+    expect(run(ctx)).toEqual([]);
+    expect(align(ctx).issues).toMatchObject([{ code: "NO_WORK_RECORD", invoiceLineId: "IL-4" }]);
   });
 
   it("ignores services and labour", () => {

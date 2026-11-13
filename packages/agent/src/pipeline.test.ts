@@ -68,6 +68,31 @@ describe("runPipeline", () => {
   });
 });
 
+describe("runPipeline with unresolved alignment", () => {
+  it("sends duplicate item codes with different costs to review, never to a price fix", () => {
+    const ctx = buildContext();
+    ctx.workOrder.lines.push(
+      WorkOrderLine.parse({
+        id: "WL-3b",
+        kind: "PART",
+        itemCode: "PART-SEAT",
+        description: "Seat",
+        qty: 2,
+        unitCost: 15_000,
+      }),
+    );
+    const seat = ctx.invoice.lines.find((l) => l.id === "IL-3");
+    if (!seat) throw new Error("IL-3");
+    seat.unitPrice = fromCents(25_000); // above the cap on either cost
+    seat.amount = fromCents(50_000);
+    const { reviews, findings } = runPipeline([ctx]);
+    expect(findings.filter((f) => f.invoiceLineId === "IL-3")).toEqual([]);
+    expect(reviews).toMatchObject([
+      { status: "NEEDS_REVIEW", issues: [{ code: "AMBIGUOUS_MATCH", invoiceLineId: "IL-3" }] },
+    ]);
+  });
+});
+
 describe("runAgent on the fixture batch", () => {
   it("checks every job, finds all three friction codes and is deterministic", async () => {
     const sources = await openBatchSources(FIXTURE);

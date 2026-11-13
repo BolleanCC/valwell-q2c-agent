@@ -1,7 +1,17 @@
 import type { JobContext } from "./adapters/sources.js";
 
 /** Why the agent could not fully check a job or line. Each one needs a human. */
-export type ReviewIssueCode = "MISSING_RECORD" | "RECORD_MISMATCH" | "DATE_INCONSISTENT";
+export type ReviewIssueCode =
+  // Job level: records missing or not belonging together (status INCOMPLETE).
+  | "MISSING_RECORD"
+  | "RECORD_MISMATCH"
+  | "DATE_INCONSISTENT"
+  // Line level: the line could not be matched or checked safely (status NEEDS_REVIEW).
+  | "INVALID_SOURCE_REF"
+  | "NO_WORK_RECORD"
+  | "AMBIGUOUS_MATCH"
+  | "KIND_MISMATCH"
+  | "DUPLICATE_BILLING";
 
 export interface ReviewIssue {
   code: ReviewIssueCode;
