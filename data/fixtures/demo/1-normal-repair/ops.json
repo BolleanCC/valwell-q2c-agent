@@ -1,0 +1,63 @@
+{
+  "jobs": [
+    {
+      "id": "JOB-D1",
+      "customerId": "CUST-D",
+      "valveModel": "3-1/16in 5K gate valve",
+      "valveSerial": "GV-1001",
+      "poNumber": "PO-50001",
+      "receivedDate": "2026-03-02",
+      "serviceDate": "2026-03-10"
+    }
+  ],
+  "workOrders": [
+    {
+      "id": "WO-D1",
+      "jobId": "JOB-D1",
+      "lines": [
+        {
+          "id": "WO-D1-L1",
+          "kind": "SERVICE",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "qty": 1
+        },
+        {
+          "id": "WO-D1-L2",
+          "kind": "LABOUR",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician",
+          "hours": 6
+        },
+        {
+          "id": "WO-D1-L3",
+          "kind": "PART",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "qty": 2,
+          "unitCost": 20000
+        },
+        {
+          "id": "WO-D1-L4",
+          "kind": "SERVICE",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic test",
+          "qty": 1
+        }
+      ],
+      "tdiFindings": [
+        {
+          "component": "Seat ring",
+          "condition": "Pitted",
+          "recommendedItemCodes": [
+            "PART-SEAT"
+          ]
+        }
+      ],
+      "hydroTest": {
+        "result": "PASS",
+        "testPressurePsi": 7500
+      }
+    }
+  ]
+}
