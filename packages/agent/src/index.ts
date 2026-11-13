@@ -8,7 +8,6 @@ export * from "./fix.js";
 export * from "./llm/anthropic.js";
 export * from "./llm/draft.js";
 export * from "./llm/loop.js";
-export * from "./llm/offline-script.js";
 export * from "./llm/scripted.js";
 export * from "./llm/tools.js";
 export * from "./nodes/align.js";
