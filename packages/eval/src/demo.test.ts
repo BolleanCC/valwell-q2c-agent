@@ -1,6 +1,6 @@
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { runDemoCase } from "./demo.js";
+import { renderDemoCase, runDemoCase } from "./demo.js";
 
 const CASE = (name: string) => join(import.meta.dirname, "../../../data/fixtures/demo", name);
 
@@ -153,5 +153,61 @@ describe("demo case 4: unapproved additional work", async () => {
     expect(r.unattended.invoice?.lines.map((l) => l.id)).not.toContain("INV-D4-L5");
     // Accepting the finding accepts the hold; it is not the customer approving the stem.
     expect(r.afterAcceptance).toMatchObject(expected);
+  });
+});
+
+describe("demo LLM drafting step", () => {
+  it("does not call an LLM in cases 1–3", async () => {
+    for (const dir of ["1-normal-repair", "2-price-entry-error", "3-markup-over-cap"]) {
+      expect((await runDemoCase(CASE(dir))).drafting).toEqual([]);
+    }
+  });
+
+  it("drafts a change-order request offline for case 4 while the line stays held", async () => {
+    const r = await runDemoCase(CASE("4-unapproved-extra-work"));
+    expect(r.drafting).toHaveLength(1);
+    expect(r.drafting[0]).toMatchObject({
+      status: "DRAFTED",
+      mode: "offline",
+      amounts: { invoiceLineId: "INV-D4-L5", qty: 1, unitPrice: 44_000, amount: 44_000 },
+    });
+    expect(r.drafting[0]?.content?.evidenceIds).toEqual(
+      expect.arrayContaining(["WO-D4-L5", "WO-D4-N1", "WO-D4-TDI-2"]),
+    );
+    expect(r.unattended.held.map((l) => l.id)).toEqual(["INV-D4-L5"]);
+    expect(r.unattended.totals).toEqual({
+      original: 264_000,
+      held: 44_000,
+      draft: 220_000,
+      corrections: 0,
+    });
+  });
+
+  it("reports a failed live run without substituting offline output", async () => {
+    const failing = () => ({
+      mode: "live" as const,
+      model: "test-model",
+      open: () => ({
+        start: () => Promise.reject(new Error("401 invalid x-api-key")),
+        reply: () => Promise.reject(new Error("unreachable")),
+      }),
+    });
+    const r = await runDemoCase(CASE("4-unapproved-extra-work"), {
+      llm: "live",
+      provider: failing,
+    });
+    expect(r.drafting[0]).toMatchObject({
+      status: "PROVIDER_FAILURE",
+      mode: "live",
+      content: null,
+      request: null,
+      problems: ["401 invalid x-api-key"],
+    });
+    expect(r.unattended.held.map((l) => l.id)).toEqual(["INV-D4-L5"]);
+    const md = renderDemoCase(4, "Unapproved additional work", r);
+    expect(md).toContain("LIVE — test-model via the Anthropic API");
+    expect(md).toContain("drafting did not complete: 401 invalid x-api-key");
+    expect(md).toContain("No offline output was substituted.");
+    expect(md).not.toContain("Message to customer");
   });
 });

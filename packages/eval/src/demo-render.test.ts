@@ -44,6 +44,18 @@ describe("demo walkthrough", () => {
     );
   });
 
+  it("labels offline drafting as simulated and shows trace, request and human action", async () => {
+    const md = await renderAll();
+    expect(md).toContain(
+      "(OFFLINE — simulated LLM behaviour from a fixed script, not a model run)",
+    );
+    expect(md).toContain('get_work_order {"job_id":"JOB-D4"} → ok');
+    expect(md).toContain(
+      "> Amount (from the held invoice line, deterministic): 1 × $440.00 = $440.00",
+    );
+    expect(md).toContain("accepting this draft is not customer approval");
+  });
+
   it("keeps the held amount visible and never calls it approved", async () => {
     const md = await renderAll();
     expect(md).toContain(

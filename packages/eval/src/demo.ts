@@ -1,9 +1,16 @@
 import {
   type AgentRun,
   acceptAll,
+  anthropicProvider,
   applyFindings,
+  collectJobContexts,
+  type DraftingResult,
+  type DraftingScope,
+  draftChangeOrderRequest,
   type FixResult,
   type JobReview,
+  type LlmProvider,
+  offlineDraftingProvider,
   openBatchSources,
   runAgent,
 } from "@valwell/agent";
@@ -24,13 +31,27 @@ export interface DemoCaseResult {
   unattended: DraftOutcome;
   /** After a simulated reviewer accepts every OPEN finding. Not customer approval. */
   afterAcceptance: DraftOutcome;
+  /** LLM change-order drafting, one per held B1 line (case 4 only). Lines stay held. */
+  drafting: DraftingResult[];
+}
+
+/** offline = scripted, simulated LLM behaviour (default); live = real Anthropic API calls. */
+export type LlmMode = "offline" | "live";
+
+export interface DemoOptions {
+  llm?: LlmMode;
+  /** Override the provider (tests); by default chosen from `llm`. */
+  provider?: (scope: DraftingScope) => LlmProvider;
 }
 
 /**
  * Run one fixed demo case: a directory with the four source-system stores and
  * the portal's store for a single job. No generator and no fault labels.
  */
-export async function runDemoCase(dir: string): Promise<DemoCaseResult> {
+export async function runDemoCase(dir: string, options: DemoOptions = {}): Promise<DemoCaseResult> {
+  const makeProvider =
+    options.provider ??
+    (options.llm === "live" ? () => anthropicProvider() : offlineDraftingProvider);
   const sources = await openBatchSources(dir);
   const portal = await openPortal(dir);
   const run = runAgent(sources);
@@ -43,12 +64,27 @@ export async function runDemoCase(dir: string): Promise<DemoCaseResult> {
     ...draft,
     portal: draft.status === "READY" && draft.invoice ? portal.submit(draft.invoice) : null,
   });
+  const unattended = submit(applyFindings(invoice, run.findings, review));
+
+  // The LLM step runs only after the deterministic result is final, and only
+  // for lines held by a B1 finding. It returns a draft; it changes nothing.
+  const drafting: DraftingResult[] = [];
+  const ctx = collectJobContexts(sources).contexts.find((c) => c.job.id === review.jobId);
+  for (const held of unattended.held) {
+    const finding = run.findings.find(
+      (f) => f.frictionCode === "B1" && f.invoiceLineId === held.id,
+    );
+    if (!ctx || !finding) continue;
+    const scope = { ctx, finding };
+    drafting.push(await draftChangeOrderRequest(scope, held, makeProvider(scope)));
+  }
   return {
     run,
     review,
     original: { invoice, portal: portal.submit(invoice) },
-    unattended: submit(applyFindings(invoice, run.findings, review)),
+    unattended,
     afterAcceptance: submit(applyFindings(invoice, acceptAll(run.findings), review)),
+    drafting,
   };
 }
 
@@ -102,6 +138,34 @@ function draftLines(label: string, d: DraftOutcome): string[] {
   return out;
 }
 
+function draftingLines(d: DraftingResult): string[] {
+  const label =
+    d.mode === "offline"
+      ? "OFFLINE — simulated LLM behaviour from a fixed script, not a model run"
+      : `LIVE — ${d.model} via the Anthropic API`;
+  const out = [
+    `- LLM change-order drafting (${label})`,
+    `  - Task: investigate held line ${d.amounts.invoiceLineId} and draft a change-order request for human review`,
+    "  - Tool trace:",
+    ...d.trace.map(
+      (t, i) =>
+        `    ${i + 1}. [turn ${t.turn}] ${t.tool ?? "model text"} ${t.args} → ${t.ok ? "ok" : "FAILED"}: ${t.summary}`,
+    ),
+  ];
+  if (d.request) {
+    out.push(`  - Result: **${d.status}**`, ...d.request.map((l) => `    > ${l}`));
+  } else {
+    out.push(
+      `  - Result: **${d.status}** — drafting did not complete: ${d.problems.join("; ")}`,
+      "  - The deterministic result above stands. No offline output was substituted.",
+    );
+  }
+  out.push(
+    `  - Remaining human action: review and edit the draft, then send it to the customer yourself. ${d.amounts.invoiceLineId} (${format(d.amounts.amount)}) stays held until an approved change order is recorded; accepting this draft is not customer approval.`,
+  );
+  return out;
+}
+
 /** Render one case for the terminal and demo.md. Pure. */
 export function renderDemoCase(index: number, title: string, r: DemoCaseResult): string {
   const out = [
@@ -135,13 +199,15 @@ export function renderDemoCase(index: number, title: string, r: DemoCaseResult):
   } else {
     out.push(...draftLines("Agent draft (no human step needed)", r.unattended));
   }
+  for (const d of r.drafting) out.push(...draftingLines(d));
   return `${out.join("\n")}\n`;
 }
 
 export const DEMO_HEADER = [
   "# Quote-to-invoice reconciliation demo",
   "",
-  "Offline and deterministic: simulated source systems, no generator, no answer labels, no LLM.",
+  "Simulated source systems, no generator, no answer labels. Reconciliation is deterministic;",
+  "an LLM only drafts a change-order request for held extra work (case 4), for human review.",
   "A finding is a proposed action, not an approved correction. Held charges stay visible and are",
   "not approved or paid. Portal results come from a simulator, not a real submission.",
   "",
