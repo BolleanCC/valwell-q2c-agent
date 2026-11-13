@@ -6,15 +6,17 @@
  * prints the walkthrough and writes demo.md. No generator, no fault labels;
  * source fixtures are only read.
  *
- * --llm offline (default): case 4's change-order drafting uses a scripted,
- *   simulated "model" through the real tool loop. No network.
- * --llm live: case 4 makes real Anthropic API calls (paid). Needs
+ * Every case is orchestrated by a model through the business tools.
+ * --llm offline (default): scripted, simulated model turns through the real
+ *   loop, tools and checks. No network.
+ * --llm live: real Anthropic API calls for all four cases (paid). Needs
  *   ANTHROPIC_API_KEY in the environment or in .env; LLM_MODEL is optional.
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
-import { DEMO_CASES, DEMO_HEADER, renderDemoCase, runDemoCase } from "./demo.js";
+import { providerFor, runCaseDemo } from "./case-demo.js";
+import { DEMO_CASES, DEMO_HEADER, renderCaseDemo } from "./case-demo-render.js";
 
 const { values } = parseArgs({
   args: process.argv.slice(2).filter((a) => a !== "--"),
@@ -37,11 +39,13 @@ const fixtures = join("data", "fixtures", "demo");
 const sections = [
   DEMO_HEADER,
   llm === "live"
-    ? "LLM mode: **live** (real Anthropic API calls for case 4)\n"
-    : "LLM mode: **offline** (case 4 uses simulated LLM behaviour; run with `-- --llm live` for real calls)\n",
+    ? "LLM mode: **live** (real Anthropic API calls for every case)\n"
+    : "LLM mode: **offline** (scripted, simulated model turns; run with `-- --llm live` for real calls)\n",
 ];
 for (const [i, c] of DEMO_CASES.entries()) {
-  sections.push(renderDemoCase(i + 1, c.title, await runDemoCase(join(fixtures, c.dir), { llm })));
+  sections.push(
+    renderCaseDemo(i + 1, c.title, await runCaseDemo(join(fixtures, c.dir), providerFor(llm))),
+  );
 }
 const markdown = sections.join("\n");
 
