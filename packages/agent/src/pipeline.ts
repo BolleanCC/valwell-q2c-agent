@@ -5,6 +5,7 @@ import { a3MarkupCap } from "./detectors/a3-markup-cap.js";
 import { b1ScopeChange } from "./detectors/b1-scope-change.js";
 import type { Detector } from "./detectors/types.js";
 import { align } from "./nodes/align.js";
+import { checkLineEvidence } from "./nodes/check-lines.js";
 import { DEFAULT_POLICY, type RoutingPolicy, routeFinding } from "./nodes/route.js";
 import { checkRecordLinks, type JobReview } from "./review.js";
 
@@ -27,7 +28,7 @@ export interface AgentRun extends PipelineResult {
 }
 
 /**
- * validate records → align → detect → route for each job. Pure: same
+ * validate records → align → check line evidence → detect → route for each job. Pure: same
  * contexts in, same result out. A job whose records do not belong together
  * is INCOMPLETE and gets no rule checks.
  */
@@ -59,7 +60,7 @@ export function runPipeline(
       }
     }
     // Findings on resolved lines are kept, but unresolved lines need a human.
-    const issues = alignment.issues;
+    const issues = [...alignment.issues, ...checkLineEvidence(ctx, alignment)];
     reviews.push({ ...base, status: issues.length > 0 ? "NEEDS_REVIEW" : "COMPLETE", issues });
   }
   return { reviews, findings };

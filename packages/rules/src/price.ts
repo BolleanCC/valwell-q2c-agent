@@ -9,17 +9,38 @@ export function isPriceEffective(
 }
 
 /**
- * The price-book item in force for a customer's item on a date, or undefined
- * when none (or, defensively, more than one) is effective.
+ * The outcome of looking up the price in force on a date. NONE and OVERLAP
+ * are both data problems a human must resolve; neither is a price.
  */
+export type PriceLookup =
+  | { status: "FOUND"; item: PriceBookItem }
+  | { status: "NONE" }
+  | { status: "OVERLAP"; items: PriceBookItem[] };
+
+/** Look up the price-book version effective for a customer's item on a date. */
+export function lookupEffectivePrice(
+  priceBook: readonly PriceBookItem[],
+  customerId: string,
+  itemCode: string,
+  date: IsoDate,
+): PriceLookup {
+  const matches = priceBook.filter(
+    (p) => p.customerId === customerId && p.itemCode === itemCode && isPriceEffective(p, date),
+  );
+  const [only] = matches;
+  if (matches.length === 0 || !only) return { status: "NONE" };
+  return matches.length === 1
+    ? { status: "FOUND", item: only }
+    : { status: "OVERLAP", items: matches };
+}
+
+/** The price-book item in force on a date, or undefined when none or several are effective. */
 export function findEffectivePrice(
   priceBook: readonly PriceBookItem[],
   customerId: string,
   itemCode: string,
   date: IsoDate,
 ): PriceBookItem | undefined {
-  const matches = priceBook.filter(
-    (p) => p.customerId === customerId && p.itemCode === itemCode && isPriceEffective(p, date),
-  );
-  return matches.length === 1 ? matches[0] : undefined;
+  const lookup = lookupEffectivePrice(priceBook, customerId, itemCode, date);
+  return lookup.status === "FOUND" ? lookup.item : undefined;
 }

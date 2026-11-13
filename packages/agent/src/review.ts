@@ -11,7 +11,10 @@ export type ReviewIssueCode =
   | "NO_WORK_RECORD"
   | "AMBIGUOUS_MATCH"
   | "KIND_MISMATCH"
-  | "DUPLICATE_BILLING";
+  | "DUPLICATE_BILLING"
+  | "EXTENSION_ERROR"
+  | "NO_EFFECTIVE_PRICE"
+  | "OVERLAPPING_PRICES";
 
 export interface ReviewIssue {
   code: ReviewIssueCode;

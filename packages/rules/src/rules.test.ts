@@ -1,7 +1,7 @@
 import { fromCents, PriceBookItem } from "@valwell/domain";
 import { describe, expect, it } from "vitest";
 import { checkMarkup } from "./markup.js";
-import { findEffectivePrice, isPriceEffective } from "./price.js";
+import { findEffectivePrice, isPriceEffective, lookupEffectivePrice } from "./price.js";
 
 const item = (version: number, from: string, to: string | null, price: number) =>
   PriceBookItem.parse({
@@ -47,6 +47,23 @@ describe("findEffectivePrice", () => {
     expect(findEffectivePrice([...book, overlap], "CUST-001", "LAB-TECH", "2025-07-01")).toBe(
       undefined,
     );
+  });
+});
+
+describe("lookupEffectivePrice", () => {
+  it("distinguishes a missing price from overlapping prices", () => {
+    const overlap = item(3, "2025-06-01", null, 9900);
+    expect(lookupEffectivePrice([v1, v2], "CUST-001", "LAB-TECH", "2025-06-01")).toEqual({
+      status: "FOUND",
+      item: v1,
+    });
+    expect(lookupEffectivePrice([v1, v2], "CUST-001", "LAB-TECH", "2024-06-01")).toEqual({
+      status: "NONE",
+    });
+    expect(lookupEffectivePrice([v1, v2, overlap], "CUST-001", "LAB-TECH", "2025-07-01")).toEqual({
+      status: "OVERLAP",
+      items: [v1, overlap],
+    });
   });
 });
 

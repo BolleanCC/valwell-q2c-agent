@@ -21,6 +21,7 @@ export const a1StalePrice: Detector = {
         line.itemCode,
         invoice.serviceDate,
       );
+      // No or overlapping effective price is a review issue (checkLineEvidence), never a guess.
       if (!expected || expected.unitPrice === line.unitPrice) continue;
 
       const stale = ctx.priceBook.find(
