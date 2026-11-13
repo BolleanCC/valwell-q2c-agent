@@ -28,7 +28,7 @@ describe("A1 stale price detector", () => {
       frictionCode: "A1",
       invoiceLineId: "IL-2",
       workOrderLineId: "WL-2",
-      confidence: 0.97,
+      basis: "SUPERSEDED_PRICE_VERSION",
       suggestion: { action: "REPRICE_LINE", expectedUnitPrice: 9_500, amountDelta: 3_000 },
     });
     expect(f?.evidence).toEqual(
@@ -40,11 +40,11 @@ describe("A1 stale price detector", () => {
     expect(f?.message).toContain("superseded price-book v1");
   });
 
-  it("flags a typo price with lower confidence and a negative delta when over-billed", () => {
+  it("flags an unexplained (typo) price and a negative delta when over-billed", () => {
     const ctx = buildContext();
     reprice(ctx, "IL-1", 88_000); // $880.00 instead of $840.00; matches no version
     const [f] = run(ctx);
-    expect(f?.confidence).toBe(0.9);
+    expect(f?.basis).toBe("UNEXPLAINED_PRICE");
     expect(f?.suggestion.amountDelta).toBe(-4_000);
     expect(f?.message).toContain("re-keying error");
   });

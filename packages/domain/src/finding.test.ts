@@ -36,8 +36,8 @@ describe("FrictionCode", () => {
 });
 
 describe("Finding", () => {
-  it("parses a valid finding", () => {
-    expect(Finding.parse(finding)).toEqual(finding);
+  it("parses a valid finding; an unrouted finding has no route reason", () => {
+    expect(Finding.parse(finding)).toEqual({ ...finding, routeReason: null });
   });
 
   it("requires evidence beyond the invoice line itself", () => {

@@ -75,7 +75,8 @@ export function renderReport(run: AgentRun, batchName: string): string {
     out.push("", `### ${invoiceId} (${fs[0]?.jobId})`, "");
     for (const f of fs) {
       out.push(
-        `- **${f.id} · ${f.frictionCode} · ${f.route}** (confidence ${Math.round(f.confidence * 100)}%): ${f.message}`,
+        `- **${f.id} · ${f.frictionCode} · ${f.route}**: ${f.message}`,
+        `  - Route: ${f.routeReason ?? "not routed"}`,
         `  - Proposed: ${f.suggestion.summary} (Δ ${signed(f.suggestion.amountDelta)})`,
         `  - Evidence: ${f.evidence.map((e) => `${e.kind} \`${e.id}\``).join(", ")}`,
       );

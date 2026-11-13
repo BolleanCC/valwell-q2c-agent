@@ -68,9 +68,15 @@ export const Finding = z.object({
     message: "evidence must cite at least one source (quote, work order, price book, CO or rule)",
   }),
   suggestion: Suggestion,
+  /**
+   * Legacy heuristic score kept for compatibility. It is not a measured
+   * probability and does not drive routing; see `routeReason`.
+   */
   confidence: z.number().min(0).max(1),
   /** Set by the route node; null until routed. */
   route: Route.nullable(),
+  /** The business condition that decided the route, in plain words. */
+  routeReason: z.string().min(1).nullable().default(null),
   /** Human review outcome. */
   status: FindingStatus,
 });

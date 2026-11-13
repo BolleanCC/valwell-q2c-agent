@@ -41,6 +41,7 @@ export const a3MarkupCap: Detector = {
           expectedUnitPrice: check.maxUnitPrice,
           amountDelta: fromCents(multiplyQty(check.maxUnitPrice, line.qty) - line.amount),
         },
+        basis: "VERIFIED_COST_OVER_CAP",
         confidence: 0.95,
       });
     }

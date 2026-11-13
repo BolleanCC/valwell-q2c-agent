@@ -1,31 +1,56 @@
-import type { FrictionCode, Route } from "@valwell/domain";
-import type { FindingDraft } from "../detectors/types.js";
-
-export interface RoutingRule {
-  /** Route to AUTO_FIX when confidence is at least this; omit to never auto-fix. */
-  autoFixAt?: number;
-  /** Route used otherwise. */
-  otherwise: Exclude<Route, "AUTO_FIX">;
-}
-
-export type RoutingPolicy = Record<FrictionCode, RoutingRule>;
+import type { Route } from "@valwell/domain";
 
 /**
- * Default policy: price corrections backed by a contract are safe to apply
- * automatically when confidence is high; scope changes need the customer's
- * approval, so they block the invoice line until a change order exists.
+ * The business condition a detector established for a finding. Routing
+ * depends only on this, never on a numeric confidence.
+ */
+export type RouteBasis =
+  /** Billed price equals a superseded price-book version; one version is effective. */
+  | "SUPERSEDED_PRICE_VERSION"
+  /** One version is effective, but the billed price matches no version: cause unconfirmed. */
+  | "UNEXPLAINED_PRICE"
+  /** Invoice and work-order costs agree; the cap price follows from the contract rule. */
+  | "VERIFIED_COST_OVER_CAP"
+  /** Work not covered by the effective quote revision or an approved change order. */
+  | "NO_APPROVED_SCOPE";
+
+export interface RoutingRule {
+  route: Route;
+  reason: string;
+}
+
+export type RoutingPolicy = Record<RouteBasis, RoutingRule>;
+
+/**
+ * Default policy. A correction is applied without a human only when the
+ * evidence fully determines the right amount and explains the error. Extra
+ * scope always blocks: only the customer can approve it.
  */
 export const DEFAULT_POLICY: RoutingPolicy = {
-  A1: { autoFixAt: 0.95, otherwise: "REVIEW" },
-  A3: { autoFixAt: 0.9, otherwise: "REVIEW" },
-  B1: { otherwise: "BLOCK" },
+  SUPERSEDED_PRICE_VERSION: {
+    route: "AUTO_FIX",
+    reason:
+      "billed at a superseded price-book version; exactly one version is effective on the service date",
+  },
+  UNEXPLAINED_PRICE: {
+    route: "REVIEW",
+    reason:
+      "the effective price is unambiguous, but the billed price matches no version, so a human confirms the correction",
+  },
+  VERIFIED_COST_OVER_CAP: {
+    route: "AUTO_FIX",
+    reason: "invoice and work-order costs agree, so the cap price follows from the contract rule",
+  },
+  NO_APPROVED_SCOPE: {
+    route: "BLOCK",
+    reason:
+      "no effective quote line or approved change order covers this work; only the customer can approve it",
+  },
 };
 
 export function routeFinding(
-  finding: Pick<FindingDraft, "frictionCode" | "confidence">,
+  basis: RouteBasis,
   policy: RoutingPolicy = DEFAULT_POLICY,
-): Route {
-  const rule = policy[finding.frictionCode];
-  if (rule.autoFixAt !== undefined && finding.confidence >= rule.autoFixAt) return "AUTO_FIX";
-  return rule.otherwise;
+): RoutingRule {
+  return policy[basis];
 }

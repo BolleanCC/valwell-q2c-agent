@@ -2,6 +2,8 @@ import { join } from "node:path";
 import { fromCents, InvoiceLine, WorkOrderLine } from "@valwell/domain";
 import { describe, expect, it } from "vitest";
 import { openBatchSources } from "./adapters/json-batch.js";
+import { a1StalePrice } from "./detectors/a1-stale-price.js";
+import type { Detector } from "./detectors/types.js";
 import { routeFinding } from "./nodes/route.js";
 import { runAgent, runPipeline } from "./pipeline.js";
 import { buildContext } from "./testing/build-context.js";
@@ -9,20 +11,28 @@ import { buildContext } from "./testing/build-context.js";
 const FIXTURE = join(import.meta.dirname, "../../../data/fixtures/seed-42");
 
 describe("routeFinding", () => {
-  it("auto-fixes confident price findings and blocks scope changes", () => {
-    expect(routeFinding({ frictionCode: "A1", confidence: 0.97 })).toBe("AUTO_FIX");
-    expect(routeFinding({ frictionCode: "A1", confidence: 0.9 })).toBe("REVIEW");
-    expect(routeFinding({ frictionCode: "A3", confidence: 0.95 })).toBe("AUTO_FIX");
-    expect(routeFinding({ frictionCode: "B1", confidence: 1 })).toBe("BLOCK");
+  it("routes from the business basis with a stated reason", () => {
+    expect(routeFinding("SUPERSEDED_PRICE_VERSION").route).toBe("AUTO_FIX");
+    expect(routeFinding("UNEXPLAINED_PRICE").route).toBe("REVIEW");
+    expect(routeFinding("VERIFIED_COST_OVER_CAP").route).toBe("AUTO_FIX");
+    expect(routeFinding("NO_APPROVED_SCOPE")).toEqual({
+      route: "BLOCK",
+      reason: expect.stringContaining("only the customer can approve it"),
+    });
   });
 
-  it("follows a custom policy", () => {
-    const strict = {
-      A1: { otherwise: "REVIEW" as const },
-      A3: { otherwise: "REVIEW" as const },
-      B1: { otherwise: "REVIEW" as const },
+  it("is not changed by a detector's confidence value", () => {
+    const ctx = buildContext();
+    const labour = ctx.invoice.lines[1];
+    if (!labour) throw new Error("IL-2");
+    labour.unitPrice = fromCents(9_000);
+    labour.amount = fromCents(54_000);
+    const lowConfidence: Detector = {
+      code: "A1",
+      detect: (c, a) => a1StalePrice.detect(c, a).map((d) => ({ ...d, confidence: 0.01 })),
     };
-    expect(routeFinding({ frictionCode: "A1", confidence: 1 }, strict)).toBe("REVIEW");
+    const [f] = runPipeline([ctx], { detectors: [lowConfidence] }).findings;
+    expect(f).toMatchObject({ route: "AUTO_FIX", confidence: 0.01 });
   });
 });
 

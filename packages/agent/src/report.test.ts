@@ -19,7 +19,9 @@ describe("renderReport", () => {
     expect(md).toContain("| A1 |");
     expect(md).toMatch(/\| A1 \| .* \| 1 \| 1 \| 0 \| 0 \| \+\$30\.00 \|/);
     expect(md).toContain("### INV-T (JOB-T)");
-    expect(md).toContain("**F-0001 · A1 · AUTO_FIX** (confidence 97%)");
+    expect(md).toContain("**F-0001 · A1 · AUTO_FIX**: LAB-TECH billed at $90.00");
+    expect(md).toContain("  - Route: billed at a superseded price-book version");
+    expect(md).not.toContain("confidence");
     expect(md).toContain("PRICE_BOOK_ITEM `PB-LAB-TECH-v2`");
     // 840 + 540 + 440 + 440 = $2,260.00 billed; IL-2 auto-fixed +$30.00.
     expect(md).toContain(

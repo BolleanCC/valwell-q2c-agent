@@ -1,9 +1,15 @@
 import type { Finding, FrictionCode } from "@valwell/domain";
 import type { JobContext } from "../adapters/sources.js";
 import type { Alignment } from "../nodes/align.js";
+import type { RouteBasis } from "../nodes/route.js";
 
-/** A finding before the pipeline assigns its id, route and review status. */
-export type FindingDraft = Omit<Finding, "id" | "route" | "status">;
+/**
+ * A finding before the pipeline assigns its id, route and review status. The
+ * detector states the business basis the route is decided from.
+ */
+export type FindingDraft = Omit<Finding, "id" | "route" | "routeReason" | "status"> & {
+  basis: RouteBasis;
+};
 
 /**
  * A pure function from one job's context and alignment to findings for one

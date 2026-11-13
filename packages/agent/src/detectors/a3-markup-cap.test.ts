@@ -27,7 +27,7 @@ describe("A3 markup cap detector", () => {
       frictionCode: "A3",
       invoiceLineId: "IL-3",
       workOrderLineId: "WL-3",
-      confidence: 0.95,
+      basis: "VERIFIED_COST_OVER_CAP",
       suggestion: { action: "REPRICE_LINE", expectedUnitPrice: 22_000, amountDelta: -6_000 },
     });
     expect(f?.evidence).toEqual(

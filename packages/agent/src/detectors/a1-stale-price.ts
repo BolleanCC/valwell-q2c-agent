@@ -52,6 +52,7 @@ export const a1StalePrice: Detector = {
           expectedUnitPrice: expected.unitPrice,
           amountDelta: fromCents(correctAmount - line.amount),
         },
+        basis: stale ? "SUPERSEDED_PRICE_VERSION" : "UNEXPLAINED_PRICE",
         confidence: stale ? 0.97 : 0.9,
       });
     }

@@ -45,6 +45,7 @@ export const b1ScopeChange: Detector = {
               : `Request a change order for ${wo.itemCode} before invoicing it`,
             amountDelta: fromCents(invoiced ? -invoiced.amount : 0),
           },
+          basis: "NO_APPROVED_SCOPE",
           confidence: 0.92,
         });
       }

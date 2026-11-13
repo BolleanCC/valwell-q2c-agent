@@ -43,6 +43,7 @@ describe("demo case 2: price entry error", async () => {
       invoiceLineId: "INV-D2-L2",
       workOrderLineId: "WO-D2-L2",
       route: "REVIEW",
+      routeReason: expect.stringContaining("matches no version"),
       status: "OPEN",
       // 6 h × $95.00 = $570.00 instead of 6 h × $59.00 = $354.00
       suggestion: { action: "REPRICE_LINE", expectedUnitPrice: 9_500, amountDelta: 21_600 },
@@ -88,6 +89,7 @@ describe("demo case 3: parts markup above the contract cap", async () => {
       invoiceLineId: "INV-D3-L3",
       workOrderLineId: "WO-D3-L3",
       route: "AUTO_FIX",
+      routeReason: expect.stringContaining("invoice and work-order costs agree"),
       // cost $200.00 × (1 + 10 %) = $220.00; 2 × ($220.00 − $250.00) = −$60.00
       suggestion: { action: "REPRICE_LINE", expectedUnitPrice: 22_000, amountDelta: -6_000 },
     });
@@ -131,6 +133,7 @@ describe("demo case 4: unapproved additional work", async () => {
       invoiceLineId: "INV-D4-L5",
       workOrderLineId: "WO-D4-L5",
       route: "BLOCK",
+      routeReason: expect.stringContaining("only the customer can approve it"),
       suggestion: { action: "REQUEST_CHANGE_ORDER", amountDelta: -44_000 },
     });
     expect(r.run.findings[0]?.message).toContain("no change order exists");

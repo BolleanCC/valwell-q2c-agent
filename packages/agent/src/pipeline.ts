@@ -58,12 +58,14 @@ export function runPipeline(
     const alignment = align(ctx);
     const firstFinding = findings.length;
     for (const detector of detectors) {
-      for (const draft of detector.detect(ctx, alignment)) {
+      for (const { basis, ...draft } of detector.detect(ctx, alignment)) {
+        const { route, reason } = routeFinding(basis, policy);
         findings.push(
           Finding.parse({
             ...draft,
             id: `F-${String(findings.length + 1).padStart(4, "0")}`,
-            route: routeFinding(draft, policy),
+            route,
+            routeReason: reason,
             status: "OPEN",
           }),
         );
