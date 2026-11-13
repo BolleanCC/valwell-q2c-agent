@@ -32,7 +32,7 @@ function faulted() {
       amount: 13_600,
     }),
   );
-  return { ctx, findings: runPipeline([ctx]) };
+  return { ctx, findings: runPipeline([ctx]).findings };
 }
 
 describe("applyFindings", () => {

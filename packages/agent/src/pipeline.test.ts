@@ -28,7 +28,10 @@ describe("routeFinding", () => {
 
 describe("runPipeline", () => {
   it("returns no findings for a clean job", () => {
-    expect(runPipeline([buildContext()])).toEqual([]);
+    expect(runPipeline([buildContext()])).toEqual({
+      reviews: [{ jobId: "JOB-T", invoiceId: "INV-T", status: "COMPLETE", issues: [] }],
+      findings: [],
+    });
   });
 
   it("runs every detector, numbers findings and routes them", () => {
@@ -57,7 +60,7 @@ describe("runPipeline", () => {
         amount: 13_600,
       }),
     );
-    const findings = runPipeline([ctx]);
+    const { findings } = runPipeline([ctx]);
     expect(findings.map((f) => [f.id, f.frictionCode, f.route])).toEqual([
       ["F-0001", "A1", "AUTO_FIX"],
       ["F-0002", "B1", "BLOCK"],
@@ -70,6 +73,7 @@ describe("runAgent on the fixture batch", () => {
     const sources = await openBatchSources(FIXTURE);
     const run = runAgent(sources);
     expect(run.jobsChecked).toBe(40);
+    expect(run.reviews.every((r) => r.status === "COMPLETE")).toBe(true);
     expect(new Set(run.findings.map((f) => f.frictionCode))).toEqual(new Set(["A1", "A3", "B1"]));
     expect(runAgent(sources)).toEqual(run);
   });

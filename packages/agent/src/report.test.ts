@@ -2,6 +2,7 @@ import { fromCents } from "@valwell/domain";
 import { describe, expect, it } from "vitest";
 import { runPipeline } from "./pipeline.js";
 import { renderReport } from "./report.js";
+import type { JobReview } from "./review.js";
 import { buildContext } from "./testing/build-context.js";
 
 describe("renderReport", () => {
@@ -11,8 +12,7 @@ describe("renderReport", () => {
     if (!labour) throw new Error("IL-2");
     labour.unitPrice = fromCents(9_000);
     labour.amount = fromCents(54_000);
-    const findings = runPipeline([ctx]);
-    const md = renderReport({ jobsChecked: 1, skipped: [], findings }, "unit");
+    const md = renderReport({ jobsChecked: 1, ...runPipeline([ctx]) }, "unit");
 
     expect(md).toContain("# Reconciliation report: unit");
     expect(md).toContain("- Findings: **1** on **1** invoices");
@@ -23,13 +23,25 @@ describe("renderReport", () => {
     expect(md).toContain("PRICE_BOOK_ITEM `PB-LAB-TECH-v2`");
   });
 
-  it("reports a clean run and skipped jobs", () => {
-    const md = renderReport(
-      { jobsChecked: 1, skipped: [{ jobId: "JOB-X", reason: "missing invoice" }], findings: [] },
-      "clean",
-    );
+  it("reports a clean run as complete", () => {
+    const md = renderReport({ jobsChecked: 1, ...runPipeline([buildContext()]) }, "clean");
+    expect(md).toContain("(review complete 1, needs human review 0, incomplete 0)");
     expect(md).toContain("_No discrepancies found._");
-    expect(md).toContain("- JOB-X: missing invoice");
     expect(md).toContain("Net invoice change if all suggestions are applied: **$0.00**");
+  });
+
+  it("never presents an incomplete job as clean", () => {
+    const incomplete: JobReview = {
+      jobId: "JOB-X",
+      invoiceId: null,
+      status: "INCOMPLETE",
+      issues: [{ code: "MISSING_RECORD", invoiceLineId: null, message: "no invoice on file" }],
+    };
+    const md = renderReport({ jobsChecked: 0, reviews: [incomplete], findings: [] }, "x");
+    expect(md).toContain("incomplete 1");
+    expect(md).toContain("- **JOB-X** (no invoice) · INCOMPLETE");
+    expect(md).toContain("  - MISSING_RECORD: no invoice on file");
+    expect(md).not.toContain("_No discrepancies found._");
+    expect(md).toContain("1 job(s) above still need a human");
   });
 });

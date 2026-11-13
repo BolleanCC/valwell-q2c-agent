@@ -7,6 +7,7 @@ import type {
   Quote,
   WorkOrder,
 } from "@valwell/domain";
+import type { JobReview } from "../review.js";
 
 /**
  * The agent's ports. It reads the source systems only through these
@@ -50,25 +51,37 @@ export interface JobContext {
   rules: CustomerRules;
 }
 
-export interface SkippedJob {
-  jobId: string;
-  reason: string;
-}
-
-/** Gather a context per job. Jobs missing a work order, invoice or rules are skipped, not guessed. */
+/**
+ * Gather a context per job. A job missing its work order, invoice or contract
+ * rules is not guessed at: it is returned in `skipped` as an INCOMPLETE review
+ * that names every missing record.
+ */
 export function collectJobContexts(sources: Sources): {
   contexts: JobContext[];
-  skipped: SkippedJob[];
+  skipped: JobReview[];
 } {
   const contexts: JobContext[] = [];
-  const skipped: SkippedJob[] = [];
+  const skipped: JobReview[] = [];
   for (const job of sources.ops.jobs()) {
     const workOrder = sources.ops.workOrderForJob(job.id);
     const invoice = sources.billing.invoiceForJob(job.id);
     const rules = sources.contract.rulesFor(job.customerId);
     if (!workOrder || !invoice || !rules) {
-      const missing = [!workOrder && "work order", !invoice && "invoice", !rules && "rules"];
-      skipped.push({ jobId: job.id, reason: `missing ${missing.filter(Boolean).join(", ")}` });
+      const missing = [
+        !workOrder && "work order",
+        !invoice && "invoice",
+        !rules && `contract rules for ${job.customerId}`,
+      ].filter((m): m is string => typeof m === "string");
+      skipped.push({
+        jobId: job.id,
+        invoiceId: invoice?.id ?? null,
+        status: "INCOMPLETE",
+        issues: missing.map((m) => ({
+          code: "MISSING_RECORD",
+          invoiceLineId: null,
+          message: `no ${m} on file for ${job.id}`,
+        })),
+      });
       continue;
     }
     contexts.push({

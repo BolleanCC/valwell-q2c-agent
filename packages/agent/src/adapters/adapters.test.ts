@@ -34,7 +34,7 @@ describe("collectJobContexts", () => {
     expect(ctx?.priceBook.every((p) => p.customerId === ctx.job.customerId)).toBe(true);
   });
 
-  it("skips jobs with missing documents instead of guessing", async () => {
+  it("reports jobs with missing documents as incomplete instead of guessing", async () => {
     const real = await openBatchSources(FIXTURE);
     const firstJob = real.ops.jobs()[0]?.id;
     const sources: Sources = {
@@ -45,6 +45,19 @@ describe("collectJobContexts", () => {
     };
     const { contexts, skipped } = collectJobContexts(sources);
     expect(contexts).toHaveLength(39);
-    expect(skipped).toEqual([{ jobId: firstJob, reason: "missing invoice" }]);
+    expect(skipped).toEqual([
+      {
+        jobId: firstJob,
+        invoiceId: null,
+        status: "INCOMPLETE",
+        issues: [
+          {
+            code: "MISSING_RECORD",
+            invoiceLineId: null,
+            message: `no invoice on file for ${firstJob}`,
+          },
+        ],
+      },
+    ]);
   });
 });
