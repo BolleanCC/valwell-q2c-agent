@@ -10,6 +10,9 @@ import type { Alignment } from "./align.js";
  * evidence for the correct one is missing or contradictory.
  *
  * - Every line: amount must equal qty × unit price (rounded by `multiplyQty`).
+ * - Part lines (cost-plus): the invoice must disclose the unit cost, and it
+ *   must equal the cost on the matched work-order line. A missing or
+ *   conflicting cost means the markup cap cannot be applied safely.
  * - Service and labour lines: exactly one price-book version must be
  *   effective on the service date. None and several are different problems,
  *   and both are reported.
@@ -17,7 +20,7 @@ import type { Alignment } from "./align.js";
 export function checkLineEvidence(ctx: JobContext, alignment: Alignment): ReviewIssue[] {
   const { invoice } = ctx;
   const issues: ReviewIssue[] = [];
-  for (const { invoiceLine: line } of alignment.matches) {
+  for (const { invoiceLine: line, workOrderLine: wo } of alignment.matches) {
     const issue = (code: ReviewIssue["code"], message: string) =>
       issues.push({
         code,
@@ -33,7 +36,17 @@ export function checkLineEvidence(ctx: JobContext, alignment: Alignment): Review
       );
     }
 
-    if (line.kind === "PART") continue;
+    if (line.kind === "PART") {
+      if (line.unitCost === undefined) {
+        issue("MISSING_COST_EVIDENCE", "part billed without a disclosed unit cost");
+      } else if (wo?.kind === "PART" && wo.unitCost !== line.unitCost) {
+        issue(
+          "COST_CONFLICT",
+          `invoice cost ${format(line.unitCost)} differs from ${wo.id} cost ${format(wo.unitCost)}`,
+        );
+      }
+      continue;
+    }
     const price = lookupEffectivePrice(
       ctx.priceBook,
       invoice.customerId,

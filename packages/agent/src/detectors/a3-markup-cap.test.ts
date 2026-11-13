@@ -40,13 +40,13 @@ describe("A3 markup cap detector", () => {
     Finding.parse({ ...f, id: "F-1", route: null, status: "OPEN" });
   });
 
-  it("trusts the work-order cost over an inflated disclosed cost", () => {
+  it("does not reprice when the disclosed cost conflicts with the work order", () => {
     const ctx = buildContext();
     const line = ctx.invoice.lines.find((l) => l.id === "IL-4");
     if (!line) throw new Error("IL-4");
-    line.unitCost = fromCents(50_000); // claims $500 cost; shop paid $400
+    line.unitCost = fromCents(50_000); // claims $500 cost; shop recorded $400
     reprice(ctx, "IL-4", 55_000);
-    expect(run(ctx)[0]?.suggestion.expectedUnitPrice).toBe(44_000);
+    expect(run(ctx)).toEqual([]);
   });
 
   it("does not reprice a part with no matched work-order cost (left to review)", () => {

@@ -53,6 +53,26 @@ describe("checkLineEvidence", () => {
     expect(issue?.message).toContain("PB-LAB-TECH-v2, PB-LAB-TECH-v3");
   });
 
+  it("flags a part without cost evidence", () => {
+    const ctx = buildContext();
+    delete ctx.invoice.lines[2]?.unitCost;
+    expect(check(ctx)).toMatchObject([{ code: "MISSING_COST_EVIDENCE", invoiceLineId: "IL-3" }]);
+  });
+
+  it("flags an invoice cost that conflicts with the work-order cost", () => {
+    const ctx = buildContext();
+    const stem = ctx.invoice.lines[3];
+    if (!stem) throw new Error("IL-4");
+    stem.unitCost = fromCents(50_000);
+    expect(check(ctx)).toEqual([
+      {
+        code: "COST_CONFLICT",
+        invoiceLineId: "IL-4",
+        message: "IL-4 (PART-STEM): invoice cost $500.00 differs from WL-4 cost $400.00",
+      },
+    ]);
+  });
+
   it("routes the job to review and proposes no price for an overlapping rate", () => {
     const ctx = buildContext();
     ctx.priceBook.push(

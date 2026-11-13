@@ -5,9 +5,10 @@ import type { Detector, FindingDraft } from "./types.js";
 const pct = (bps: number) => `${(bps / 100).toFixed(1)}%`;
 
 /**
- * A3: a part billed above cost × (1 + markup cap). The cost comes from the
- * work-order line the invoice line is matched to (the shop's record of what
- * it paid). Unmatched part lines are review issues, not guesses.
+ * A3: a part billed above cost × (1 + markup cap). Only judged on verified
+ * cost evidence: the invoice's disclosed unit cost equals the cost on the
+ * matched work-order line. Missing, conflicting or unmatched costs are
+ * review issues (checkLineEvidence, align), not guesses.
  */
 export const a3MarkupCap: Detector = {
   code: "A3",
@@ -15,7 +16,7 @@ export const a3MarkupCap: Detector = {
     const capBps = ctx.rules.markupCapBps;
     const findings: FindingDraft[] = [];
     for (const { invoiceLine: line, workOrderLine: wo } of alignment.matches) {
-      if (line.kind !== "PART" || wo?.kind !== "PART") continue;
+      if (line.kind !== "PART" || wo?.kind !== "PART" || line.unitCost !== wo.unitCost) continue;
       const cost: Money = wo.unitCost;
       const check = checkMarkup(cost, line.unitPrice, capBps);
       if (check.ok) continue;
