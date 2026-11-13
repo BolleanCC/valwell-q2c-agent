@@ -7,6 +7,7 @@ import { getChangeOrders, getEffectiveQuote, getWorkOrder, type ToolSpec } from 
 import { runPipeline } from "../pipeline.js";
 import { checkRecordLinks } from "../review.js";
 import { recordChangeOrderRequest } from "./change-order.js";
+import { DispositionArgs, OUTCOMES, recordDisposition } from "./disposition.js";
 import type { CaseState } from "./state.js";
 
 const signed = (m: Money) => (m > 0 ? `+${format(m)}` : format(m));
@@ -281,6 +282,31 @@ export const CASE_TOOL_SPECS: ToolSpec[] = [
       additionalProperties: false,
     },
   },
+  {
+    name: "submit_disposition",
+    description:
+      "Finish the case with a structured disposition. It is checked against the case state: the outcome must match what the tools established, finding_ids must list every finding, evidence_ids must come from tool results, and the text must not contain amounts or claim customer approval.",
+    input_schema: {
+      type: "object",
+      properties: {
+        ...jobProps,
+        outcome: { type: "string", enum: [...OUTCOMES] },
+        summary: { type: "string" },
+        finding_ids: { type: "array", items: { type: "string" } },
+        evidence_ids: { type: "array", items: { type: "string" } },
+        next_human_action: { type: "string" },
+      },
+      required: [
+        "job_id",
+        "outcome",
+        "summary",
+        "finding_ids",
+        "evidence_ids",
+        "next_human_action",
+      ],
+      additionalProperties: false,
+    },
+  },
 ];
 
 const jobArg = z.object({ job_id: z.string() }).strict();
@@ -338,6 +364,10 @@ export function executeCaseTool(state: CaseState, call: ToolCall): ToolExecution
     case "draft_change_order_request": {
       const a = parseArgs(state, call, changeOrderArg);
       return a.ok ? recordChangeOrderRequest(state, a.args.invoice_line_id, a.args.draft) : a;
+    }
+    case "submit_disposition": {
+      const a = parseArgs(state, call, DispositionArgs);
+      return a.ok ? recordDisposition(state, a.args) : a;
     }
     default:
       return fail(`unknown tool ${call.name}`);

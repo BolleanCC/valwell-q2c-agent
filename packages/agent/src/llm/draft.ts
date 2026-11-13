@@ -75,7 +75,7 @@ export type DraftValidation =
 // Modest keyword checks. They catch obvious overreach; they cannot prove a
 // draft is factually right, which is why a human still reviews every draft.
 const STATUS_CLAIM = /\b(approved|paid|payment received|submitted|authori[sz]ed|released)\b/i;
-const MONEY = /\$|\b\d+[.,]\d{2}\b|\b(?:CAD|USD|dollars?)\b/i;
+export const MONEY = /\$|\b\d+[.,]\d{2}\b|\b(?:CAD|USD|dollars?)\b/i;
 
 /**
  * Validate model output against the evidence the tools actually returned.
