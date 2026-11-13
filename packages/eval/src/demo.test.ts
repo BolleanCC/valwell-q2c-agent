@@ -119,3 +119,36 @@ describe("demo case 3: parts markup above the contract cap", async () => {
     });
   });
 });
+
+describe("demo case 4: unapproved additional work", async () => {
+  const r = await runDemoCase(CASE("4-unapproved-extra-work"));
+
+  it("finds the new part outside approved scope and blocks the line", () => {
+    expect(r.review.status).toBe("COMPLETE");
+    expect(r.run.findings).toHaveLength(1);
+    expect(r.run.findings[0]).toMatchObject({
+      frictionCode: "B1",
+      invoiceLineId: "INV-D4-L5",
+      workOrderLineId: "WO-D4-L5",
+      route: "BLOCK",
+      suggestion: { action: "REQUEST_CHANGE_ORDER", amountDelta: -44_000 },
+    });
+    expect(r.run.findings[0]?.message).toContain("no change order exists");
+    expect(r.original.portal).toMatchObject({ status: "REJECTED", reasonCode: "UNAPPROVED_SCOPE" });
+  });
+
+  it("holds the line at its original amount and submits the remaining lines", () => {
+    const expected = {
+      status: "READY",
+      changes: [],
+      held: [{ id: "INV-D4-L5", itemCode: "PART-STEM", qty: 1, unitPrice: 44_000, amount: 44_000 }],
+      // $2,640.00 billed = $2,200.00 submitted + $440.00 held; nothing repriced.
+      totals: { original: 264_000, held: 44_000, draft: 220_000, corrections: 0 },
+      portal: { status: "APPROVED" },
+    };
+    expect(r.unattended).toMatchObject(expected);
+    expect(r.unattended.invoice?.lines.map((l) => l.id)).not.toContain("INV-D4-L5");
+    // Accepting the finding accepts the hold; it is not the customer approving the stem.
+    expect(r.afterAcceptance).toMatchObject(expected);
+  });
+});
