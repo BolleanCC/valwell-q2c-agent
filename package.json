@@ -17,7 +17,8 @@
     "prepare": "lefthook install",
     "generate": "tsx packages/generator/src/cli.ts",
     "agent": "tsx packages/agent/src/cli.ts",
-    "eval": "tsx packages/eval/src/cli.ts"
+    "eval": "tsx packages/eval/src/cli.ts",
+    "demo": "tsx packages/eval/src/demo-cli.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.7",
