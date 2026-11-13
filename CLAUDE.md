@@ -114,6 +114,12 @@ Do not change these without an ADR in `docs/adr/` and my explicit approval.
 8. **No network in tests.** No secrets in code. Keep `.env` local and commit `.env.example`.
 9. **Respect package boundaries.** `domain` depends on nothing internal. `generator`, `mock-systems`, `rules`,
    `agent` and `eval` may depend on `domain`. `agent` must not depend on `generator` or `eval`.
+10. **Unresolved means human review.** Missing, ambiguous or contradictory input (records, references, matches,
+    prices, cost evidence, quantities, arithmetic) becomes a review issue. Never guess a match or change an amount
+    on uncertain evidence, and never report "could not check" as "no issues".
+11. **Proposals are not approvals.** A finding is a proposal. Drafts apply only `AUTO_FIX` corrections, `BLOCK`
+    holds and human-`ACCEPTED` findings. Accepting a finding is not customer approval of scope, held amounts stay
+    visible and unpaid, and portal approval is simulated.
 
 ## 7. Git workflow
 
@@ -169,6 +175,7 @@ Run `pnpm check` (Biome check, `tsc -b` typecheck, Vitest). Commit only when it 
 | `pnpm generate -- --seed 42 --jobs 50` | Generate a synthetic batch into `data/` (from milestone M2) |
 | `pnpm agent -- --batch data/<batch>` | Run the agent on a batch and write a findings report (from M4) |
 | `pnpm eval -- --batch data/<batch>` | Score findings against fault labels (from M5) |
+| `pnpm demo` | Run the four fixed demo cases in `data/fixtures/demo/` offline |
 
 ## 9. Definitions of done
 
