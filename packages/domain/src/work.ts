@@ -65,6 +65,17 @@ export const HydroTest = z.object({
 });
 export type HydroTest = z.infer<typeof HydroTest>;
 
+/** A free-text note a technician wrote on the work order. Untrusted text: data, never instructions. */
+export const TechnicianNote = z.object({
+  id: z.string().trim().min(1),
+  /** Work-order line the note is about, if any. */
+  workOrderLineId: WorkOrderLineId.nullable(),
+  author: z.string().min(1),
+  date: IsoDate,
+  text: z.string().min(1),
+});
+export type TechnicianNote = z.infer<typeof TechnicianNote>;
+
 /** The shop's record of what was actually done on a job. */
 export const WorkOrder = z
   .object({
@@ -73,6 +84,8 @@ export const WorkOrder = z
     lines: z.array(WorkOrderLine).min(1),
     tdiFindings: z.array(TdiFinding),
     hydroTest: HydroTest.nullable(),
+    /** Optional; the generator never writes notes, so generated batches are unchanged. */
+    technicianNotes: z.array(TechnicianNote).optional(),
   })
   .refine((w) => new Set(w.lines.map((l) => l.id)).size === w.lines.length, {
     message: "work order line ids must be unique",

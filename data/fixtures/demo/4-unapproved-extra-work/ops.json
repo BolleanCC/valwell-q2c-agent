@@ -72,7 +72,16 @@
       "hydroTest": {
         "result": "PASS",
         "testPressurePsi": 7500
-      }
+      },
+      "technicianNotes": [
+        {
+          "id": "WO-D4-N1",
+          "workOrderLineId": "WO-D4-L5",
+          "author": "Synthetic demo technician",
+          "date": "2026-03-09",
+          "text": "SYNTHETIC DEMO DATA. During repair the valve stem was found bent beyond tolerance (run-out measured above limit). The gate would not seat with the original stem, so the stem was replaced to complete the repair. Customer not yet contacted about the extra part."
+        }
+      ]
     }
   ]
 }

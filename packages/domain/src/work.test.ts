@@ -71,6 +71,23 @@ describe("WorkOrder", () => {
     expect(WorkOrder.parse({ ...workOrder, hydroTest: null }).hydroTest).toBeNull();
   });
 
+  it("accepts optional technician notes and leaves them absent by default", () => {
+    expect(WorkOrder.parse(workOrder).technicianNotes).toBeUndefined();
+    const note = {
+      id: "WO-1-N1",
+      workOrderLineId: null,
+      author: "Tech",
+      date: "2026-03-09",
+      text: "Stem bent; replaced.",
+    };
+    expect(WorkOrder.parse({ ...workOrder, technicianNotes: [note] }).technicianNotes).toEqual([
+      note,
+    ]);
+    expect(
+      WorkOrder.safeParse({ ...workOrder, technicianNotes: [{ ...note, text: "" }] }).success,
+    ).toBe(false);
+  });
+
   it("rejects duplicate line ids and an unknown hydro result", () => {
     expect(WorkOrder.safeParse({ ...workOrder, lines: [part, part] }).success).toBe(false);
     const badHydro = { ...workOrder, hydroTest: { result: "LEAK", testPressurePsi: 5000 } };
