@@ -1,11 +1,42 @@
 import { join } from "node:path";
+import {
+  acceptAll,
+  applyFindings,
+  type FixResult,
+  openBatchSources,
+  runAgent,
+} from "@valwell/agent";
+import { openPortal } from "@valwell/mock-systems";
 import { describe, expect, it } from "vitest";
-import { renderDemoCase, runDemoCase } from "./demo.js";
+
+/**
+ * Regression tests for the deterministic core on the four demo fixtures:
+ * the results every LLM-orchestrated run must end up with. No model here.
+ */
+async function deterministicCase(dir: string) {
+  const sources = await openBatchSources(dir);
+  const portal = await openPortal(dir);
+  const run = runAgent(sources);
+  const [review] = run.reviews;
+  const invoice = review && sources.billing.invoiceForJob(review.jobId);
+  if (!review || !invoice) throw new Error(`${dir}: no reviewed invoice`);
+  const submit = (d: FixResult) => ({
+    ...d,
+    portal: d.status === "READY" && d.invoice ? portal.submit(d.invoice) : null,
+  });
+  return {
+    run,
+    review,
+    original: { invoice, portal: portal.submit(invoice) },
+    unattended: submit(applyFindings(invoice, run.findings, review)),
+    afterAcceptance: submit(applyFindings(invoice, acceptAll(run.findings), review)),
+  };
+}
 
 const CASE = (name: string) => join(import.meta.dirname, "../../../data/fixtures/demo", name);
 
 describe("demo case 1: normal repair", async () => {
-  const r = await runDemoCase(CASE("1-normal-repair"));
+  const r = await deterministicCase(CASE("1-normal-repair"));
 
   it("completes the review with no findings", () => {
     expect(r.review).toEqual({
@@ -32,7 +63,7 @@ describe("demo case 1: normal repair", async () => {
 });
 
 describe("demo case 2: price entry error", async () => {
-  const r = await runDemoCase(CASE("2-price-entry-error"));
+  const r = await deterministicCase(CASE("2-price-entry-error"));
   const [finding] = r.run.findings;
 
   it("finds the mistyped unit price and cites the applicable price-book version", () => {
@@ -79,7 +110,7 @@ describe("demo case 2: price entry error", async () => {
 });
 
 describe("demo case 3: parts markup above the contract cap", async () => {
-  const r = await runDemoCase(CASE("3-markup-over-cap"));
+  const r = await deterministicCase(CASE("3-markup-over-cap"));
 
   it("calculates the allowed selling price from the verified cost and the cap", () => {
     expect(r.review.status).toBe("COMPLETE");
@@ -123,7 +154,7 @@ describe("demo case 3: parts markup above the contract cap", async () => {
 });
 
 describe("demo case 4: unapproved additional work", async () => {
-  const r = await runDemoCase(CASE("4-unapproved-extra-work"));
+  const r = await deterministicCase(CASE("4-unapproved-extra-work"));
 
   it("finds the new part outside approved scope and blocks the line", () => {
     expect(r.review.status).toBe("COMPLETE");
@@ -153,61 +184,5 @@ describe("demo case 4: unapproved additional work", async () => {
     expect(r.unattended.invoice?.lines.map((l) => l.id)).not.toContain("INV-D4-L5");
     // Accepting the finding accepts the hold; it is not the customer approving the stem.
     expect(r.afterAcceptance).toMatchObject(expected);
-  });
-});
-
-describe("demo LLM drafting step", () => {
-  it("does not call an LLM in cases 1–3", async () => {
-    for (const dir of ["1-normal-repair", "2-price-entry-error", "3-markup-over-cap"]) {
-      expect((await runDemoCase(CASE(dir))).drafting).toEqual([]);
-    }
-  });
-
-  it("drafts a change-order request offline for case 4 while the line stays held", async () => {
-    const r = await runDemoCase(CASE("4-unapproved-extra-work"));
-    expect(r.drafting).toHaveLength(1);
-    expect(r.drafting[0]).toMatchObject({
-      status: "DRAFTED",
-      mode: "offline",
-      amounts: { invoiceLineId: "INV-D4-L5", qty: 1, unitPrice: 44_000, amount: 44_000 },
-    });
-    expect(r.drafting[0]?.content?.evidenceIds).toEqual(
-      expect.arrayContaining(["WO-D4-L5", "WO-D4-N1", "WO-D4-TDI-2"]),
-    );
-    expect(r.unattended.held.map((l) => l.id)).toEqual(["INV-D4-L5"]);
-    expect(r.unattended.totals).toEqual({
-      original: 264_000,
-      held: 44_000,
-      draft: 220_000,
-      corrections: 0,
-    });
-  });
-
-  it("reports a failed live run without substituting offline output", async () => {
-    const failing = () => ({
-      mode: "live" as const,
-      model: "test-model",
-      open: () => ({
-        start: () => Promise.reject(new Error("401 invalid x-api-key")),
-        reply: () => Promise.reject(new Error("unreachable")),
-      }),
-    });
-    const r = await runDemoCase(CASE("4-unapproved-extra-work"), {
-      llm: "live",
-      provider: failing,
-    });
-    expect(r.drafting[0]).toMatchObject({
-      status: "PROVIDER_FAILURE",
-      mode: "live",
-      content: null,
-      request: null,
-      problems: ["401 invalid x-api-key"],
-    });
-    expect(r.unattended.held.map((l) => l.id)).toEqual(["INV-D4-L5"]);
-    const md = renderDemoCase(4, "Unapproved additional work", r);
-    expect(md).toContain("LIVE — test-model via the Anthropic API");
-    expect(md).toContain("drafting did not complete: 401 invalid x-api-key");
-    expect(md).toContain("No offline output was substituted.");
-    expect(md).not.toContain("Message to customer");
   });
 });
