@@ -76,3 +76,46 @@ describe("demo case 2: price entry error", async () => {
     });
   });
 });
+
+describe("demo case 3: parts markup above the contract cap", async () => {
+  const r = await runDemoCase(CASE("3-markup-over-cap"));
+
+  it("calculates the allowed selling price from the verified cost and the cap", () => {
+    expect(r.review.status).toBe("COMPLETE");
+    expect(r.run.findings).toHaveLength(1);
+    expect(r.run.findings[0]).toMatchObject({
+      frictionCode: "A3",
+      invoiceLineId: "INV-D3-L3",
+      workOrderLineId: "WO-D3-L3",
+      route: "AUTO_FIX",
+      // cost $200.00 × (1 + 10 %) = $220.00; 2 × ($220.00 − $250.00) = −$60.00
+      suggestion: { action: "REPRICE_LINE", expectedUnitPrice: 22_000, amountDelta: -6_000 },
+    });
+    expect(r.run.findings[0]?.evidence).toEqual(
+      expect.arrayContaining([
+        { kind: "RULE", id: "RULE-CUST-D" },
+        { kind: "WORK_ORDER_LINE", id: "WO-D3-L3" },
+      ]),
+    );
+    expect(r.original.portal).toMatchObject({
+      status: "REJECTED",
+      reasonCode: "MARKUP_CAP_EXCEEDED",
+    });
+  });
+
+  it("applies the correction unattended under the declared AUTO_FIX rule and passes the portal", () => {
+    expect(r.unattended).toMatchObject({
+      status: "READY",
+      changes: [
+        {
+          invoiceLineId: "INV-D3-L3",
+          before: { unitPrice: 25_000, amount: 50_000 },
+          after: { unitPrice: 22_000, amount: 44_000 },
+        },
+      ],
+      held: [],
+      totals: { original: 226_000, held: 0, draft: 220_000, corrections: -6_000 },
+      portal: { status: "APPROVED" },
+    });
+  });
+});

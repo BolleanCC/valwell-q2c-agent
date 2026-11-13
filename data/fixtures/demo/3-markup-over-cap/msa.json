@@ -1,0 +1,16 @@
+{
+  "customers": [
+    {
+      "id": "CUST-D",
+      "name": "Northline Energy Ltd.",
+      "msaRef": "MSA-NORTHLINE-2025"
+    }
+  ],
+  "rules": [
+    {
+      "id": "RULE-CUST-D",
+      "customerId": "CUST-D",
+      "markupCapBps": 1000
+    }
+  ]
+}

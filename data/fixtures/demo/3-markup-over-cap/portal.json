@@ -1,0 +1,134 @@
+{
+  "priceBook": [
+    {
+      "id": "PB-D-TDI-FEE-v1",
+      "customerId": "CUST-D",
+      "itemCode": "TDI-FEE",
+      "description": "Teardown & inspection",
+      "kind": "SERVICE",
+      "unitPrice": 80000,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-01-01"
+    },
+    {
+      "id": "PB-D-TDI-FEE-v2",
+      "customerId": "CUST-D",
+      "itemCode": "TDI-FEE",
+      "description": "Teardown & inspection",
+      "kind": "SERVICE",
+      "unitPrice": 84000,
+      "version": 2,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-D-LAB-TECH-v1",
+      "customerId": "CUST-D",
+      "itemCode": "LAB-TECH",
+      "description": "Valve technician",
+      "kind": "LABOUR",
+      "unitPrice": 9000,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-01-01"
+    },
+    {
+      "id": "PB-D-LAB-TECH-v2",
+      "customerId": "CUST-D",
+      "itemCode": "LAB-TECH",
+      "description": "Valve technician",
+      "kind": "LABOUR",
+      "unitPrice": 9500,
+      "version": 2,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    },
+    {
+      "id": "PB-D-HYDRO-TEST-v1",
+      "customerId": "CUST-D",
+      "itemCode": "HYDRO-TEST",
+      "description": "Hydrostatic test",
+      "kind": "SERVICE",
+      "unitPrice": 33000,
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": "2026-01-01"
+    },
+    {
+      "id": "PB-D-HYDRO-TEST-v2",
+      "customerId": "CUST-D",
+      "itemCode": "HYDRO-TEST",
+      "description": "Hydrostatic test",
+      "kind": "SERVICE",
+      "unitPrice": 35000,
+      "version": 2,
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": null
+    }
+  ],
+  "rules": [
+    {
+      "id": "RULE-CUST-D",
+      "customerId": "CUST-D",
+      "markupCapBps": 1000
+    }
+  ],
+  "quotes": [
+    {
+      "id": "Q-D3-TDI",
+      "revision": 1,
+      "jobId": "JOB-D3",
+      "customerId": "CUST-D",
+      "stage": "TDI",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-03",
+      "lines": [
+        {
+          "id": "Q-D3-TDI-R1-L1",
+          "itemCode": "TDI-FEE",
+          "description": "Teardown & inspection",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 84000
+        }
+      ]
+    },
+    {
+      "id": "Q-D3-REP",
+      "revision": 1,
+      "jobId": "JOB-D3",
+      "customerId": "CUST-D",
+      "stage": "REPAIR",
+      "priceBookVersion": 2,
+      "issuedDate": "2026-03-05",
+      "lines": [
+        {
+          "id": "Q-D3-REP-R1-L1",
+          "itemCode": "LAB-TECH",
+          "description": "Valve technician",
+          "kind": "LABOUR",
+          "qty": 6,
+          "unitPrice": 9500
+        },
+        {
+          "id": "Q-D3-REP-R1-L2",
+          "itemCode": "PART-SEAT",
+          "description": "Seat ring",
+          "kind": "PART",
+          "qty": 2,
+          "unitPrice": 22000
+        },
+        {
+          "id": "Q-D3-REP-R1-L3",
+          "itemCode": "HYDRO-TEST",
+          "description": "Hydrostatic test",
+          "kind": "SERVICE",
+          "qty": 1,
+          "unitPrice": 35000
+        }
+      ]
+    }
+  ],
+  "changeOrders": []
+}
