@@ -28,10 +28,12 @@ describe("routeFinding", () => {
 
 describe("runPipeline", () => {
   it("returns no findings for a clean job", () => {
-    expect(runPipeline([buildContext()])).toEqual({
-      reviews: [{ jobId: "JOB-T", invoiceId: "INV-T", status: "COMPLETE", issues: [] }],
-      findings: [],
-    });
+    const { reviews, findings, drafts } = runPipeline([buildContext()]);
+    expect(reviews).toEqual([
+      { jobId: "JOB-T", invoiceId: "INV-T", status: "COMPLETE", issues: [] },
+    ]);
+    expect(findings).toEqual([]);
+    expect(drafts).toMatchObject([{ jobId: "JOB-T", status: "READY", changes: [], held: [] }]);
   });
 
   it("runs every detector, numbers findings and routes them", () => {
@@ -85,8 +87,9 @@ describe("runPipeline with unresolved alignment", () => {
     if (!seat) throw new Error("IL-3");
     seat.unitPrice = fromCents(25_000); // above the cap on either cost
     seat.amount = fromCents(50_000);
-    const { reviews, findings } = runPipeline([ctx]);
+    const { reviews, findings, drafts } = runPipeline([ctx]);
     expect(findings.filter((f) => f.invoiceLineId === "IL-3")).toEqual([]);
+    expect(drafts).toMatchObject([{ status: "INPUT_NEEDS_REVIEW", invoice: null }]);
     expect(reviews).toMatchObject([
       { status: "NEEDS_REVIEW", issues: [{ code: "AMBIGUOUS_MATCH", invoiceLineId: "IL-3" }] },
     ]);

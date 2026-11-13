@@ -21,13 +21,21 @@ describe("renderReport", () => {
     expect(md).toContain("### INV-T (JOB-T)");
     expect(md).toContain("**F-0001 · A1 · AUTO_FIX** (confidence 97%)");
     expect(md).toContain("PRICE_BOOK_ITEM `PB-LAB-TECH-v2`");
+    // 840 + 540 + 440 + 440 = $2,260.00 billed; IL-2 auto-fixed +$30.00.
+    expect(md).toContain(
+      "- Drafted invoices: original **$2,260.00** − held **$0.00** + corrections **(+$30.00)** = draft **$2,290.00**",
+    );
+    expect(md).toContain("- Unattended draft: **READY** · original $2,260.00 · held $0.00");
   });
 
   it("reports a clean run as complete", () => {
     const md = renderReport({ jobsChecked: 1, ...runPipeline([buildContext()]) }, "clean");
     expect(md).toContain("(review complete 1, needs human review 0, incomplete 0)");
     expect(md).toContain("_No discrepancies found._");
-    expect(md).toContain("Net invoice change if all suggestions are applied: **$0.00**");
+    expect(md).toContain(
+      "Proposed adjustments (sum per finding, not yet applied, may overlap): **$0.00**",
+    );
+    expect(md).toContain("Unattended drafts: READY 1, AWAITING_REVIEW 0");
   });
 
   it("never presents an incomplete job as clean", () => {
@@ -37,7 +45,10 @@ describe("renderReport", () => {
       status: "INCOMPLETE",
       issues: [{ code: "MISSING_RECORD", invoiceLineId: null, message: "no invoice on file" }],
     };
-    const md = renderReport({ jobsChecked: 0, reviews: [incomplete], findings: [] }, "x");
+    const md = renderReport(
+      { jobsChecked: 0, reviews: [incomplete], findings: [], drafts: [] },
+      "x",
+    );
     expect(md).toContain("incomplete 1");
     expect(md).toContain("- **JOB-X** (no invoice) · INCOMPLETE");
     expect(md).toContain("  - MISSING_RECORD: no invoice on file");
