@@ -1,5 +1,6 @@
 import { format, type Money } from "@valwell/domain";
 import { z } from "zod";
+import { applyFindings, isActionable } from "../fix.js";
 import type { EvidenceSource } from "../llm/draft.js";
 import type { ToolCall, ToolExecution } from "../llm/loop.js";
 import { getChangeOrders, getEffectiveQuote, getWorkOrder, type ToolSpec } from "../llm/tools.js";
@@ -119,6 +120,93 @@ function getJobRecords(state: CaseState, record: (typeof RECORDS)[number]): Tool
   };
 }
 
+// ---- prepare_draft (state-changing, in memory only) ----
+
+/**
+ * Prepare an in-memory draft from finding ids. The model chooses which
+ * findings to apply; application code decides whether each is permitted and
+ * computes every amount. No price or amount is ever accepted from the model.
+ * The draft is always rebuilt from the original invoice, so repeating the
+ * request never applies a change twice.
+ */
+function prepareDraft(state: CaseState, ids: string[]): ToolExecution {
+  const review = state.review;
+  if (!review) return fail("call reconcile_invoice first");
+  if (review.status !== "COMPLETE") {
+    return fail(
+      `reconciliation is ${review.status}: missing or contradictory evidence needs human review, so no draft can be prepared`,
+    );
+  }
+  const unknown = ids.filter((id) => !state.findings.some((f) => f.id === id));
+  if (unknown.length > 0) return fail(`unknown finding ids: ${unknown.join(", ")}`);
+  const selected = state.findings.filter((f) => ids.includes(f.id));
+  for (const f of selected) {
+    if (f.status === "REJECTED")
+      return fail(`${f.id} was rejected by a human and cannot be applied`);
+    if (!isActionable(f)) {
+      return fail(
+        `${f.id} is OPEN and routed to REVIEW: it needs human acceptance, which the model cannot give`,
+      );
+    }
+  }
+  const unheld = state.findings.filter(
+    (f) => f.route === "BLOCK" && f.status !== "REJECTED" && !ids.includes(f.id),
+  );
+  if (unheld.length > 0) {
+    return fail(
+      `${unheld.map((f) => f.id).join(", ")} must be held: work outside approved scope cannot be submitted`,
+    );
+  }
+  const pending = state.findings.filter((f) => f.status === "OPEN" && f.route === "REVIEW");
+  const draft = applyFindings(state.ctx.invoice, [...selected, ...pending], review);
+  state.draft = draft;
+  state.portalDecision = null;
+  const t = draft.totals;
+  return {
+    ok: true,
+    content: {
+      status: draft.status,
+      appliedFindings: draft.applied.map((f) => f.id),
+      changes: draft.changes.map((c) => ({
+        invoiceLineId: c.invoiceLineId,
+        before: format(c.before.amount),
+        after: format(c.after.amount),
+      })),
+      held: draft.held.map((l) => ({
+        invoiceLineId: l.id,
+        itemCode: l.itemCode,
+        amount: format(l.amount),
+      })),
+      totals: {
+        original: format(t.original),
+        held: format(t.held),
+        corrections: signed(t.corrections),
+        draft: format(t.draft),
+      },
+      awaitingHumanAcceptance: pending.map((f) => f.id),
+    },
+    summary: `draft ${draft.status}; changes ${draft.changes.length}; held ${draft.held.length}; total ${format(t.draft)}`,
+  };
+}
+
+// ---- submit_to_portal (simulated; READY drafts only) ----
+
+function submitToPortal(state: CaseState): ToolExecution {
+  const draft = state.draft;
+  if (!draft) return fail("no draft: call prepare_draft first");
+  if (draft.status !== "READY" || !draft.invoice) {
+    return fail(`draft is ${draft.status}; only a READY draft may be submitted`);
+  }
+  const decision = state.portal.submit(draft.invoice);
+  state.portalDecision = decision;
+  const reasons = decision.status === "REJECTED" ? decision.reasons : [];
+  return {
+    ok: true,
+    content: { simulated: true, status: decision.status, reasons },
+    summary: `simulated portal ${decision.status}${reasons.length ? `: ${reasons.map((r) => r.code).join(", ")}` : ""}`,
+  };
+}
+
 // ---- Tool catalogue and dispatch ----
 
 export const CASE_TOOL_SPECS: ToolSpec[] = [
@@ -155,9 +243,34 @@ export const CASE_TOOL_SPECS: ToolSpec[] = [
       additionalProperties: false,
     },
   },
+  {
+    name: "prepare_draft",
+    description:
+      "Prepare the in-memory invoice draft by applying findings, referenced by id only. AUTO_FIX and BLOCK findings, or findings a human ACCEPTED, may be applied; every BLOCK finding must be held. Amounts are computed by the system.",
+    input_schema: {
+      type: "object",
+      properties: { ...jobProps, apply_finding_ids: { type: "array", items: { type: "string" } } },
+      required: ["job_id", "apply_finding_ids"],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "submit_to_portal",
+    description:
+      "Submit the current draft to the simulated customer portal. Only a READY draft is accepted.",
+    input_schema: {
+      type: "object",
+      properties: jobProps,
+      required: ["job_id"],
+      additionalProperties: false,
+    },
+  },
 ];
 
 const jobArg = z.object({ job_id: z.string() }).strict();
+const draftArg = z
+  .object({ job_id: z.string(), apply_finding_ids: z.array(z.string()).max(20) })
+  .strict();
 const recordsArg = z.object({ job_id: z.string(), record: z.enum(RECORDS) }).strict();
 
 /** Validate arguments and the job scope; never look up an id from another job. */
@@ -194,6 +307,14 @@ export function executeCaseTool(state: CaseState, call: ToolCall): ToolExecution
     case "get_job_records": {
       const a = parseArgs(state, call, recordsArg);
       return a.ok ? getJobRecords(state, a.args.record) : a;
+    }
+    case "prepare_draft": {
+      const a = parseArgs(state, call, draftArg);
+      return a.ok ? prepareDraft(state, a.args.apply_finding_ids) : a;
+    }
+    case "submit_to_portal": {
+      const a = parseArgs(state, call, jobArg);
+      return a.ok ? submitToPortal(state) : a;
     }
     default:
       return fail(`unknown tool ${call.name}`);
