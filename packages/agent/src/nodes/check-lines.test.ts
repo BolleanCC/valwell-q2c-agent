@@ -1,4 +1,4 @@
-import { fromCents, PriceBookItem } from "@valwell/domain";
+import { fromCents, InvoiceLine, PriceBookItem, Quote, WorkOrderLine } from "@valwell/domain";
 import { describe, expect, it } from "vitest";
 import type { JobContext } from "../adapters/sources.js";
 import { runPipeline } from "../pipeline.js";
@@ -86,5 +86,80 @@ describe("checkLineEvidence", () => {
     const { reviews, findings } = runPipeline([ctx]);
     expect(findings).toEqual([]);
     expect(reviews[0]?.status).toBe("NEEDS_REVIEW");
+  });
+});
+
+describe("quantity checks", () => {
+  /** Bill LAB-TECH (6 h approved at $95.00) for a different number of hours. */
+  function billHours(ctx: JobContext, hours: number) {
+    const labour = ctx.invoice.lines[1];
+    if (!labour) throw new Error("IL-2");
+    labour.qty = hours;
+    labour.amount = fromCents(9_500 * hours);
+  }
+
+  it("does not let six approved hours be billed as sixty", () => {
+    const ctx = buildContext();
+    billHours(ctx, 60);
+    expect(check(ctx)).toEqual([
+      {
+        code: "QUANTITY_MISMATCH",
+        invoiceLineId: "IL-2",
+        message: "IL-2 (LAB-TECH): billed quantity 60 ≠ 6 recorded on WL-2",
+      },
+    ]);
+  });
+
+  it("flags recorded work above the approved quantity even when billing matches it", () => {
+    const ctx = buildContext();
+    billHours(ctx, 60);
+    Object.assign(ctx.workOrder.lines[1] ?? {}, { hours: 60 });
+    expect(check(ctx)).toMatchObject([
+      { code: "QUANTITY_EXCEEDS_APPROVED", invoiceLineId: "IL-2" },
+    ]);
+    expect(check(ctx)[0]?.message).toContain("60 recorded on WL-2 but only 6 approved");
+  });
+
+  it("flags an item split over several work-order and invoice lines instead of summing", () => {
+    const ctx = buildContext();
+    ctx.workOrder.lines.push(
+      WorkOrderLine.parse({
+        id: "WL-2b",
+        kind: "LABOUR",
+        itemCode: "LAB-TECH",
+        description: "Tech",
+        hours: 6,
+      }),
+    );
+    ctx.invoice.lines.push(
+      InvoiceLine.parse({
+        id: "IL-2b",
+        itemCode: "LAB-TECH",
+        description: "Tech",
+        kind: "LABOUR",
+        qty: 6,
+        unitPrice: 9_500,
+        amount: 57_000,
+        sourceRef: { workOrderLineId: "WL-2b" },
+      }),
+    );
+    expect(check(ctx).map((i) => [i.code, i.invoiceLineId])).toEqual([
+      ["UNSUPPORTED_DUPLICATE_LINES", "IL-2"],
+      ["UNSUPPORTED_DUPLICATE_LINES", "IL-2b"],
+    ]);
+    expect(runPipeline([ctx]).reviews[0]?.status).toBe("NEEDS_REVIEW");
+  });
+
+  it("does not treat an item removed from the effective quote revision as approved", () => {
+    const ctx = buildContext();
+    const rep = ctx.quotes[1];
+    if (!rep) throw new Error("repair quote");
+    // Revision 2 drops PART-SEAT; revision 1 must no longer authorise it.
+    ctx.quotes.push(Quote.parse({ ...rep, revision: 2, lines: [rep.lines[0]] }));
+    const { reviews, findings } = runPipeline([ctx]);
+    expect(findings.map((f) => [f.frictionCode, f.invoiceLineId, f.route])).toEqual([
+      ["B1", "IL-3", "BLOCK"],
+    ]);
+    expect(reviews[0]?.status).toBe("COMPLETE");
   });
 });

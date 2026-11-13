@@ -1,8 +1,16 @@
-import { format, multiplyQty } from "@valwell/domain";
+import { format, multiplyQty, workOrderLineQty } from "@valwell/domain";
 import { lookupEffectivePrice } from "@valwell/rules";
 import type { JobContext } from "../adapters/sources.js";
 import type { ReviewIssue } from "../review.js";
-import type { Alignment } from "./align.js";
+import { type Alignment, type AlignmentRow, isApprovedScope } from "./align.js";
+
+/** Quantities have at most 3 decimals; compare and sum them as integer thousandths. */
+const milli = (qty: number) => Math.round(qty * 1000);
+
+/** Approved quantity: effective quote revision lines plus approved change-order lines. */
+const approvedMilli = (row: AlignmentRow) =>
+  row.quoteLines.reduce((sum, l) => sum + milli(l.qty), 0) +
+  row.approvedChangeOrderLines.reduce((sum, c) => sum + milli(c.line.qty), 0);
 
 /**
  * Evidence and arithmetic checks that no detector can decide. Each problem is
@@ -10,6 +18,12 @@ import type { Alignment } from "./align.js";
  * evidence for the correct one is missing or contradictory.
  *
  * - Every line: amount must equal qty × unit price (rounded by `multiplyQty`).
+ * - Quantities, for an approved item matched to one work-order line: the
+ *   billed quantity must equal the recorded work quantity, and the recorded
+ *   quantity must not exceed the approved quantity (effective quote revision
+ *   plus approved change orders). An item on several quote, work-order or
+ *   invoice lines would need cumulative billing, which is not supported, so it
+ *   is flagged. Unapproved items are B1 findings instead.
  * - Part lines (cost-plus): the invoice must disclose the unit cost, and it
  *   must equal the cost on the matched work-order line. A missing or
  *   conflicting cost means the markup cap cannot be applied safely.
@@ -34,6 +48,28 @@ export function checkLineEvidence(ctx: JobContext, alignment: Alignment): Review
         "EXTENSION_ERROR",
         `amount ${format(line.amount)} ≠ ${line.qty} × ${format(line.unitPrice)} = ${format(extended)}`,
       );
+    }
+
+    const row = alignment.rows.find((r) => r.itemCode === line.itemCode);
+    if (wo && row && isApprovedScope(row)) {
+      const worked = workOrderLineQty(wo);
+      if (
+        row.quoteLines.length > 1 ||
+        row.workOrderLines.length > 1 ||
+        row.invoiceLines.length > 1
+      ) {
+        issue(
+          "UNSUPPORTED_DUPLICATE_LINES",
+          "item appears on several quote, work-order or invoice lines; cumulative quantities are not supported",
+        );
+      } else if (milli(line.qty) !== milli(worked)) {
+        issue("QUANTITY_MISMATCH", `billed quantity ${line.qty} ≠ ${worked} recorded on ${wo.id}`);
+      } else if (milli(worked) > approvedMilli(row)) {
+        issue(
+          "QUANTITY_EXCEEDS_APPROVED",
+          `${worked} recorded on ${wo.id} but only ${approvedMilli(row) / 1000} approved (quote + approved change orders)`,
+        );
+      }
     }
 
     if (line.kind === "PART") {
