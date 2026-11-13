@@ -1,4 +1,10 @@
-import { type Limits, type LlmProvider, runToolLoop, type TraceEntry } from "../llm/loop.js";
+import {
+  LIMITS,
+  type Limits,
+  type LlmProvider,
+  runToolLoop,
+  type TraceEntry,
+} from "../llm/loop.js";
 import type { CaseDisposition } from "./disposition.js";
 import type { CaseState } from "./state.js";
 import { CASE_TOOL_SPECS, executeCaseTool } from "./tools.js";
@@ -63,7 +69,7 @@ export async function runCaseWorkflow(
     provider,
     { system: CASE_SYSTEM_PROMPT, prompt, tools: CASE_TOOL_SPECS },
     (call) => executeCaseTool(state, call),
-    options.limits ?? CASE_LIMITS,
+    options.limits ?? LIMITS,
   );
   const status: CaseRunStatus = loop.status === "FINISHED" ? "DISPOSITION_ACCEPTED" : loop.status;
   return {

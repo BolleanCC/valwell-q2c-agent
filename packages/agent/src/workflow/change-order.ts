@@ -6,7 +6,28 @@ import {
   validateDraft,
 } from "../llm/draft.js";
 import type { ToolExecution } from "../llm/loop.js";
+import type { ToolSpec } from "../llm/tools.js";
 import type { CaseState } from "./state.js";
+
+/** JSON Schema of the model-authored request text (mirrors ChangeOrderDraftContent; no amounts). */
+export const CHANGE_ORDER_DRAFT_SCHEMA: ToolSpec["input_schema"] = {
+  type: "object",
+  properties: {
+    workSummary: { type: "string" },
+    businessReason: { anyOf: [{ type: "string" }, { type: "null" }] },
+    evidenceIds: { type: "array", items: { type: "string" } },
+    missingInformation: { type: "array", items: { type: "string" } },
+    customerRequestText: { type: "string" },
+  },
+  required: [
+    "workSummary",
+    "businessReason",
+    "evidenceIds",
+    "missingInformation",
+    "customerRequestText",
+  ],
+  additionalProperties: false,
+};
 
 /** A validated change-order request draft for one held line. Never sent by the system. */
 export interface ChangeOrderRequestRecord {

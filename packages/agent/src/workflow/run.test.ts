@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
 import type { ModelTurn } from "../llm/loop.js";
+import { LIMITS } from "../llm/loop.js";
 import { callTools, scriptedProvider } from "../llm/scripted.js";
 import { demoCaseState } from "../testing/demo-case.js";
-import { CASE_LIMITS, runCaseWorkflow } from "./run.js";
+import { runCaseWorkflow } from "./run.js";
 import { acceptFinding } from "./state.js";
 
 const checks = (job: string) =>
@@ -122,7 +123,7 @@ describe("runCaseWorkflow", () => {
     );
     const run = await runCaseWorkflow(s, scriptedProvider(loop).provider);
     expect(run).toMatchObject({ status: "LIMIT_REACHED", disposition: null });
-    expect(run.trace).toHaveLength(CASE_LIMITS.maxTurns);
+    expect(run.trace).toHaveLength(LIMITS.maxTurns);
   });
 
   it("case 4: a provider failure after the hold keeps the held amount and produces no disposition", async () => {

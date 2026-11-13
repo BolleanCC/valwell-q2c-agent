@@ -2,11 +2,11 @@ import { format, type Money } from "@valwell/domain";
 import { z } from "zod";
 import { applyFindings, isActionable } from "../fix.js";
 import type { EvidenceSource } from "../llm/draft.js";
-import { SUBMIT_TOOL, type ToolCall, type ToolExecution } from "../llm/loop.js";
+import type { ToolCall, ToolExecution } from "../llm/loop.js";
 import { getChangeOrders, getEffectiveQuote, getWorkOrder, type ToolSpec } from "../llm/tools.js";
 import { runPipeline } from "../pipeline.js";
 import { checkRecordLinks } from "../review.js";
-import { recordChangeOrderRequest } from "./change-order.js";
+import { CHANGE_ORDER_DRAFT_SCHEMA, recordChangeOrderRequest } from "./change-order.js";
 import { DispositionArgs, OUTCOMES, recordDisposition } from "./disposition.js";
 import type { CaseState } from "./state.js";
 
@@ -276,7 +276,7 @@ export const CASE_TOOL_SPECS: ToolSpec[] = [
       properties: {
         ...jobProps,
         invoice_line_id: { type: "string" },
-        draft: SUBMIT_TOOL.input_schema,
+        draft: CHANGE_ORDER_DRAFT_SCHEMA,
       },
       required: ["job_id", "invoice_line_id", "draft"],
       additionalProperties: false,

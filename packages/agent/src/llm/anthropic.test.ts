@@ -1,7 +1,7 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import { describe, expect, it } from "vitest";
 import { anthropicProvider, DEFAULT_MODEL, type MessagesClient } from "./anthropic.js";
-import { LIMITS, SUBMIT_TOOL } from "./loop.js";
+import { LIMITS } from "./loop.js";
 
 /** A fake SDK client: records requests and replays canned responses. No network. */
 function fakeClient(responses: Partial<Anthropic.Message>[]) {
@@ -19,7 +19,17 @@ function fakeClient(responses: Partial<Anthropic.Message>[]) {
   return { client, requests };
 }
 
-const task = { system: "sys", prompt: "investigate", tools: [SUBMIT_TOOL] };
+const TOOL = {
+  name: "submit_disposition",
+  description: "Finish the case.",
+  input_schema: {
+    type: "object" as const,
+    properties: {},
+    required: [],
+    additionalProperties: false as const,
+  },
+};
+const task = { system: "sys", prompt: "investigate", tools: [TOOL] };
 
 describe("anthropicProvider (fake client, no network)", () => {
   it("sends tools and limits, and maps tool_use responses to turns", async () => {
@@ -54,7 +64,7 @@ describe("anthropicProvider (fake client, no network)", () => {
       model: "test-model",
       max_tokens: LIMITS.maxOutputTokens,
       system: "sys",
-      tools: [{ name: "submit_change_order_draft" }],
+      tools: [{ name: "submit_disposition" }],
       messages: [{ role: "user", content: "investigate" }],
     });
     // The assistant turn is kept verbatim and the tool result is sent back.
