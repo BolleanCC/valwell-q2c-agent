@@ -22,12 +22,13 @@ export interface RunOutcome {
   rejectionReasons: Record<string, number>;
 }
 
+/** Actual results of the drafts (not summed proposals), so nothing is counted twice. */
 export interface AmountSummary {
   /** Over-billing removed by repricing (positive number). */
   overbillingRemoved: Money;
   /** Under-billing recovered by repricing to the contract rate. */
   underbillingRecovered: Money;
-  /** Billed scope held back until a change order is approved. */
+  /** Original amounts of held lines: not submitted and not approved. */
   heldPendingChangeOrder: Money;
 }
 
@@ -89,19 +90,16 @@ export function runExperiment(
     ),
   ];
 
-  const applied = invoices.flatMap((i) => applyFindings(i, findings).applied);
-  const deltas = (pred: (f: Finding) => boolean) =>
-    add(...applied.filter(pred).map((f) => f.suggestion.amountDelta));
-  const isReprice = (f: Finding) => f.suggestion.action === "REPRICE_LINE";
+  const drafts = invoices.map((i) => applyFindings(i, findings));
+  const lineDeltas = drafts.flatMap((d) => d.changes.map((c) => c.after.amount - c.before.amount));
+  const sum = (xs: number[]) => fromCents(xs.reduce((a, b) => a + b, 0));
   return {
     invoices: invoices.length,
     runs,
     amounts: {
-      overbillingRemoved: fromCents(-deltas((f) => isReprice(f) && f.suggestion.amountDelta < 0)),
-      underbillingRecovered: deltas((f) => isReprice(f) && f.suggestion.amountDelta > 0),
-      heldPendingChangeOrder: fromCents(
-        -deltas((f) => f.suggestion.action === "REQUEST_CHANGE_ORDER"),
-      ),
+      overbillingRemoved: sum(lineDeltas.filter((d) => d < 0).map((d) => -d)),
+      underbillingRecovered: sum(lineDeltas.filter((d) => d > 0)),
+      heldPendingChangeOrder: add(...drafts.map((d) => d.totals.held)),
     },
   };
 }
