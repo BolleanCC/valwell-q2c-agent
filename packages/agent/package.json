@@ -8,6 +8,7 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0",
     "@valwell/domain": "workspace:*",
     "@valwell/mock-systems": "workspace:*",
     "@valwell/rules": "workspace:*",
