@@ -10,6 +10,7 @@
   "dependencies": {
     "@valwell/domain": "workspace:*",
     "@valwell/mock-systems": "workspace:*",
-    "@valwell/rules": "workspace:*"
+    "@valwell/rules": "workspace:*",
+    "zod": "^4.6.7"
   }
 }
