@@ -70,8 +70,9 @@ function getFindingDetails(scope: DraftingScope, args: z.infer<typeof findingArg
   };
 }
 
-function getWorkOrder(scope: DraftingScope): ToolOutcome {
-  const wo = scope.ctx.workOrder;
+/** Work-order lines (no costs), TDI findings with derived ids, technician notes. */
+export function getWorkOrder(ctx: JobContext): ToolOutcome {
+  const wo = ctx.workOrder;
   const tdi = wo.tdiFindings.map((t, i) => ({ id: `${wo.id}-TDI-${i + 1}`, ...t }));
   const notes = wo.technicianNotes ?? [];
   return {
@@ -98,8 +99,9 @@ function getWorkOrder(scope: DraftingScope): ToolOutcome {
   };
 }
 
-function getEffectiveQuote(scope: DraftingScope): ToolOutcome {
-  const quotes = latestRevisions(scope.ctx.quotes).map((q) => ({
+/** Lines of the effective (highest) revision of each quote, without prices. */
+export function getEffectiveQuote(ctx: JobContext): ToolOutcome {
+  const quotes = latestRevisions(ctx.quotes).map((q) => ({
     quoteId: q.id,
     revision: q.revision,
     stage: q.stage,
@@ -124,8 +126,9 @@ function getEffectiveQuote(scope: DraftingScope): ToolOutcome {
   };
 }
 
-function getChangeOrders(scope: DraftingScope): ToolOutcome {
-  const changeOrders = scope.ctx.changeOrders.map((c) => ({
+/** Change orders recorded for the job, with status. */
+export function getChangeOrders(ctx: JobContext): ToolOutcome {
+  const changeOrders = ctx.changeOrders.map((c) => ({
     id: c.id,
     status: c.status,
     reason: c.reason,
@@ -187,9 +190,9 @@ export function runTool(scope: DraftingScope, name: string, input: unknown): Too
     if (!args.success) return invalid(args.error);
     const denied = outOfScope(scope, args.data.job_id);
     if (denied) return denied;
-    if (name === "get_work_order") return getWorkOrder(scope);
-    if (name === "get_effective_quote") return getEffectiveQuote(scope);
-    return getChangeOrders(scope);
+    if (name === "get_work_order") return getWorkOrder(scope.ctx);
+    if (name === "get_effective_quote") return getEffectiveQuote(scope.ctx);
+    return getChangeOrders(scope.ctx);
   }
   return { ok: false, error: `unknown tool ${name}` };
 }

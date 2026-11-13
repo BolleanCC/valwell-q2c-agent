@@ -24,6 +24,12 @@ export type ChangeOrderDraftContent = z.infer<typeof ChangeOrderDraftContent>;
 
 /** Kinds of records the tools can return; each comes with a stable id. */
 export type EvidenceSource =
+  | "JOB"
+  | "INVOICE"
+  | "WORK_ORDER"
+  | "QUOTE"
+  | "RULE"
+  | "PRICE_BOOK_ITEM"
   | "FINDING"
   | "WORK_ORDER_LINE"
   | "TECHNICIAN_NOTE"

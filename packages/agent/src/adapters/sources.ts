@@ -7,6 +7,7 @@ import type {
   Quote,
   WorkOrder,
 } from "@valwell/domain";
+import type { PortalDecision } from "@valwell/mock-systems";
 import type { JobReview } from "../review.js";
 
 /**
@@ -31,6 +32,11 @@ export interface BillingSource {
 
 export interface ContractSource {
   rulesFor(customerId: string): CustomerRules | undefined;
+}
+
+/** The customer's invoice portal (simulated in this demo). */
+export interface PortalSource {
+  submit(invoice: Invoice): PortalDecision;
 }
 
 export interface Sources {
