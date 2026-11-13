@@ -67,4 +67,34 @@ describe("draft_change_order_request", () => {
       error: expect.stringContaining("text contains a monetary amount"),
     });
   });
+
+  it("reports missing business justification instead of accepting an invented one", async () => {
+    const s = await demoCaseState("4-unapproved-extra-work");
+    s.ctx.workOrder.tdiFindings = []; // no teardown finding and no technician note on record
+    s.ctx.workOrder.technicianNotes = [];
+    for (const [name, input] of [
+      ["validate_records", {}],
+      ["reconcile_invoice", {}],
+      ["prepare_draft", { apply_finding_ids: ["F-0001"] }],
+      ["get_job_records", { record: "work_order" }],
+    ] as [string, object][]) {
+      executeCaseTool(s, call(name, { job_id: "JOB-D4", ...input }));
+    }
+    expect(request(s, { ...DRAFT, evidenceIds: ["F-0001", "WO-D4-L5"] })).toMatchObject({
+      ok: false,
+      error: expect.stringContaining(
+        "business reason does not cite a technician note or TDI finding",
+      ),
+    });
+    const honest = {
+      ...DRAFT,
+      businessReason: null,
+      evidenceIds: ["F-0001", "WO-D4-L5"],
+      missingInformation: ["Why the stem was replaced"],
+    };
+    expect(request(s, honest)).toMatchObject({
+      ok: true,
+      content: { status: "INSUFFICIENT_EVIDENCE" },
+    });
+  });
 });
