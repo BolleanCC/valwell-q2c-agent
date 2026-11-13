@@ -89,7 +89,7 @@ describe("draftChangeOrderRequest (offline, scripted provider)", () => {
     const turns = await draftChangeOrderRequest(scope, held, scriptedProvider(forever).provider);
     expect(turns).toMatchObject({
       status: "LIMIT_REACHED",
-      problems: ["no draft submitted within 6 model turns"],
+      problems: ["not finished within 6 model turns"],
     });
     expect(turns.trace).toHaveLength(LIMITS.maxTurns);
 
@@ -198,7 +198,7 @@ describe("draftChangeOrderRequest failure paths", () => {
       );
     expect(await stop("end_turn")).toMatchObject({
       status: "INVALID_OUTPUT",
-      problems: ["the model stopped without submitting a draft"],
+      problems: ["the model stopped without finishing the task"],
     });
     expect((await stop("refusal")).status).toBe("PROVIDER_FAILURE");
     expect((await stop("max_tokens")).problems).toEqual(["output token limit reached"]);
